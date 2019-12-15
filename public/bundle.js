@@ -6,7 +6,6 @@
             for (let key in data) {
                 if (key === "IPadres" || key === "datumafname" || key === "duur_invullen") {
                     delete data[key];
-                    console.log(data);
                 }
             }
 
@@ -16,36 +15,216 @@
 
     }
 
-    function removeNull(data){
-        for (let key in data) {
-            // console.log(data)
-            if (data[key] === '#NULL!' || data[key] === "") {
-                delete data[key];
+    function pyramidBuilder(data, target, options) {
 
-            }
-        }
+        let newNest = d3.nest()
+            .key(d => d.Leeftijd)
+            .key(d => d.Geslacht)
+            .rollup(d => d.length)
+            .entries(data);
+
+
+
+        // newNest.forEach(e => {
+        //     e.age = e.key
+        //     delete e.key
+
+        //     e.values.forEach( d => {
+
+        //     })
+
+        //     e.values.sort((a,b) => {
+        //         return a
+        //     })
+        // })
+        console.log(newNest);
+
+        var svg = d3.select("svg"),
+            margin = {
+                top: 20,
+                right: 20,
+                bottom: 30,
+                left: 50
+            },
+            width = +svg.attr("width") - margin.left - margin.right,
+            height = +svg.attr("height") - margin.top - margin.bottom,
+            g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        // let age = newNest.map(d => d.key)
+
+        newNest.sort(function (a, b) {
+            return d3.ascending(a.key, b.key)
+        });
+
+        let genderSource = newNest.map(d => d.values[0].key);
+        let totalGenderValue = newNest.map(d => d.values[0].value);
+
+
+
+        let x = d3.scaleBand()
+            .domain(newNest.map(d => d.key))
+            .rangeRound([0, width])
+            .padding(0.3);
+
+        let x0 = d3.scaleBand()
+            .domain(genderSource)
+            .rangeRound([0, x.bandwidth()])
+            .padding(0.2);
+
+
+        // console.log(x.domain())
+
+        let y = d3.scaleLinear()
+            .domain([0, d3.max(newNest, d => {
+                return d3.max(d.values, el => {
+                        return el.value
+                    }
+
+                )
+            })])
+            .rangeRound([height, 0]);
+
+        let z = d3.scaleOrdinal()
+            .domain(genderSource)
+            .range(["#29A567", "#586BA4", "#ED4D6E", "#AED9E0", "#FECCBA"]);
+
+
+
+        // x.domain(data.map(function (d) {
+        //     return d.key;
+        // }));
+        // console.log(x.domain)
+
+        g.append("g")
+            .attr("transform", "translate(0, " + height + ")")
+            .call(d3.axisBottom(x));
+
+        g.append("g")
+            .call(d3.axisLeft(y))
+            .append("text")
+            .attr("fill", "#000")
+            .attr("transform", "rotate(-90)")
+            .attr("y", height)
+            .attr("dy", "0.71em")
+            .attr("text-anchor", "end");
+        // .text("aantal");
+
+        let mainGroup = g.append('g')
+            .selectAll('g')
+            .data(newNest);
+
+
+        let gender = mainGroup
+            .enter()
+            .append('g')
+            .attr('transform', d => {
+                return `translate(${x(d.key)},0)`
+            })
+            .attr('class', 'gender');
+
+        let rect = gender.selectAll("rect")
+            .data(d => d.values);
+
+        let rectEnter = rect
+            .enter()
+            .append("rect")
+            .attr("class", "bar")
+            .attr('y', height)
+            .attr('width', x.bandwidth())
+            .attr('height', 0);
+
+
+        let groupBar = () => {
+            rectEnter
+                .attr("x", d => x0(d.key))
+                .attr("y", y(d => d.value))
+                .attr("width", x0.bandwidth())
+                .attr("height", d => height - y(d.value))
+                .attr('fill', d => z(d.key));
+        };
+        groupBar();
+
     }
 
-    function newData () {
-        console.log('hoi');
+    // import newData from './modules/newData';
+
+
+
+
+    function ageGender() {
+        // console.log('hoi')
 
         let results = fetch('../src/dataruw.json')
             .then(res => res.json())
             .then(results => {
-                let resultsMapping = results;
+                let resultsMapping = results
+                    .map(data => {
+                        return {
+                            age: data.Leeftijd,
+                            gender: data.Geslacht
+                        }
 
-                return resultsMapping
-            }).then(resultsMapping => {
-                resultsMapping.map(data => {
-                    removeNull(data);
-                });
-            testing(resultsMapping);
-            }
-
-            );
-    return results
+                    });
+                testing(resultsMapping);
+                // console.log(resultsMapping)
+                pyramidBuilder(results);
+            });
+        return results
     }
+    ageGender();
 
-    newData();
+
+
+    // function etnicData() {
+    //     // console.log('hoi')
+
+    //     let results = fetch('../src/dataruw.json')
+    //         .then(res => res.json())
+    //         .then(results => {
+    //             let resultsMapping = results
+    //                 .map(data => {
+    //                     removeNull(data)
+    //                 })
+    //             keyDelete(resultsMapping)
+    //             pyramidBuilder(results)
+    //         })
+    //         return results
+    // }
+    // etnicData()
+
+
+    // function visualData(data) {
+    //     d3.select("body").append("h1").text("Hello, world!");
+    //     console.log(data)
+    //     let newNest = d3.nest()
+    //         .key(d => d.Geslacht)
+    //         .key(d => d.Leeftijd)
+    //         .entries(data)
+    //     console.log(newNest)
+
+
+    // }
+
+
+    // function pyramidBuilder(data) {
+
+    //     let newNest = d3.nest()
+    //         .key(d => d.Leeftijd)
+    //         .key(d => d.Geslacht)
+    //         .rollup(d=> d.length)
+    //         .entries(data)
+
+
+    //     // let age = newNest.map(d => d.key)
+    //     // let genderTotal = newNest.map(d => d.values)
+    //     // let gender = newNest.map(d => d.values[0].key)
+    //     // let totalAge = newNest.map(d => d.values[0].value)
+    //     console.log(newNest)
+
+        
+
+
+    // }
+    // pyramidBuilder()
 
 }());
