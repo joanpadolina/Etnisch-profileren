@@ -1,7 +1,7 @@
 // import newData from './modules/newData';
 import keyDelete from './modules/keyDelete.js'
 import removeNull from './modules/removeNull.js'
-import pyramidBuilder from './modules/popPyramid.js'
+import pyramidBuilder from './modules/popPyramid2.js'
 
 
 

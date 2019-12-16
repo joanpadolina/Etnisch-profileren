@@ -1,0 +1,23 @@
+body{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    background:black;
+    color:white;
+}
+
+h1{
+    color:black;
+    padding:.3em;
+    margin:1em;
+    width:20em;
+    background:#fff33d;
+}
+
+.legenda{
+    position: relative;
+    display: block;
+    width:10em;
+    left:0;
+}

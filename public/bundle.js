@@ -23,20 +23,6 @@
             .rollup(d => d.length)
             .entries(data);
 
-
-
-        // newNest.forEach(e => {
-        //     e.age = e.key
-        //     delete e.key
-
-        //     e.values.forEach( d => {
-
-        //     })
-
-        //     e.values.sort((a,b) => {
-        //         return a
-        //     })
-        // })
         console.log(newNest);
 
         var svg = d3.select("svg"),
@@ -50,12 +36,13 @@
             height = +svg.attr("height") - margin.top - margin.bottom,
             g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        // let age = newNest.map(d => d.key)
+
 
         newNest.sort(function (a, b) {
             return d3.ascending(a.key, b.key)
         });
-
+        
+        let age = newNest.map(d => d.key);
         let genderSource = newNest.map(d => d.values[0].key);
         let totalGenderValue = newNest.map(d => d.values[0].value);
 
@@ -82,7 +69,7 @@
 
                 )
             })])
-            .rangeRound([height, 0]);
+            .rangeRound([height,0]);
 
         let z = d3.scaleOrdinal()
             .domain(genderSource)
@@ -144,6 +131,42 @@
         };
         groupBar();
 
+    let genderOnly = d3.nest()
+        .key(d => {
+            return d.values[0].key
+        })
+        .entries(newNest);
+    let flatThisObject = genderOnly.map(d => d.key);
+
+        console.log(flatThisObject);
+        let genderLegenda = () => {
+            let legend = g.append("g")
+                .attr('class', 'legenda')
+                .attr("text-anchor", "end")
+                .selectAll("g")
+                .data(flatThisObject)
+                .enter()
+                .append("g")
+                .attr("transform", (d, i) => {
+                    return "translate(0," + i * 25 + ")";
+                });
+
+            legend.append("rect")
+                .attr("x", width - 20)
+                .attr("width", 10)
+                .attr("height", 19)
+                .attr("fill", z);
+
+            legend.append("text")
+                .attr("x", width - 24)
+                .attr("y", 9.5)
+                .attr("dy", "0.32em")
+                .attr('fill', 'darkgray')
+                .text(d => {
+                    return d;
+                });
+        };
+        genderLegenda();
     }
 
     // import newData from './modules/newData';
