@@ -1,12 +1,26 @@
 export default function pyramidBuilder(data, target, options) {
 
+    let achtergrond = d3.nest()
+    .key(d => d.achtergrond_openantwoord)
+    .rollup( d => d.length)
+    .entries(data)
+
+
+    achtergrond.sort(function (a, b) {
+        return d3.ascending(a.key, b.key)
+    })
+
+    console.log(achtergrond)
+
+    // console.log(data)
     let newNest = d3.nest()
         .key(d => d.Leeftijd)
         .key(d => d.Geslacht)
         .rollup(d => d.length)
         .entries(data)
 
-    console.log(newNest)
+
+
 
     var svg = d3.select("svg"),
         margin = {
@@ -17,14 +31,14 @@ export default function pyramidBuilder(data, target, options) {
         },
         width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom,
-        g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
 
 
     newNest.sort(function (a, b) {
         return d3.ascending(a.key, b.key)
     })
-    
+
     let age = newNest.map(d => d.key)
     let genderSource = newNest.map(d => d.values[0].key)
     let totalGenderValue = newNest.map(d => d.values[0].value)
@@ -52,11 +66,11 @@ export default function pyramidBuilder(data, target, options) {
 
             )
         })])
-        .rangeRound([height,0])
+        .rangeRound([height, 0])
 
     let z = d3.scaleOrdinal()
         .domain(genderSource)
-        .range(["#29A567", "#586BA4", "#ED4D6E", "#AED9E0", "#FECCBA"])
+        .range(["#29A567", "#54a5dd", "#fbd731", "#f7005a", "#FECCBA"])
 
 
 
@@ -88,9 +102,10 @@ export default function pyramidBuilder(data, target, options) {
         .enter()
         .append('g')
         .attr('transform', d => {
-            return `translate(${x(d.key)},0)`
+            return `translate(${x(d.key)}, 0)`
         })
         .attr('class', 'gender')
+
 
     let rect = gender.selectAll("rect")
         .data(d => d.values)
@@ -103,23 +118,23 @@ export default function pyramidBuilder(data, target, options) {
         .attr('width', x.bandwidth())
         .attr('height', 0)
 
+    rectEnter
+        .attr("x", d => x0(d.key))
+        .attr("y", y(d => d.value))
+        .attr("width", x0.bandwidth())
+        .attr('fill', d => z(d.key))
+        .attr("height", function (d) {
+            return height - y(d.value);
+        });
 
-    let groupBar = () => {
-        rectEnter
-            .attr("x", d => x0(d.key))
-            .attr("y", y(d => d.value))
-            .attr("width", x0.bandwidth())
-            .attr("height", d => height - y(d.value))
-            .attr('fill', d => z(d.key))
-    }
-    groupBar()
 
-let genderOnly = d3.nest()
-    .key(d => {
-        return d.values[0].key
-    })
-    .entries(newNest)
-let flatThisObject = genderOnly.map(d => d.key)
+    let genderOnly = d3.nest()
+        .key(d => {
+            return d.values[0].key
+        })
+        .entries(newNest)
+
+    let flatThisObject = genderOnly.map(d => d.key)
 
     console.log(flatThisObject)
     let genderLegenda = () => {

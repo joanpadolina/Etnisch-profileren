@@ -100,8 +100,9 @@ export default function pyramidBuilder(data, target, options) {
             .attr("y", function (d) {
                 return y(d.key)
             })
-            .attr("height", y.bandwidth())
             .attr('fill', d => z(d.key))
+            .attr("height", function(d) { return height - y(d.value); });
+
     }
     groupBar()
 

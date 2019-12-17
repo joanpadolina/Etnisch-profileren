@@ -13,6 +13,7 @@ h1{
     margin:1em;
     width:20em;
     background:#fff33d;
+    position: fixed;
 }
 
 .legenda{
@@ -20,4 +21,11 @@ h1{
     display: block;
     width:10em;
     left:0;
+}
+svg{
+    display: block;
+    position: relative;
+    top:10em;
+
+
 }
