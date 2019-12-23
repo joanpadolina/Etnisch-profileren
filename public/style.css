@@ -3,8 +3,8 @@ body{
     padding:0;
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
-    background:black;
-    color:white;
+    /* background:black;
+    color:white; */
 }
 
 h1{
@@ -15,7 +15,7 @@ h1{
     background:#fff33d;
     position: fixed;
 }
-
+/* 
 .legenda{
     position: relative;
     display: block;
@@ -28,4 +28,4 @@ svg{
     top:10em;
 
 
-}
+} */
