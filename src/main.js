@@ -1,16 +1,12 @@
 // import newData from './modules/newData';
-import keyDelete from './modules/keyDelete.js'
 import {
     removeNull
 } from './modules/removeNull.js'
 // import pyramidBuilder from './modules/popPyramid2.js'
-import bubbleChart from './modules/bubblechart.js'
-import {
-    addKey
-} from './modules/mergeBackgroud.js'
+import myVisualChart from './modules/bubblechart.js'
 
 
-function ageGender() {
+function etnischData() {
     let results = fetch('../src/dataruw.json')
         .then(res => res.json())
         .then(results => {
@@ -32,9 +28,9 @@ function ageGender() {
 
                     }
                 })
-            //    bubbleChart(resultsMapping)
+               myVisualChart(resultsMapping)
         })
 }
 
 
-ageGender()
+etnischData()

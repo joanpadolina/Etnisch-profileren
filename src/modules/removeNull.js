@@ -9,3 +9,17 @@ export function removeNull(data) {
         }
     })
 }
+
+
+
+// function removeKeys(data){
+//     data.forEach(data => {
+//         for(let key in data){
+//             if(data[key] === "/"){
+//                 delete data[key]
+//             }
+//         }
+//     })
+// }
+
+// export default removeKeys

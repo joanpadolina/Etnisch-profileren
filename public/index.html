@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://d3js.org/d3.v4.js"></script>
     <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
-    <script src="../src/modules/popPyramid.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
@@ -16,10 +15,17 @@
 
 <body>
     <h1>Van wie is de data?</h1>
-    <svg width="1000" height="600"></svg>
+    <svg width="1000" height="500"></svg>
     <div id="pyramid">
     </div>
     <div id="my_dataviz"></div>
+
+<div id="option">
+    <input name="updateButton" 
+           type="button" 
+           value="Lollipop" />
+</div>
+    <!-- <button>update</button> -->
 
     <script src="bundle.js" type="module"></script>
 </body>
