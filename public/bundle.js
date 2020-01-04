@@ -4,8 +4,11 @@
     function bubbleChart(data) {
       let valueAchtergrond = d3.nest()
         .key(d => d.achtergrond)
+        .key(d => d.cijfer)
         .rollup(leaves => leaves.length)
         .entries(data);
+
+      console.log(data);
 
 
       // set the dimensions and margins of the graph
@@ -46,75 +49,76 @@
         .domain([0, d3.max(dataCijfer.map(d => d.value))])
         .range([height, 0]);
       svg.append("g")
-        .call(d3.axisLeft(y));
+        .call(d3.axisLeft(y))
+        .attr('opacity', 0);
 
       // Add a scale for bubble size
       let z = d3.scaleLinear()
         .domain([0, d3.max(dataCijfer.map(d => d.value))])
         .range([1, 40]);
 
-      function changeToLollipop() {
 
-        // Lines lollipop
-        let lollie = svg.selectAll("myline")
-          .data(dataCijfer)
-          .enter();
-        lollie
-          .append("line")
-          .attr("x1", d => x(d.key))
-          .attr("x2", d => x(d.key))
-          .attr("y1", d => y(d.value))
-          .attr("y2", y(0))
-          .attr("stroke", "grey");
-        lollie
-          .transition()
-          .duration(2000);
+      // let button = d3.select('#option')
+      //   .on('click')
+      // console.log(button)
 
 
+      // values for the selection achtergrond
+      let selectionValues = valueAchtergrond.map(d => d.key);
 
+      let choicesValue = d3.select('body')
+        .append('select')
+        .attr('class', 'selectionValues');
 
-        // Circles lollipop
-        let stok = svg.selectAll("mycircle")
-          .data(dataCijfer)
-          .enter();
-        stok.selectAll('myCircle')
-          .transition()
-          .duration(2000);
-        stok
-          .append("circle")
-          .attr("cx", d => x(d.key))
-          .attr("cy", d => y(d.value))
-          .attr("r", 4)
-          .style("fill", "#69b3a2")
-          .attr("stroke", "black");
+      choicesValue
+        .selectAll('option')
+        .data(selectionValues)
+        .enter()
+        .append('option')
+        .text(d => d)
+        .attr('value', d => d);
 
-        svg
-          .exit().remove();
-
-      }
-
-      // changeToLollipop()
-
-
-      let button = d3.select('#option')
-        .on('click', changeToLollipop);
-      console.log(button);
-
-
-      // // Circle size horizontal
-      svg.selectAll("mycircle")
+      // // Circle size horizontal algemeen
+      let barPlot = svg.selectAll("mycircle")
         .data(dataCijfer)
         .enter()
-        .append("circle")
+        .append("circle");
+
+      barPlot
         .attr('class', 'horizonCircle')
         .attr('transform', 'translate(0,421)')
         .attr("cx", d => x(d.key))
         .attr("r", d => z(d.value))
         .style("fill", "#69b3a2")
         .attr('opacity', .5)
-        .attr("stroke", "black")
-        .exit().remove();
+        .attr("stroke", "black");
 
+      // update pattern starts here
+      function updateBubble() {
+
+        const selectedOption = this.value;
+        let updateAchtergrond = valueAchtergrond.filter(row => row.key == selectedOption);
+
+        let newA = updateAchtergrond.map(d => d.values).flat();
+
+        console.log(newA);
+
+      barPlot
+          .data(newA)
+          .transition()
+          .duration(1000)
+          .attr("cx", d => x(d.key))
+          .attr("r", d => z(d.value));
+      
+          barPlot
+          .exit().remove();
+
+
+      }
+
+      d3.selectAll('.selectionValues')
+        .on('change', updateBubble);
+      //update pattern ends here
 
     }
 
