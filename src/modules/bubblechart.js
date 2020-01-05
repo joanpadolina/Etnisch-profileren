@@ -1,6 +1,7 @@
-import removeKeys from './removeNull.js'
+// import valueAchtergrond from './selections.js'
 
 export default function bubbleChart(data) {
+
   let valueAchtergrond = d3.nest()
     .key(d => d.achtergrond)
     .key(d => d.cijfer)
@@ -8,7 +9,6 @@ export default function bubbleChart(data) {
     .entries(data)
 
   console.log(data)
-
 
   // set the dimensions and margins of the graph
   let margin = {
@@ -22,17 +22,18 @@ export default function bubbleChart(data) {
 
   let svg = d3.select("#my_dataviz")
     .append("svg")
+    .attr('class', 'bubble-plot')
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform",
       "translate(" + margin.left + "," + margin.top + ")");
 
+  // nested data with given number
   let dataCijfer = d3.nest()
     .key(d => d.cijfer)
     .rollup(leaves => leaves.length)
     .entries(data)
-
   // X axis
   let x = d3.scaleBand()
     .range([0, width])
@@ -40,6 +41,8 @@ export default function bubbleChart(data) {
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x))
+
+
   console.log(dataCijfer)
 
 
@@ -57,17 +60,12 @@ export default function bubbleChart(data) {
     .range([1, 40]);
 
 
-  // let button = d3.select('#option')
-  //   .on('click')
-  // console.log(button)
-
-
-  // values for the selection achtergrond
+  // values for the selection westers/niet-westers
   let selectionValues = valueAchtergrond.map(d => d.key)
 
   let choicesValue = d3.select('body')
     .append('select')
-    .attr('class', 'selectionValues')
+    .attr('class', 'selection-values')
 
   choicesValue
     .selectAll('option')
@@ -77,7 +75,53 @@ export default function bubbleChart(data) {
     .text(d => d)
     .attr('value', d => d)
 
-  // // Circle size horizontal algemeen
+  // nest in contact with police
+  let contactWith = d3.nest()
+    .key(d => d.contact)
+    .key(d => d.cijfer)
+    .rollup(leaves => leaves.length)
+    .entries(data)
+
+  // selection contact with
+  let valueContact = contactWith.map(d => d.key)
+
+  // console.log(contactWith)
+  let contactSelection = d3.select('body')
+    .append('select')
+    .attr('class', 'contact-values')
+
+  contactSelection
+    .selectAll('option')
+    .data(valueContact)
+    .enter()
+    .append('option')
+    .text(d => d)
+    .attr('value', d => d)
+
+  // nest totstand 
+  let totstandNest = d3.nest()
+    .key(d => d.totstand)
+    .key(d => d.cijfer)
+    .rollup(leaves => leaves.length)
+    .entries(data)
+
+  let valueTotstand = totstandNest.map(d => d.key)
+  console.log(totstandNest)
+
+  // selection totstand
+  let totstandSelection = d3.select('body')
+    .append('select')
+    .attr('class', 'totstand-values')
+
+  totstandSelection
+    .selectAll('option')
+    .data(valueTotstand)
+    .enter()
+    .append('option')
+    .text(d => d)
+    .attr('value', d => d)
+
+  // Circle size horizontal overal
   let barPlot = svg.selectAll("mycircle")
     .data(dataCijfer)
     .enter()
@@ -96,26 +140,55 @@ export default function bubbleChart(data) {
   function updateBubble() {
 
     const selectedOption = this.value
+
+    //update on background
     let updateAchtergrond = valueAchtergrond.filter(row => row.key == selectedOption)
-
     let newA = updateAchtergrond.map(d => d.values).flat()
-
     console.log(newA)
 
-  barPlot
+    //update on contact with
+    let updateContact = contactWith.filter(row => row.key == selectedOption)
+    let newB = updateContact.map(d => d.values).flat()
+    console.log(updateContact)
+
+    //update on totstand 
+    let updateTotstand = totstandNest.filter(row => row.key == selectedOption)
+    let newC = updateTotstand.map(d => d.values).flat()
+    console.log(updateTotstand)
+
+    barPlot
       .data(newA)
       .transition()
       .duration(1000)
       .attr("cx", d => x(d.key))
       .attr("r", d => z(d.value))
-  
-      barPlot
+
+    barPlot
+      .data(newB)
+      .transition()
+      .duration(1000)
+      .attr("cx", d => x(d.key))
+      .attr("r", d => z(d.value))
+
+    barPlot
+      .data(newC)
+      .transition()
+      .duration(1000)
+      .attr("cx", d => x(d.key))
+      .attr("r", d => z(d.value))
+    barPlot
       .exit().remove()
 
 
   }
 
-  d3.selectAll('.selectionValues')
+  d3.selectAll('.selection-values')
+    .on('change', updateBubble)
+
+  d3.selectAll('.contact-values')
+    .on('change', updateBubble)
+
+  d3.selectAll('.totstand-values')
     .on('change', updateBubble)
   //update pattern ends here
 

@@ -34,8 +34,22 @@ svg{
     position: relative;
     top:20em;
 }
-.selectionValues{
+.selection-values{
     position: absolute;
     display: block;
     top:10em;
+}
+
+.contact-values{
+    position: absolute;
+    display: block;
+    top:10em;
+    left:10em;
+}
+
+.totstand-values{
+    position: absolute;
+    display: block;
+    top:10em;
+    left:35em;
 }
