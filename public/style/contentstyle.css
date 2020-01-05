@@ -1,0 +1,74 @@
+svg{
+    display: block;
+    position: relative;
+    color:white;
+    top:-34em;
+}
+.content{
+    top:25em;
+    display: block;
+    position: relative;
+
+}
+
+.selection-values{
+    position: relative;
+    display: block;
+    top:-70em;
+    left:1em;
+}
+
+.contact-values{
+    position: relative;
+    display: block;
+    top:-71.7em;
+    left:10em;
+}
+
+.totstand-values{
+    position: relative;
+    display: block;
+    top:-73.3em;
+    left:35em;
+}
+
+.text{
+    color:white;
+    position:relative;
+    display:block;
+    top:-55em;
+}
+
+.text > p{ 
+    float:left;
+    margin-left: 1em;
+
+}
+.totstand-txt{
+    left:15em;
+    position: relative;
+    display: block;
+
+}
+
+.domain, .tick line, .tick{
+    stroke:white;
+}
+
+
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    width: 60px;
+    height: 28px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+  }
+
+  .logo{
+      width:10em;
+  }

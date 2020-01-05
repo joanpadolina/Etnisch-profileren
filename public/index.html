@@ -8,17 +8,32 @@
     <script src="https://d3js.org/d3.v4.js"></script>
     <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style/style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <title>ctrl-alt-delete</title>
 </head>
 
 <body>
-    <h1>Wie kan je nog vertrouwen?</h1>
-    <svg width="1000" height="500"></svg>
-    <div id="pyramid">
+    <div class="navbar">
+        <div class="logo">
+            <img src="../src/assets/logo/logo.svg" alt="">
+        </div>
+        <div class="content-nav">
+            <ul>
+                <li>home</li>
+                <li>data</li>
+                <li><a href="">van wie is de data?</a></li>
+                <li>enquete</li>
+            </ul>
+        </div>
     </div>
-    <div id="my_dataviz"></div>
+
+    <div class="content">
+            <h1>Vertrouwen in de politie </h1>
+            <!-- <svg width="1000" height="500"></svg> -->
+            <div id="my_dataviz"></div>
+    </div>
+
     <!-- <button>update</button> -->
 
     <script src="bundle.js" type="module"></script>
