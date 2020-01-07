@@ -1,8 +1,9 @@
 // import newData from './modules/newData';
-import {
-    removeNull
-} from './modules/removeNull.js'
+// import {
+//     removeNull
+// } from './modules/removeNull.js'
 // import pyramidBuilder from './modules/popPyramid2.js'
+
 import myVisualChart from './modules/bubblechart.js'
 
 
@@ -28,9 +29,56 @@ function etnischData() {
 
                     }
                 })
-               myVisualChart(resultsMapping)
+            myVisualChart(resultsMapping)
         })
 }
 
 
 etnischData()
+
+function newData() {
+    let newResults = fetch('../src/newJson.json')
+        .then(res => res.json())
+        .then(results => {
+           
+            let newDataResults = results
+            .map(data => {
+                return{
+                    id: data.response_ID,
+                    stad: data.Stadsdeel,
+                    totstand:data.Totstand,
+                    contactgehad: data.Contact_gehad,
+                    categoriecontact: data.Categorie_contact,
+                    stellingTerecht: data.stel_terecht,
+                    stellingachtergrond: data.stel_achtergrond,
+                    cijfer: data.rapportcijfer,
+                    geslacht: data.Geslacht,
+                    herkomst: data.Herkomst_def,
+                    leeftijdcategorie: data.Leeftijdscategorie
+                    // hulp:data.Polben_hulp,
+                    // thuis: data.Polben_thuis,
+                    // uiterlijk:data.Polben_uiterlijk,
+                    // vragen: data.Polben_bevragen,
+                    // verdacht:data.Polben_verdacht,
+                    // locatie: data.Polben_locatie,
+                    // aanspreekvriend: data.Polben_aansprekenvriend,
+                    // informatie: data.Polben_informatiegeven,
+                    // teruggeven: data.Polben_teruggeven,
+                    // verkeersongeval: data.Polben_verkeersongeval,
+                    // arrestatie: data.Polben_arrestatie
+                }
+             
+            })
+            console.log(newDataResults)
+        })
+
+    }
+// function testNest(){
+//     let newNest = d3.nest()
+//     .key(d => d.contactgehad)
+//     .entries(newDataResults)
+//     console.log(newNest)
+
+// }
+// testNest()
+newData()

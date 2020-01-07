@@ -1,279 +1,386 @@
 (function () {
-    'use strict';
+  'use strict';
 
-    // import valueAchtergrond from './selections.js'
+  // import valueAchtergrond from './selections.js'
 
-    function bubbleChart(data) {
+  function bubbleChart(data) {
 
-      // set the dimensions and margins of the graph
-      let margin = {
-          top: 10,
-          right: 30,
-          bottom: 70,
-          left: 30
-        },
-        width = 860 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+    let terechtNest = d3.nest()
+      .key(d => d.terecht)
+      .key(d => d.achtergrond)
+      .rollup(leaves => leaves.length)
+      .entries(data);
 
-      let svg = d3.select("#my_dataviz")
-        .append("svg")
-        .attr('class', 'bubble-plot')
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+      // console.log(terechtNest)
+    // set the dimensions and margins of the graph
+    let margin = {
+        top: 10,
+        right: 30,
+        bottom: 70,
+        left: 30
+      },
+      width = 860 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
 
-      // nested data with given number
-      let dataCijfer = d3.nest()
-        .key(d => d.cijfer)
-        .rollup(leaves => leaves.length)
-        .entries(data);
+    let svg = d3.select("#my_dataviz")
+      .append("svg")
+      .attr('class', 'bubble-plot')
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
 
-      // X axis
-      let x = d3.scaleBand()
-        .range([0, width])
-        .domain(data.map(d => d.cijfer).sort((a, b) => a - b));
-      svg.append("g")
-        .attr("class", "axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
+    // nested data with given number
+    let dataCijfer = d3.nest()
+      .key(d => d.cijfer)
+      .rollup(leaves => leaves.length)
+      .entries(data);
 
-      // Y axis
-      let y = d3.scaleLinear()
-        .domain([0, d3.max(dataCijfer.map(d => d.value))])
-        .range([height, 0]);
-      svg.append("g")
-        .call(d3.axisLeft(y))
-        .attr('opacity', 0);
+    // X axis
+    let x = d3.scaleBand()
+      .range([0, width])
+      .domain(data.map(d => d.cijfer).sort((a, b) => a - b));
+    svg.append("g")
+      .attr("class", "axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
 
-      // Add a scale for bubble size
-      let z = d3.scaleLinear()
-        .domain([0, d3.max(dataCijfer.map(d => d.value))])
-        .range([1, 70]);
+    // Y axis
+    let y = d3.scaleLinear()
+      .domain([0, d3.max(dataCijfer.map(d => d.value))])
+      .range([height, 0]);
+    svg.append("g")
+      .call(d3.axisLeft(y))
+      .attr('opacity', 0);
 
-      // nesting achtergrond
-      let valueAchtergrond = d3.nest()
-        .key(d => d.achtergrond)
-        .key(d => d.cijfer)
-        .rollup(leaves => leaves.length)
-        .entries(data);
+    // Add a scale for bubble size
+    let z = d3.scaleLinear()
+      .domain([0, d3.max(dataCijfer.map(d => d.value))])
+      .range([1, 70]);
 
-      console.log(data);
+    // nesting achtergrond
+    let valueAchtergrond = d3.nest()
+      .key(d => d.achtergrond)
+      .key(d => d.cijfer)
+      .rollup(leaves => leaves.length)
+      .entries(data);
 
-      // values for the selection westers/niet-westers
-      let selectionValues = valueAchtergrond.map(d => d.key);
+    // console.log(data)
 
-      let choicesValue = d3.select('.content')
-        .append('select')
-        .attr('class', 'selection-values');
+    // values for the selection westers/niet-westers
+    let selectionValues = valueAchtergrond.map(d => d.key);
 
-      choicesValue
-        .selectAll('option')
-        .data(selectionValues)
-        .enter()
-        .append('option')
-        .text(d => d)
-        .attr('value', d => d);
+    let choicesValue = d3.select('.content')
+      .append('select')
+      .attr('class', 'selection-values');
 
-      // nest in contact with police
-      let contactWith = d3.nest()
-        .key(d => d.contact)
-        .key(d => d.cijfer)
-        .rollup(leaves => leaves.length)
-        .entries(data);
+    choicesValue
+      .selectAll('option')
+      .data(selectionValues)
+      .enter()
+      .append('option')
+      .text(d => d)
+      .attr('value', d => d);
 
-      // selection contact with
-      let valueContact = contactWith.map(d => d.key);
+    // nest in contact with police
+    let contactWith = d3.nest()
+      .key(d => d.contact)
+      .key(d => d.cijfer)
+      .rollup(leaves => leaves.length)
+      .entries(data);
 
-      // console.log(contactWith)
-      let contactSelection = d3.select('.content')
-        .append('select')
-        .attr('class', 'contact-values');
+    // selection contact with
+    let valueContact = contactWith.map(d => d.key);
 
-      contactSelection
-        .selectAll('option')
-        .data(valueContact)
-        .enter()
-        .append('option')
-        .text(d => d)
-        .attr('value', d => d);
+    // console.log(contactWith)
+    let contactSelection = d3.select('.content')
+      .append('select')
+      .attr('class', 'contact-values');
 
-      // nest totstand 
-      let totstandNest = d3.nest()
-        .key(d => d.totstand)
-        .key(d => d.cijfer)
-        .rollup(leaves => leaves.length)
-        .entries(data);
+    contactSelection
+      .selectAll('option')
+      .data(valueContact)
+      .enter()
+      .append('option')
+      .text(d => d)
+      .attr('value', d => d);
 
-      let valueTotstand = totstandNest.map(d => d.key);
+    // nest totstand 
+    let totstandNest = d3.nest()
+      .key(d => d.totstand)
+      .key(d => d.cijfer)
+      .rollup(leaves => leaves.length)
+      .entries(data);
 
-      // selection totstand
-      let totstandSelection = d3.select('.content')
-        .append('select')
-        .attr('class', 'totstand-values');
+    let valueTotstand = totstandNest.map(d => d.key);
 
-      totstandSelection
-        .selectAll('option')
-        .data(valueTotstand)
-        .enter()
-        .append('option')
-        .text(d => d)
-        .attr('value', d => d);
+    // selection totstand
+    let totstandSelection = d3.select('.content')
+      .append('select')
+      .attr('class', 'totstand-values');
 
-      // Circle size horizontal overal
-      let barPlot = svg.selectAll("mycircle")
-        .data(dataCijfer)
-        .enter()
-        .append("circle");
+    totstandSelection
+      .selectAll('option')
+      .data(valueTotstand)
+      .enter()
+      .append('option')
+      .text(d => d)
+      .attr('value', d => d);
+
+    // nest resultaat contact
+    let resultaatNest = d3.nest()
+      .key(d => d.resultaat_contact)
+      .key(d => d.cijfer)
+      .rollup(leaves => leaves.length)
+      .entries(data);
+
+    let valueResultaat = resultaatNest.map(d => d.key);
+
+    // selection resultaat
+    let resultaatSelection = d3.select('.content')
+      .append('select')
+      .attr('class', 'resultaat-values');
+
+    resultaatSelection
+      .selectAll('option')
+      .data(valueResultaat)
+      .enter()
+      .append('option')
+      .text(d => d)
+      .attr('value', d => d);
+    // console.log(resultaatNest)
+
+    // Circle size horizontal overal
+    let barPlot = svg.selectAll("mycircle")
+      .data(dataCijfer)
+      .enter()
+      .append("circle");
+
+    barPlot
+      .attr('class', 'horizonCircle')
+      .attr('transform', 'translate(29,421)')
+      .attr("cx", d => x(d.key))
+      .attr("r", d => z(d.value))
+      .style("fill", "#69b3a2")
+      .attr('opacity', .5)
+      .attr("stroke", "black");
+
+
+    barPlot
+      .exit().remove();
+
+
+    // update pattern starts here
+    function updateBubble() {
+
+      const selectedOption = this.value;
+
+      //update on background
+      let updateAchtergrond = valueAchtergrond.filter(row => row.key == selectedOption);
+      let newA = updateAchtergrond.map(d => d.values).flat();
+      console.log(newA);
+
+      //update on contact with
+      let updateContact = contactWith.filter(row => row.key == selectedOption);
+      let newB = updateContact.map(d => d.values).flat();
+      console.log(updateContact);
+
+      //update on totstand 
+      let updateTotstand = totstandNest.filter(row => row.key == selectedOption);
+      let newC = updateTotstand.map(d => d.values).flat();
+      console.log(updateTotstand);
+
+      //update on totstand 
+      let updateResultaat = resultaatNest.filter(row => row.key == selectedOption);
+      let newD = updateResultaat.map(d => d.values).flat();
+      console.log(updateResultaat);
 
       barPlot
-        .attr('class', 'horizonCircle')
-        .attr('transform', 'translate(29,421)')
+        .data(newA)
+        .transition()
+        .duration(1000)
+        .style("fill", "orange")
         .attr("cx", d => x(d.key))
-        .attr("r", d => z(d.value))
-        .style("fill", "#69b3a2")
-        .attr('opacity', .5)
-        .attr("stroke", "black");
+        .attr("r", d => z(d.value));
 
-      // update pattern starts here
-      function updateBubble() {
+      barPlot
+        .data(newB)
+        .transition()
+        .duration(1000)
+        .style("fill", "pink")
+        .attr("cx", d => x(d.key))
+        .attr("r", d => z(d.value));
 
-        const selectedOption = this.value;
+      barPlot
+        .data(newC)
+        .transition()
+        .duration(1000)
+        .style("fill", "yellow")
+        .attr("cx", d => x(d.key))
+        .attr("r", d => z(d.value));
 
-        //update on background
-        let updateAchtergrond = valueAchtergrond.filter(row => row.key == selectedOption);
-        let newA = updateAchtergrond.map(d => d.values).flat();
-        console.log(newA);
-
-        //update on contact with
-        let updateContact = contactWith.filter(row => row.key == selectedOption);
-        let newB = updateContact.map(d => d.values).flat();
-        console.log(updateContact);
-
-        //update on totstand 
-        let updateTotstand = totstandNest.filter(row => row.key == selectedOption);
-        let newC = updateTotstand.map(d => d.values).flat();
-        console.log(updateTotstand);
-
-        barPlot
-          .data(newA)
-          .transition()
-          .duration(1000)
-          .style("fill", "orange")
-          .attr("cx", d => x(d.key))
-          .attr("r", d => z(d.value));
-
-        barPlot
-          .data(newB)
-          .transition()
-          .duration(1000)
-          .style("fill", "pink")
-          .attr("cx", d => x(d.key))
-          .attr("r", d => z(d.value));
-
-        barPlot
-          .data(newC)
-          .transition()
-          .duration(1000)
-          .style("fill", "yellow")
-          .attr("cx", d => x(d.key))
-          .attr("r", d => z(d.value));
-        barPlot
-          .exit().remove();
+      barPlot
+        .data(newD)
+        .transition()
+        .duration(1000)
+        .style("fill", "purple")
+        .attr("cx", d => x(d.key))
+        .attr("r", d => z(d.value));
 
 
-      }
-
-      let achtergrond = d3.select('.content')
-        .append('g')
-        .attr('class', 'text');
-
-      achtergrond
-        .append('p')
-        .attr("text-anchor", "middle")
-        .style("font-size", ".9em")
-        .text("achtergrond");
-
-      achtergrond
-        .append('p')
-        .attr("text-anchor", "middle")
-        .style("font-size", ".9em")
-        .text("contact");
 
 
-      achtergrond
-        .append('p')
-        .attr("text-anchor", "middle")
-        .style("font-size", ".9em")
-        .attr('class', 'totstand-txt')
-        .text("totstand");
+    }
 
-      d3.selectAll('.selection-values')
-        .on('change', updateBubble);
+    let achtergrond = d3.select('.content')
+      .append('g')
+      .attr('class', 'text');
 
-      d3.selectAll('.contact-values')
-        .on('change', updateBubble);
+    achtergrond
+      .append('p')
+      .attr("text-anchor", "middle")
+      .style("font-size", ".9em")
+      .text("achtergrond");
 
-      d3.selectAll('.totstand-values')
-        .on('change', updateBubble);
-      //update pattern ends here
+    achtergrond
+      .append('p')
+      .attr("text-anchor", "middle")
+      .style("font-size", ".9em")
+      .text("contact");
 
-      //tooltip
 
-      let div = d3.select("body").append("div")
-        .attr("class", "tooltip")
-        .style("opacity", 0);
+    achtergrond
+      .append('p')
+      .attr("text-anchor", "middle")
+      .style("font-size", ".9em")
+      .attr('class', 'totstand-txt')
+      .text("totstand");
 
-        // add the dots with tooltips
-      svg.selectAll("circle")
-        .data(valueAchtergrond)
-        .on("mouseover", function(d) {
-          div.transition()
-            .duration(200)
-            .style("opacity", .9);
-          div.html(` ${d.value}`)
-            .style("left", (d3.event.pageX) + "px")
-            .style("top", (d3.event.pageY - 28) + "px");
-          })
-        .on("mouseout", function(d) {
-          div.transition()
-            .duration(500)
-            .style("opacity", 0);
+    achtergrond
+      .append('p')
+      .attr("text-anchor", "middle")
+      .style("font-size", ".9em")
+      .attr('class', 'resultaat-txt')
+      .text("resultaat na contact");
+
+    // selection on change update
+    d3.selectAll('.selection-values')
+      .on('change', updateBubble);
+
+    d3.selectAll('.contact-values')
+      .on('change', updateBubble);
+
+    d3.selectAll('.totstand-values')
+      .on('change', updateBubble);
+
+    d3.selectAll('.resultaat-values')
+      .on('change', updateBubble);
+
+    //update pattern ends here
+
+    //tooltip
+
+    let div = d3.select("body").append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0);
+
+    // add the dots with tooltips
+    svg.selectAll("circle")
+      .data(valueAchtergrond)
+      .on("mouseover", function (d) {
+        div.transition()
+          .duration(200)
+          .style("opacity", .9);
+        div.html(` ${d.value}`)
+          .style("left", (d3.event.pageX) + "px")
+          .style("top", (d3.event.pageY - 28) + "px");
+      })
+      .on("mouseout", function (d) {
+        div.transition()
+          .duration(500)
+          .style("opacity", 0);
+      });
+
+  }
+
+  // import newData from './modules/newData';
+
+
+  function etnischData() {
+      let results = fetch('../src/dataruw.json')
+          .then(res => res.json())
+          .then(results => {
+              let resultsMapping = results
+                  .map(data => {
+                      return {
+                          id: data.response_ID,
+                          contact: data.Contact_gehad,
+                          terecht: data.stel_terecht,
+                          totstand: data.Totstand,
+                          leeftijd: data.Leeftijd,
+                          geslacht: data.Geslacht,
+                          cijfer: data.rapportcijfer,
+                          achtergrond: data.achtergrond,
+                          aanleiding_contact: data.aanleiding_contact,
+                          resultaat_contact: data.contact_gevolg,
+                          stelling_buitenlands: data.stel_buitenlandgeboren
+
+
+                      }
+                  });
+              bubbleChart(resultsMapping);
+          });
+  }
+
+
+  etnischData();
+
+  function newData() {
+      let newResults = fetch('../src/newJson.json')
+          .then(res => res.json())
+          .then(results => {
+             
+              let newDataResults = results
+              .map(data => {
+                  return {
+                      id: data.response_ID,
+                      stad: data.Stadsdeel,
+                      totstand:data.Totstand,
+                      contactgehad: data.Contact_gehad,
+                      categoriecontact: data.Categorie_contact,
+                      stellingTerecht: data.stel_terecht,
+                      stellingachtergrond: data.stel_achtergrond,
+                      cijfer: data.rapportcijfer,
+                      geslacht: data.Geslacht,
+                      herkomst: data.Herkomst_def,
+                      leeftijdcategorie: data.Leeftijdscategorie
+                      // hulp:data.Polben_hulp,
+                      // thuis: data.Polben_thuis,
+                      // uiterlijk:data.Polben_uiterlijk,
+                      // vragen: data.Polben_bevragen,
+                      // verdacht:data.Polben_verdacht,
+                      // locatie: data.Polben_locatie,
+                      // aanspreekvriend: data.Polben_aansprekenvriend,
+                      // informatie: data.Polben_informatiegeven,
+                      // teruggeven: data.Polben_teruggeven,
+                      // verkeersongeval: data.Polben_verkeersongeval,
+                      // arrestatie: data.Polben_arrestatie
+                  }
+               
+              });
+              console.log(newDataResults);
           });
 
-    }
+      }
+  // function testNest(){
+  //     let newNest = d3.nest()
+  //     .key(d => d.contactgehad)
+  //     .entries(newDataResults)
+  //     console.log(newNest)
 
-    // import newData from './modules/newData';
-
-
-    function etnischData() {
-        let results = fetch('../src/dataruw.json')
-            .then(res => res.json())
-            .then(results => {
-                let resultsMapping = results
-                    .map(data => {
-                        return {
-                            id: data.response_ID,
-                            contact: data.Contact_gehad,
-                            terecht: data.stel_terecht,
-                            totstand: data.Totstand,
-                            leeftijd: data.Leeftijd,
-                            geslacht: data.Geslacht,
-                            cijfer: data.rapportcijfer,
-                            achtergrond: data.achtergrond,
-                            aanleiding_contact: data.aanleiding_contact,
-                            resultaat_contact: data.contact_gevolg,
-                            stelling_buitenlands: data.stel_buitenlandgeboren
-
-
-                        }
-                    });
-                   bubbleChart(resultsMapping);
-            });
-    }
-
-
-    etnischData();
+  // }
+  // testNest()
+  newData();
 
 }());

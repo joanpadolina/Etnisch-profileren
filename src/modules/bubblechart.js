@@ -2,6 +2,13 @@
 
 export default function bubbleChart(data) {
 
+  let terechtNest = d3.nest()
+    .key(d => d.terecht)
+    .key(d => d.achtergrond)
+    .rollup(leaves => leaves.length)
+    .entries(data)
+
+    // console.log(terechtNest)
   // set the dimensions and margins of the graph
   let margin = {
       top: 10,
@@ -56,7 +63,7 @@ export default function bubbleChart(data) {
     .rollup(leaves => leaves.length)
     .entries(data)
 
-  console.log(data)
+  // console.log(data)
 
   // values for the selection westers/niet-westers
   let selectionValues = valueAchtergrond.map(d => d.key)
@@ -118,6 +125,29 @@ export default function bubbleChart(data) {
     .text(d => d)
     .attr('value', d => d)
 
+  // nest resultaat contact
+  let resultaatNest = d3.nest()
+    .key(d => d.resultaat_contact)
+    .key(d => d.cijfer)
+    .rollup(leaves => leaves.length)
+    .entries(data)
+
+  let valueResultaat = resultaatNest.map(d => d.key)
+
+  // selection resultaat
+  let resultaatSelection = d3.select('.content')
+    .append('select')
+    .attr('class', 'resultaat-values')
+
+  resultaatSelection
+    .selectAll('option')
+    .data(valueResultaat)
+    .enter()
+    .append('option')
+    .text(d => d)
+    .attr('value', d => d)
+  // console.log(resultaatNest)
+
   // Circle size horizontal overal
   let barPlot = svg.selectAll("mycircle")
     .data(dataCijfer)
@@ -132,6 +162,11 @@ export default function bubbleChart(data) {
     .style("fill", "#69b3a2")
     .attr('opacity', .5)
     .attr("stroke", "black")
+
+
+  barPlot
+    .exit().remove()
+
 
   // update pattern starts here
   function updateBubble() {
@@ -152,6 +187,11 @@ export default function bubbleChart(data) {
     let updateTotstand = totstandNest.filter(row => row.key == selectedOption)
     let newC = updateTotstand.map(d => d.values).flat()
     console.log(updateTotstand)
+
+    //update on totstand 
+    let updateResultaat = resultaatNest.filter(row => row.key == selectedOption)
+    let newD = updateResultaat.map(d => d.values).flat()
+    console.log(updateResultaat)
 
     barPlot
       .data(newA)
@@ -176,8 +216,16 @@ export default function bubbleChart(data) {
       .style("fill", "yellow")
       .attr("cx", d => x(d.key))
       .attr("r", d => z(d.value))
+
     barPlot
-      .exit().remove()
+      .data(newD)
+      .transition()
+      .duration(1000)
+      .style("fill", "purple")
+      .attr("cx", d => x(d.key))
+      .attr("r", d => z(d.value))
+
+
 
 
   }
@@ -206,6 +254,14 @@ export default function bubbleChart(data) {
     .attr('class', 'totstand-txt')
     .text("totstand")
 
+  achtergrond
+    .append('p')
+    .attr("text-anchor", "middle")
+    .style("font-size", ".9em")
+    .attr('class', 'resultaat-txt')
+    .text("resultaat na contact")
+
+  // selection on change update
   d3.selectAll('.selection-values')
     .on('change', updateBubble)
 
@@ -214,6 +270,10 @@ export default function bubbleChart(data) {
 
   d3.selectAll('.totstand-values')
     .on('change', updateBubble)
+
+  d3.selectAll('.resultaat-values')
+    .on('change', updateBubble)
+
   //update pattern ends here
 
   //tooltip
@@ -222,21 +282,21 @@ export default function bubbleChart(data) {
     .attr("class", "tooltip")
     .style("opacity", 0);
 
-    // add the dots with tooltips
+  // add the dots with tooltips
   svg.selectAll("circle")
     .data(valueAchtergrond)
-    .on("mouseover", function(d) {
+    .on("mouseover", function (d) {
       div.transition()
         .duration(200)
         .style("opacity", .9);
       div.html(` ${d.value}`)
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY - 28) + "px");
-      })
-    .on("mouseout", function(d) {
+    })
+    .on("mouseout", function (d) {
       div.transition()
         .duration(500)
         .style("opacity", 0);
-      });
+    });
 
 }

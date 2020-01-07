@@ -4,11 +4,20 @@ svg{
     color:white;
     top:-34em;
 }
-.content{
+/* .content{
     top:25em;
     display: block;
     position: relative;
+    left:2em;
 
+} */
+
+.content{
+    top: 76em;
+    display: block;
+    position: relative;
+    left: 2em;
+    z-index: 99;
 }
 
 .selection-values{
@@ -32,6 +41,12 @@ svg{
     left:35em;
 }
 
+.resultaat-values{
+    position: relative;
+    display: block;
+    top: -74.94em;
+    left: 61.5em;
+}
 .text{
     color:white;
     position:relative;
@@ -50,11 +65,25 @@ svg{
     display: block;
 
 }
+.resultaat-txt{
+    left: 29em;
+    position: relative;
+    display: block;
+}
 
 .domain, .tick line, .tick{
     stroke:white;
 }
 
+.highlight{
+    background: #ff0000;
+    position: relative;
+    width: 23.5em;
+    height: 2em;
+    /* transform: translate(2.9em, -26em); */
+    z-index: -1;
+    transform: translateZ(-2px) translate(7.9em,-31em) scale(1.27);
+}
 
 div.tooltip {
     position: absolute;
