@@ -2,6 +2,7 @@
 
 export default function bubbleChart(data) {
 
+console.log(data)
   let terechtNest = d3.nest()
     .key(d => d.terecht)
     .key(d => d.achtergrond)

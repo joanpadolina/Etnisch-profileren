@@ -5,6 +5,7 @@
 
   function bubbleChart(data) {
 
+  console.log(data);
     let terechtNest = d3.nest()
       .key(d => d.terecht)
       .key(d => d.achtergrond)
@@ -307,34 +308,34 @@
   // import newData from './modules/newData';
 
 
-  function etnischData() {
-      let results = fetch('../src/dataruw.json')
-          .then(res => res.json())
-          .then(results => {
-              let resultsMapping = results
-                  .map(data => {
-                      return {
-                          id: data.response_ID,
-                          contact: data.Contact_gehad,
-                          terecht: data.stel_terecht,
-                          totstand: data.Totstand,
-                          leeftijd: data.Leeftijd,
-                          geslacht: data.Geslacht,
-                          cijfer: data.rapportcijfer,
-                          achtergrond: data.achtergrond,
-                          aanleiding_contact: data.aanleiding_contact,
-                          resultaat_contact: data.contact_gevolg,
-                          stelling_buitenlands: data.stel_buitenlandgeboren
+  // function etnischData() {
+  //     let results = fetch('../src/dataruw.json')
+  //         .then(res => res.json())
+  //         .then(results => {
+  //             let resultsMapping = results
+  //                 .map(data => {
+  //                     return {
+  //                         id: data.response_ID,
+  //                         contact: data.Contact_gehad,
+  //                         terecht: data.stel_terecht,
+  //                         totstand: data.Totstand,
+  //                         leeftijd: data.Leeftijd,
+  //                         geslacht: data.Geslacht,
+  //                         cijfer: data.rapportcijfer,
+  //                         achtergrond: data.achtergrond,
+  //                         aanleiding_contact: data.aanleiding_contact,
+  //                         resultaat_contact: data.contact_gevolg,
+  //                         stelling_buitenlands: data.stel_buitenlandgeboren
 
 
-                      }
-                  });
-              bubbleChart(resultsMapping);
-          });
-  }
+  //                     }
+  //                 })
+  //             myVisualChart(resultsMapping)
+  //         })
+  // }
 
 
-  etnischData();
+  // etnischData()
 
   function newData() {
       let newResults = fetch('../src/newJson.json')
@@ -347,14 +348,15 @@
                       id: data.response_ID,
                       stad: data.Stadsdeel,
                       totstand:data.Totstand,
+                      terecht: data.stel_terecht,
                       contactgehad: data.Contact_gehad,
                       categoriecontact: data.Categorie_contact,
                       stellingTerecht: data.stel_terecht,
                       stellingachtergrond: data.stel_achtergrond,
                       cijfer: data.rapportcijfer,
                       geslacht: data.Geslacht,
-                      herkomst: data.Herkomst_def,
-                      leeftijdcategorie: data.Leeftijdscategorie
+                      achtergrond: data.Herkomst_def,
+                      leeftijdcategorie: data.Leeftijd
                       // hulp:data.Polben_hulp,
                       // thuis: data.Polben_thuis,
                       // uiterlijk:data.Polben_uiterlijk,
@@ -369,13 +371,15 @@
                   }
                
               });
-              console.log(newDataResults);
+              // testNest(newDataResults)
+              bubbleChart(newDataResults);
+
           });
 
       }
-  // function testNest(){
+  // function testNest(newDataResults){
   //     let newNest = d3.nest()
-  //     .key(d => d.contactgehad)
+  //     .key(d => d.herkomst)
   //     .entries(newDataResults)
   //     console.log(newNest)
 
