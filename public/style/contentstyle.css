@@ -2,7 +2,8 @@ svg{
     display: block;
     position: relative;
     color:white;
-    top:-34em;
+    top:-14em;
+    left:15em;
 }
 /* .content{
     top:25em;
@@ -23,29 +24,50 @@ svg{
 .selection-values{
     position: relative;
     display: block;
-    top:-70em;
-    left:1em;
+    top:-98em;
 }
-
+.selection-values2{
+    position: relative;
+    display: block;
+    top:-104em;
+    left:21em
+}
 .contact-values{
     position: relative;
     display: block;
-    top:-71.7em;
-    left:10em;
+    top:-96em;
+}
+.contact-values2{
+    position: relative;
+    display: block;
+    top:-102em;
+    left:21em;
 }
 
 .totstand-values{
     position: relative;
     display: block;
-    top:-73.3em;
-    left:35em;
-}
+    top:-90em;
 
+}
+.totstand-values2{
+    position: relative;
+    display: block;
+    top:-96em;
+    left:21em;
+
+}
 .resultaat-values{
     position: relative;
     display: block;
-    top: -74.94em;
-    left: 61.5em;
+    top: -95em;
+}
+.resultaat-values2{
+    position: relative;
+    display: block;
+    top:-101em;
+    left:56em;
+
 }
 .text{
     color:white;
@@ -100,4 +122,8 @@ div.tooltip {
 
   .logo{
       width:10em;
+  }
+
+  form > value{
+      color:white;
   }

@@ -2,20 +2,24 @@
 
 export default function bubbleChart(data) {
 
-console.log(data)
-  let terechtNest = d3.nest()
-    .key(d => d.terecht)
-    .key(d => d.achtergrond)
-    .rollup(leaves => leaves.length)
-    .entries(data)
+  // data terecht behandel of niet
 
-    // console.log(terechtNest)
+  // let terechtNest = d3.nest()
+  //   .key(d => d.terecht)
+  //   .key(d => d.cijfer)
+  //   .rollup(leaves => leaves.length)
+  //   .entries(data)
+
+  //   let splitNein = terechtNest.pop()
+  //   console.log(terechtNest)
+
+
   // set the dimensions and margins of the graph
   let margin = {
       top: 10,
       right: 30,
       bottom: 70,
-      left: 30
+      left: 100
     },
     width = 860 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
@@ -36,20 +40,20 @@ console.log(data)
     .entries(data)
 
   // X axis
-  let x = d3.scaleBand()
-    .range([0, width])
+  let y = d3.scaleBand()
+    .range([0, height])
     .domain(data.map(d => d.cijfer).sort((a, b) => a - b))
+
   svg.append("g")
     .attr("class", "axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x))
+    .call(d3.axisLeft(y))
 
   // Y axis
-  let y = d3.scaleLinear()
+  let x = d3.scaleLinear()
     .domain([0, d3.max(dataCijfer.map(d => d.value))])
-    .range([height, 0])
+    .range([0, width])
   svg.append("g")
-    .call(d3.axisLeft(y))
+    .call(d3.axisBottom(x))
     .attr('opacity', 0)
 
   // Add a scale for bubble size
@@ -64,7 +68,13 @@ console.log(data)
     .rollup(leaves => leaves.length)
     .entries(data)
 
+  valueAchtergrond.pop()
+
+  console.log(valueAchtergrond)
+
   // console.log(data)
+
+
 
   // values for the selection westers/niet-westers
   let selectionValues = valueAchtergrond.map(d => d.key)
@@ -128,12 +138,14 @@ console.log(data)
 
   // nest resultaat contact
   let resultaatNest = d3.nest()
-    .key(d => d.resultaat_contact)
+    .key(d => d.terecht)
     .key(d => d.cijfer)
     .rollup(leaves => leaves.length)
     .entries(data)
 
   let valueResultaat = resultaatNest.map(d => d.key)
+  valueResultaat.pop()
+
 
   // selection resultaat
   let resultaatSelection = d3.select('.content')
@@ -157,8 +169,8 @@ console.log(data)
 
   barPlot
     .attr('class', 'horizonCircle')
-    .attr('transform', 'translate(29,421)')
-    .attr("cx", d => x(d.key))
+    // .attr('transform', 'translate(29,421)')
+    .attr("cy", d => y(d.key))
     .attr("r", d => z(d.value))
     .style("fill", "#69b3a2")
     .attr('opacity', .5)
@@ -177,29 +189,29 @@ console.log(data)
     //update on background
     let updateAchtergrond = valueAchtergrond.filter(row => row.key == selectedOption)
     let newA = updateAchtergrond.map(d => d.values).flat()
-    console.log(newA)
+    // console.log(newA)
 
     //update on contact with
     let updateContact = contactWith.filter(row => row.key == selectedOption)
     let newB = updateContact.map(d => d.values).flat()
-    console.log(updateContact)
+    // console.log(updateContact)
 
     //update on totstand 
     let updateTotstand = totstandNest.filter(row => row.key == selectedOption)
     let newC = updateTotstand.map(d => d.values).flat()
-    console.log(updateTotstand)
+    // console.log(updateTotstand)
 
     //update on totstand 
     let updateResultaat = resultaatNest.filter(row => row.key == selectedOption)
     let newD = updateResultaat.map(d => d.values).flat()
-    console.log(updateResultaat)
+    // console.log(updateResultaat)
 
     barPlot
       .data(newA)
       .transition()
       .duration(1000)
       .style("fill", "orange")
-      .attr("cx", d => x(d.key))
+      .attr("cy", d => y(d.key))
       .attr("r", d => z(d.value))
 
     barPlot
@@ -207,7 +219,7 @@ console.log(data)
       .transition()
       .duration(1000)
       .style("fill", "pink")
-      .attr("cx", d => x(d.key))
+      .attr("cy", d => y(d.key))
       .attr("r", d => z(d.value))
 
     barPlot
@@ -215,22 +227,37 @@ console.log(data)
       .transition()
       .duration(1000)
       .style("fill", "yellow")
-      .attr("cx", d => x(d.key))
+      .attr("cy", d => y(d.key))
       .attr("r", d => z(d.value))
 
     barPlot
       .data(newD)
       .transition()
       .duration(1000)
-      .style("fill", "purple")
-      .attr("cx", d => x(d.key))
+      .style("fill", "red")
+      .attr("cy", d => y(d.key))
       .attr("r", d => z(d.value))
 
 
 
-
   }
+  // selection on change update
+  d3.selectAll('.selection-values')
+    .on('change', updateBubble)
 
+  d3.selectAll('.contact-values')
+    .on('change', updateBubble)
+
+  d3.selectAll('.totstand-values')
+    .on('change', updateBubble)
+
+  d3.selectAll('.resultaat-values')
+    .on('change', updateBubble)
+  let radioButtons = d3.selectAll('input')
+  radioButtons.on('change', d => {
+    const selection = this.value
+  })
+  //update pattern ends here
   let achtergrond = d3.select('.content')
     .append('g')
     .attr('class', 'text')
@@ -262,20 +289,7 @@ console.log(data)
     .attr('class', 'resultaat-txt')
     .text("resultaat na contact")
 
-  // selection on change update
-  d3.selectAll('.selection-values')
-    .on('change', updateBubble)
 
-  d3.selectAll('.contact-values')
-    .on('change', updateBubble)
-
-  d3.selectAll('.totstand-values')
-    .on('change', updateBubble)
-
-  d3.selectAll('.resultaat-values')
-    .on('change', updateBubble)
-
-  //update pattern ends here
 
   //tooltip
 

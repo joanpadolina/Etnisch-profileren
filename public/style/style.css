@@ -8,9 +8,15 @@ body{
     box-sizing: border-box;
     font-family: 'Rubik';
     background:black;
+    overflow-x:hidden;
 }
 
+.bubble-plot2{
+  left:25em;
+  top:-45.1em;
+  position: relative;
 
+}
 h1{
     color: #fbff00;
     padding: .3em;
