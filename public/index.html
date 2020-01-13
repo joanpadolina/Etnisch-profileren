@@ -8,8 +8,10 @@
     <script src="https://d3js.org/d3.v4.js"></script>
     <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
     <link rel="stylesheet" href="./style/style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
     <title>ctrl-alt-delete</title>
 </head>
 
@@ -80,68 +82,70 @@
                     <img src="../src/assets/graphs/Dot plot test-1 2.png" alt="">
                 </div> -->
         </div>
+        <form action="" id="herkomst-radio">
+            <h2>afkomst</h2>
+            <input type="radio" name="states" value="Nederlands" id="Nederlands">
+                <label for="Nederlands">
+                    Nederlands
+                </label>
+                <br/>
+                <input type="radio" name="states" value="Overig niet-Westers" id="Overige niet-Westers">
+            <label for="Overige niet-Westers">
+                Overige niet-Westers
+            </label>
+            <br />
+            <input type="radio" name="states" value="Surinaams" id="Surinaams">
+            <label for="Surinaams">
+                Surinaams
+            </label>
+            <br />
+            <input type="radio" name="states" value="Voormalig Nederlandse Antillen">
+            <label for="Voormalig Nederlandse Antillen">
+                Voormalig Nederlandse Antillen
+            </label>
+            <br />
+            <input type="radio" name="states" value="Westers">
+            <label for="Westers">
+                Westers
+            </label>
+            <br />
+            <input type="radio" name="states" value="Marokkaans">
+            <label for="Marokkaans">
+                Marokkaans
+            </label>
+
+            <h2>
+                contact gehad met de politie
+            </h2>
+
+            <input type="radio" name="states" value="Ja">
+            <label for="Wel contact gehad">Wel contact gehad</label>
+            <br />
+            <input type="radio" name="states" value="Nee">
+            <label for="Geen contact gehad">Geen contact gehad</label>
+
+            <h2>
+               reden contact
+            </h2>
+
+            <input type="radio" name="states" value="De politie kwam naar mij toe" id="De politie kwam naar mij toe">
+            <label for="De politie kwam naar mij toe">De politie kwam naar mij toe</label>
+            <br />
+            <input type="radio" name="states" value="Ik ging naar de politie toe" id="Ik ging naar de politie toe">
+            <label for="Ik ging naar de politie toe">Ik ging naar de politie toe</label>
+
+        </form>
+
+        <form action="" id="contact-gehad">
+
+        </form>
 
         <div class="parallax__cover"></div>
     </div>
 
-    <!-- 
-    <div class="content">
-            <div class="header">
-                    <h1>Vertrouwen in de politie </h1>
-                    <div class="highlight"></div>
-            </div>
-            
-            <!-- <svg width="1000" height="500"></svg> -->
-    <div id="my_dataviz"></div>
     </div>
-    <!-- <form action="" id="herkomst-radio">
-        <input type="radio" id="Nederlands" name="states" value="Nederlands">
-        <label>
-            Nederlands
-        </label>
-        </input>
-        <input type="radio" id="Overige niet-Westers" name="states" value="Overige niet-Westers">
-        <label>
-            Overige niet-Westers
-        </label>
-        </input>
-        <input type="radio" id="Surinaams" name="states" value="Surinaams">
-        <label>
-            Surinaams
-        </label>
-    </input>
-        <input type="radio" id="Onbekend" name="states" value="Onbekend">
-        <label>
-            Onbekend
-        </label>
-    </input>
-        <input type="radio" id="Westers" name="states" value="Westers">
-        <label>
-            Westers
-        </label>
-    </input>
-        <input type="radio" id="Marokkaans" name="states" value="Marokkaans">
-        <label>
-            Marokkaans
-        </label>
-    </input>
-    </form> -->
-    <div class="update-buttons">
-        <div class="wel-contact buttonstyle">
-            <p>
-                Wel contact met de politie.
-            </p>
-        </div>
-        <div class="geen-contact buttonstyle">
-            <p>
-                Geen contact met de politie.
-            </p>
-        </div>
-        <div class="up-achtergrond buttonstyle">
 
-        </div>
-        <div class="up-totstand buttonstyle"></div>
-    </div>
+
     <script src="bundle.js" type="module"></script>
 </body>
 

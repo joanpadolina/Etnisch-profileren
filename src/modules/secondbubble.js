@@ -70,7 +70,6 @@ export default function secondBubble(data) {
   
     valueAchtergrond.pop()
   
-    console.log(valueAchtergrond)
   
     // console.log(data)
   
@@ -254,41 +253,40 @@ export default function secondBubble(data) {
   
     d3.selectAll('.resultaat-values2')
       .on('change', updateBubble)
-    let radioButtons = d3.selectAll('input')
-    radioButtons.on('change', d => {
-      const selection = this.value
-    })
+
     //update pattern ends here
-    let achtergrond = d3.select('.content')
-      .append('g')
-      .attr('class', 'text')
+
+
+    // let achtergrond = d3.select('.content')
+    //   .append('g')
+    //   .attr('class', 'text')
   
-    achtergrond
-      .append('p')
-      .attr("text-anchor", "middle")
-      .style("font-size", ".9em")
-      .text("achtergrond")
+    // achtergrond
+    //   .append('p')
+    //   .attr("text-anchor", "middle")
+    //   .style("font-size", ".9em")
+    //   .text("achtergrond")
   
-    achtergrond
-      .append('p')
-      .attr("text-anchor", "middle")
-      .style("font-size", ".9em")
-      .text("contact")
+    // achtergrond
+    //   .append('p')
+    //   .attr("text-anchor", "middle")
+    //   .style("font-size", ".9em")
+    //   .text("contact")
   
   
-    achtergrond
-      .append('p')
-      .attr("text-anchor", "middle")
-      .style("font-size", ".9em")
-      .attr('class', 'totstand-txt')
-      .text("totstand")
+    // achtergrond
+    //   .append('p')
+    //   .attr("text-anchor", "middle")
+    //   .style("font-size", ".9em")
+    //   .attr('class', 'totstand-txt')
+    //   .text("totstand")
   
-    achtergrond
-      .append('p')
-      .attr("text-anchor", "middle")
-      .style("font-size", ".9em")
-      .attr('class', 'resultaat-txt')
-      .text("resultaat na contact")
+    // achtergrond
+    //   .append('p')
+    //   .attr("text-anchor", "middle")
+    //   .style("font-size", ".9em")
+    //   .attr('class', 'resultaat-txt')
+    //   .text("resultaat na contact")
   
   
   

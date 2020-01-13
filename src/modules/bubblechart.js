@@ -1,17 +1,16 @@
 // import valueAchtergrond from './selections.js'
 
 export default function bubbleChart(data) {
-
+  console.log(data)
   // data terecht behandel of niet
 
-  // let terechtNest = d3.nest()
-  //   .key(d => d.terecht)
-  //   .key(d => d.cijfer)
-  //   .rollup(leaves => leaves.length)
-  //   .entries(data)
+  let terechtNest = d3.nest()
+    .key(d => d.arrestatie)
+    .rollup(leaves => leaves.length)
+    .entries(data)
 
   //   let splitNein = terechtNest.pop()
-  //   console.log(terechtNest)
+    console.log(terechtNest)
 
 
   // set the dimensions and margins of the graph
@@ -37,7 +36,10 @@ export default function bubbleChart(data) {
   let dataCijfer = d3.nest()
     .key(d => d.cijfer)
     .rollup(leaves => leaves.length)
+    .sortKeys(d3.ascending)
     .entries(data)
+
+  dataCijfer.pop()
 
   // X axis
   let y = d3.scaleBand()
@@ -52,6 +54,7 @@ export default function bubbleChart(data) {
   let x = d3.scaleLinear()
     .domain([0, d3.max(dataCijfer.map(d => d.value))])
     .range([0, width])
+
   svg.append("g")
     .call(d3.axisBottom(x))
     .attr('opacity', 0)
@@ -70,26 +73,23 @@ export default function bubbleChart(data) {
 
   valueAchtergrond.pop()
 
-  console.log(valueAchtergrond)
-
-  // console.log(data)
 
 
 
   // values for the selection westers/niet-westers
-  let selectionValues = valueAchtergrond.map(d => d.key)
+  // let selectionValues = valueAchtergrond.map(d => d.key)
 
-  let choicesValue = d3.select('.content')
-    .append('select')
-    .attr('class', 'selection-values')
+  // let choicesValue = d3.select('.content')
+  //   .append('select')
+  //   .attr('class', 'selection-values')
 
-  choicesValue
-    .selectAll('option')
-    .data(selectionValues)
-    .enter()
-    .append('option')
-    .text(d => d)
-    .attr('value', d => d)
+  // choicesValue
+  //   .selectAll('option')
+  //   .data(selectionValues)
+  //   .enter()
+  //   .append('option')
+  //   .text(d => d)
+  //   .attr('value', d => d)
 
   // nest in contact with police
   let contactWith = d3.nest()
@@ -98,21 +98,21 @@ export default function bubbleChart(data) {
     .rollup(leaves => leaves.length)
     .entries(data)
 
-  // selection contact with
-  let valueContact = contactWith.map(d => d.key)
+  // // selection contact with
+  // let valueContact = contactWith.map(d => d.key)
 
-  // console.log(contactWith)
-  let contactSelection = d3.select('.content')
-    .append('select')
-    .attr('class', 'contact-values')
+  // // console.log(contactWith)
+  // let contactSelection = d3.select('.content')
+  //   .append('select')
+  //   .attr('class', 'contact-values')
 
-  contactSelection
-    .selectAll('option')
-    .data(valueContact)
-    .enter()
-    .append('option')
-    .text(d => d)
-    .attr('value', d => d)
+  // contactSelection
+  //   .selectAll('option')
+  //   .data(valueContact)
+  //   .enter()
+  //   .append('option')
+  //   .text(d => d)
+  //   .attr('value', d => d)
 
   // nest totstand 
   let totstandNest = d3.nest()
@@ -121,20 +121,20 @@ export default function bubbleChart(data) {
     .rollup(leaves => leaves.length)
     .entries(data)
 
-  let valueTotstand = totstandNest.map(d => d.key)
+  // let valueTotstand = totstandNest.map(d => d.key)
 
-  // selection totstand
-  let totstandSelection = d3.select('.content')
-    .append('select')
-    .attr('class', 'totstand-values')
+  // // selection totstand
+  // let totstandSelection = d3.select('.content')
+  //   .append('select')
+  //   .attr('class', 'totstand-values')
 
-  totstandSelection
-    .selectAll('option')
-    .data(valueTotstand)
-    .enter()
-    .append('option')
-    .text(d => d)
-    .attr('value', d => d)
+  // totstandSelection
+  //   .selectAll('option')
+  //   .data(valueTotstand)
+  //   .enter()
+  //   .append('option')
+  //   .text(d => d)
+  //   .attr('value', d => d)
 
   // nest resultaat contact
   let resultaatNest = d3.nest()
@@ -148,18 +148,18 @@ export default function bubbleChart(data) {
 
 
   // selection resultaat
-  let resultaatSelection = d3.select('.content')
-    .append('select')
-    .attr('class', 'resultaat-values')
+  // let resultaatSelection = d3.select('.content')
+  //   .append('select')
+  //   .attr('class', 'resultaat-values')
 
-  resultaatSelection
-    .selectAll('option')
-    .data(valueResultaat)
-    .enter()
-    .append('option')
-    .text(d => d)
-    .attr('value', d => d)
-  // console.log(resultaatNest)
+  // resultaatSelection
+  //   .selectAll('option')
+  //   .data(valueResultaat)
+  //   .enter()
+  //   .append('option')
+  //   .text(d => d)
+  //   .attr('value', d => d)
+
 
   // Circle size horizontal overal
   let barPlot = svg.selectAll("mycircle")
@@ -238,9 +238,11 @@ export default function bubbleChart(data) {
       .attr("cy", d => y(d.key))
       .attr("r", d => z(d.value))
 
-
-
   }
+
+
+
+
   // selection on change update
   d3.selectAll('.selection-values')
     .on('change', updateBubble)
@@ -253,41 +255,42 @@ export default function bubbleChart(data) {
 
   d3.selectAll('.resultaat-values')
     .on('change', updateBubble)
-  let radioButtons = d3.selectAll('input')
-  radioButtons.on('change', d => {
-    const selection = this.value
-  })
+
+  // radio buttons
+
+  d3.selectAll(("input[name='states']")).on("change", updateBubble)
+
   //update pattern ends here
-  let achtergrond = d3.select('.content')
-    .append('g')
-    .attr('class', 'text')
+  // let achtergrond = d3.select('.content')
+  //   .append('g')
+  //   .attr('class', 'text')
 
-  achtergrond
-    .append('p')
-    .attr("text-anchor", "middle")
-    .style("font-size", ".9em")
-    .text("achtergrond")
+  // achtergrond
+  //   .append('p')
+  //   .attr("text-anchor", "middle")
+  //   .style("font-size", ".9em")
+  //   .text("achtergrond")
 
-  achtergrond
-    .append('p')
-    .attr("text-anchor", "middle")
-    .style("font-size", ".9em")
-    .text("contact")
+  // achtergrond
+  //   .append('p')
+  //   .attr("text-anchor", "middle")
+  //   .style("font-size", ".9em")
+  //   .text("contact")
 
 
-  achtergrond
-    .append('p')
-    .attr("text-anchor", "middle")
-    .style("font-size", ".9em")
-    .attr('class', 'totstand-txt')
-    .text("totstand")
+  // achtergrond
+  //   .append('p')
+  //   .attr("text-anchor", "middle")
+  //   .style("font-size", ".9em")
+  //   .attr('class', 'totstand-txt')
+  //   .text("totstand")
 
-  achtergrond
-    .append('p')
-    .attr("text-anchor", "middle")
-    .style("font-size", ".9em")
-    .attr('class', 'resultaat-txt')
-    .text("resultaat na contact")
+  // achtergrond
+  //   .append('p')
+  //   .attr("text-anchor", "middle")
+  //   .style("font-size", ".9em")
+  //   .attr('class', 'resultaat-txt')
+  //   .text("resultaat na contact")
 
 
 

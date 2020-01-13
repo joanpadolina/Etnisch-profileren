@@ -1,10 +1,11 @@
-svg{
+svg {
     display: block;
     position: relative;
-    color:white;
-    top:-14em;
-    left:15em;
+    color: white;
+    top: -14em;
+    left: 15em;
 }
+
 /* .content{
     top:25em;
     display: block;
@@ -13,7 +14,7 @@ svg{
 
 } */
 
-.content{
+.content {
     top: 76em;
     display: block;
     position: relative;
@@ -21,90 +22,101 @@ svg{
     z-index: 99;
 }
 
-.selection-values{
+.selection-values {
     position: relative;
     display: block;
-    top:-98em;
-}
-.selection-values2{
-    position: relative;
-    display: block;
-    top:-104em;
-    left:21em
-}
-.contact-values{
-    position: relative;
-    display: block;
-    top:-96em;
-}
-.contact-values2{
-    position: relative;
-    display: block;
-    top:-102em;
-    left:21em;
+    top: -98em;
 }
 
-.totstand-values{
+.selection-values2 {
     position: relative;
     display: block;
-    top:-90em;
-
+    top: -104em;
+    left: 56em
 }
-.totstand-values2{
+
+.contact-values {
     position: relative;
     display: block;
-    top:-96em;
-    left:21em;
+    top: -96em;
+}
+
+.contact-values2 {
+    position: relative;
+    display: block;
+    top: -102em;
+    left: 56em;
+}
+
+.totstand-values {
+    position: relative;
+    display: block;
+    top: -90em;
 
 }
-.resultaat-values{
+
+.totstand-values2 {
+    position: relative;
+    display: block;
+    top: -96em;
+    left: 56em;
+
+}
+
+.resultaat-values {
     position: relative;
     display: block;
     top: -95em;
 }
-.resultaat-values2{
+
+.resultaat-values2 {
     position: relative;
     display: block;
-    top:-101em;
-    left:56em;
+    top: -101em;
+    left: 56em;
 
 }
-.text{
-    color:white;
-    position:relative;
-    display:block;
-    top:-55em;
+
+.text {
+    color: white;
+    position: relative;
+    display: block;
+    top: -55em;
 }
 
-.text > p{ 
-    float:left;
+.text>p {
+    float: left;
     margin-left: 1em;
 
 }
-.totstand-txt{
-    left:15em;
+
+.totstand-txt {
+    left: 15em;
     position: relative;
     display: block;
 
 }
-.resultaat-txt{
+
+.resultaat-txt {
     left: 29em;
     position: relative;
     display: block;
 }
 
-.domain, .tick line, .tick{
-    stroke:white;
+.domain,
+.tick line,
+.tick {
+    stroke: white;
 }
 
-.highlight{
+.highlight {
     background: #ff0000;
     position: relative;
     width: 23.5em;
     height: 2em;
     /* transform: translate(2.9em, -26em); */
     z-index: -1;
-    transform: translateZ(-2px) translate(7.9em,-31em) scale(1.27);
+    transform: translateZ(-2px) translate(7.9em, -31em) scale(1.27);
 }
 
 div.tooltip {
@@ -118,12 +130,24 @@ div.tooltip {
     border: 0px;
     border-radius: 8px;
     pointer-events: none;
-  }
+}
 
-  .logo{
-      width:10em;
-  }
+.logo {
+    width: 10em;
+}
 
-  form > value{
-      color:white;
-  }
+#herkomst-radio {
+    color: white;
+    left: -49em;
+    margin: -5em;
+    top: 53em;
+    position: relative;
+    z-index: 99;
+    font-size: 0.9em;
+
+}
+
+input[type="radio"]:checked+label {
+    font-weight: 500;
+    color:yellow;
+}
