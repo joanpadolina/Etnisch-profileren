@@ -13,8 +13,12 @@ console.log(data)
     console.log(terechtNest)
     console.log(groupedTerecht)
 
+    // kris
+
     function maakMooi(data) {
         return data.reduce((newObject, currentItem) => {
+            // console.log(currentItem)
+    
             newObject[currentItem.key] = currentItem.values
                 .reduce((newObj, current) => {
                     const nietWestersTalen = ['Surinaams', 'Marokkaans', 'Turks', 'Overig niet-Westers','Voormalig Nederlandse Antillen']
@@ -43,7 +47,7 @@ console.log(data)
 
 
 
-    let xValue = terechtNest.map(d => d.key)
+    let xValue = terechtNest.map(d => d)
 
     let z = d3.scaleOrdinal()
         .domain(terechtNest.map(d => d.key))

@@ -3,10 +3,16 @@ svg.bubble-plot {
     position: relative;
     color: black;
     top: -14em;
-    left: 18em;
+    left: 16em;
+}
+svg.bubble-plot2 {
+    display: block;
+    position: relative;
+    color: black;
+    left: 27em;
 }
 #my_dataviz{
-    top: 11em;
+    top: 14em;
     display: block;
     position: relative;
 }
