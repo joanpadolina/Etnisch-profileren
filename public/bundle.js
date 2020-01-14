@@ -206,6 +206,7 @@
   }
 
   function barChart(data) {
+  console.log(data);
 
       let terechtNest = d3.nest()
           .key(d => d.terecht)
@@ -214,20 +215,39 @@
           .entries(data);
 
       let splitNein = terechtNest.pop();
+
+      let groupedTerecht = maakMooi(terechtNest);
       console.log(terechtNest);
+      console.log(groupedTerecht);
 
-      function addvalue(data) {
-          let newWesters = data.map(d => d.values).flat();
-          let nietWester= [];
+      function maakMooi(data) {
+          return data.reduce((newObject, currentItem) => {
+              newObject[currentItem.key] = currentItem.values
+                  .reduce((newObj, current) => {
+                      const nietWestersTalen = ['Surinaams', 'Marokkaans', 'Turks', 'Overig niet-Westers','Voormalig Nederlandse Antillen'];
+                      const isNietWesterseTaal = nietWestersTalen.find(taal => taal === current.key);
 
-          newWesters.map(d => {
-              if (d.key == "Voormalig Nederlandse Antillen" | d.key == "Surinaams" | d.key == "Turks" | d.key == "Overig niet-Westers") {
-                  nietWester.push(d);                
-              }
-          });
-          console.log(nietWester);
+                      newObj.welWesters = newObj.welWesters.filter(item => {
+                          return item.key == 'Nederlands'
+                      });
+                      
+                      if (isNietWesterseTaal) {
+                          newObj.nietWesters.push(current);
+                      } else {
+                          newObj.welWesters.push(current);
+                      }
+
+                      return newObj
+                  }, {
+                      nietWesters: [],
+                      welWesters: [],
+                  });
+
+              return newObject
+          }, {})
       }
-      addvalue(terechtNest);
+
+
 
 
       let xValue = terechtNest.map(d => d.key);
