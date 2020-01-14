@@ -16,20 +16,6 @@
 </head>
 
 <body>
-    <div class="navbar">
-        <div class="logo">
-            <img src="../src/assets/logo/logo.svg" alt="">
-        </div>
-        <div class="content-nav">
-            <ul>
-                <li>home</li>
-                <li>data</li>
-                <li><a href="../public/pages/wiedata.html">van wie is de data?</a></li>
-                <li>enquete</li>
-            </ul>
-        </div>
-    </div>
-
 
     <div class="wrapper">
 
@@ -76,20 +62,23 @@
                 <div class="highlight"></div>
             </div>
 
+
+
             <!-- <svg width="1000" height="500"></svg> -->
             <div id="my_dataviz"></div>
             <!-- <div class="connected-dot">
                     <img src="../src/assets/graphs/Dot plot test-1 2.png" alt="">
                 </div> -->
+            <div class="barchart-ep"></div>
         </div>
         <form action="" id="herkomst-radio">
             <h2>afkomst</h2>
             <input type="radio" name="states" value="Nederlands" id="Nederlands">
-                <label for="Nederlands">
-                    Nederlands
-                </label>
-                <br/>
-                <input type="radio" name="states" value="Overig niet-Westers" id="Overige niet-Westers">
+            <label for="Nederlands">
+                Nederlands
+            </label>
+            <br />
+            <input type="radio" name="states" value="Overig niet-Westers" id="Overige niet-Westers">
             <label for="Overige niet-Westers">
                 Overige niet-Westers
             </label>
@@ -99,17 +88,18 @@
                 Surinaams
             </label>
             <br />
-            <input type="radio" name="states" value="Voormalig Nederlandse Antillen">
+            <input type="radio" name="states" value="Voormalig Nederlandse Antillen"
+                id="Voormalig Nederlandse Antillen">
             <label for="Voormalig Nederlandse Antillen">
                 Voormalig Nederlandse Antillen
             </label>
             <br />
-            <input type="radio" name="states" value="Westers">
+            <input type="radio" name="states" value="Westers" id="Westers">
             <label for="Westers">
                 Westers
             </label>
             <br />
-            <input type="radio" name="states" value="Marokkaans">
+            <input type="radio" name="states" value="Marokkaans" id="Marokkaans">
             <label for="Marokkaans">
                 Marokkaans
             </label>
@@ -118,27 +108,79 @@
                 contact gehad met de politie
             </h2>
 
-            <input type="radio" name="states" value="Ja">
-            <label for="Wel contact gehad">Wel contact gehad</label>
+            <input type="radio" name="states" value="Ja" id="Wel contact gehad">
+            <label for="Wel contact gehad"><span>Wel</span> contact gehad</label>
             <br />
-            <input type="radio" name="states" value="Nee">
-            <label for="Geen contact gehad">Geen contact gehad</label>
+            <input type="radio" name="states" value="Nee" id="Geen contact gehad">
+            <label for="Geen contact gehad"><span>Geen</span> contact gehad</label>
 
             <h2>
-               reden contact
+                reden contact
             </h2>
 
             <input type="radio" name="states" value="De politie kwam naar mij toe" id="De politie kwam naar mij toe">
-            <label for="De politie kwam naar mij toe">De politie kwam naar mij toe</label>
+            <label for="De politie kwam naar mij toe">De politie <span>kwam naar mij</span> toe</label>
             <br />
             <input type="radio" name="states" value="Ik ging naar de politie toe" id="Ik ging naar de politie toe">
-            <label for="Ik ging naar de politie toe">Ik ging naar de politie toe</label>
+            <label for="Ik ging naar de politie toe"><span>Ik ging naar</span> de politie toe</label>
 
         </form>
 
-        <form action="" id="contact-gehad">
+        <form action="" id="herkomst-radio2">
+            <h2>afkomst</h2>
+            <input type="radio" name="states2" value="Nederlands" id="Nederlands2">
+            <label for="Nederlands2">
+                Nederlands
+            </label>
+            <br />
+            <input type="radio" name="states2" value="Overig niet-Westers" id="Overige niet-Westers2">
+            <label for="Overige niet-Westers2">
+                Overige niet-Westers
+            </label>
+            <br />
+            <input type="radio" name="states2" value="Surinaams" id="Surinaams2">
+            <label for="Surinaams2">
+                Surinaams
+            </label>
+            <br />
+            <input type="radio" name="states2" value="Voormalig Nederlandse Antillen"
+                id="Voormalig Nederlandse Antillen2">
+            <label for="Voormalig Nederlandse Antillen2">
+                Voormalig Nederlandse Antillen
+            </label>
+            <br />
+            <input type="radio" name="states2" value="Westers" id="Westers2">
+            <label for="Westers2">
+                Westers
+            </label>
+            <br />
+            <input type="radio" name="states2" value="Marokkaans" id="Marokkaans2">
+            <label for="Marokkaans2">
+                Marokkaans
+            </label>
+
+            <h2>
+                contact gehad met de politie
+            </h2>
+
+            <input type="radio" name="states2" value="Ja" id="Wel contact gehad2">
+            <label for="Wel contact gehad2"><span>Wel</span> contact gehad</label>
+            <br />
+            <input type="radio" name="states2" value="Nee" id="Geen contact gehad2">
+            <label for="Geen contact gehad2"><span>Geen</span> contact gehad</label>
+
+            <h2>
+                reden contact
+            </h2>
+
+            <input type="radio" name="states2" value="De politie kwam naar mij toe" id="De politie kwam naar mij toe2">
+            <label for="De politie kwam naar mij toe2">De politie <span>kwam naar mij</span> toe</label>
+            <br />
+            <input type="radio" name="states2" value="Ik ging naar de politie toe" id="Ik ging naar de politie toe2">
+            <label for="Ik ging naar de politie toe2"><span>Ik ging naar</span> de politie toe</label>
 
         </form>
+
 
         <div class="parallax__cover"></div>
     </div>

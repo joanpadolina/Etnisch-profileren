@@ -70,27 +70,6 @@ export default function secondBubble(data) {
   
     valueAchtergrond.pop()
   
-  
-    // console.log(data)
-  
-  
-  
-    // values for the selection westers/niet-westers
-    let selectionValues = valueAchtergrond.map(d => d.key)
-
-  
-    let choicesValue = d3.select('.content')
-      .append('select')
-      .attr('class', 'selection-values2')
-  
-    choicesValue
-      .selectAll('option')
-      .data(selectionValues)
-      .enter()
-      .append('option')
-      .text(d => d)
-      .attr('value', d => d)
-  
     // nest in contact with police
     let contactWith = d3.nest()
       .key(d => d.contact)
@@ -100,20 +79,7 @@ export default function secondBubble(data) {
   
     // selection contact with
     let valueContact = contactWith.map(d => d.key)
-  
-    // console.log(contactWith)
-    let contactSelection = d3.select('.content')
-      .append('select')
-      .attr('class', 'contact-values2')
-  
-    contactSelection
-      .selectAll('option')
-      .data(valueContact)
-      .enter()
-      .append('option')
-      .text(d => d)
-      .attr('value', d => d)
-  
+
     // nest totstand 
     let totstandNest = d3.nest()
       .key(d => d.totstand)
@@ -122,19 +88,6 @@ export default function secondBubble(data) {
       .entries(data)
   
     let valueTotstand = totstandNest.map(d => d.key)
-  
-    // selection totstand
-    let totstandSelection = d3.select('.content')
-      .append('select')
-      .attr('class', 'totstand-values2')
-  
-    totstandSelection
-      .selectAll('option')
-      .data(valueTotstand)
-      .enter()
-      .append('option')
-      .text(d => d)
-      .attr('value', d => d)
   
     // nest resultaat contact
     let resultaatNest = d3.nest()
@@ -146,21 +99,7 @@ export default function secondBubble(data) {
     let valueResultaat = resultaatNest.map(d => d.key)
     valueResultaat.pop()
   
-  
-    // selection resultaat
-    let resultaatSelection = d3.select('.content')
-      .append('select')
-      .attr('class', 'resultaat-values2')
-  
-    resultaatSelection
-      .selectAll('option')
-      .data(valueResultaat)
-      .enter()
-      .append('option')
-      .text(d => d)
-      .attr('value', d => d)
-    // console.log(resultaatNest)
-  
+
     // Circle size horizontal overal
     let barPlot = svg.selectAll("mycircle")
       .data(dataCijfer)
@@ -169,10 +108,10 @@ export default function secondBubble(data) {
   
     barPlot
       .attr('class', 'horizonCircle')
-      // .attr('transform', 'translate(29,421)')
+      .attr('transform', 'translate(0,19)')
       .attr("cy", d => y(d.key))
       .attr("r", d => z(d.value))
-      .style("fill", "#69b3a2")
+      .style("fill", "red")
       .attr('opacity', .5)
       .attr("stroke", "black")
   
@@ -182,7 +121,7 @@ export default function secondBubble(data) {
   
   
     // update pattern starts here
-    function updateBubble() {
+    function updateBubble2() {
   
       const selectedOption = this.value
   
@@ -210,7 +149,6 @@ export default function secondBubble(data) {
         .data(newA)
         .transition()
         .duration(1000)
-        .style("fill", "orange")
         .attr("cy", d => y(d.key))
         .attr("r", d => z(d.value))
   
@@ -218,7 +156,6 @@ export default function secondBubble(data) {
         .data(newB)
         .transition()
         .duration(1000)
-        .style("fill", "pink")
         .attr("cy", d => y(d.key))
         .attr("r", d => z(d.value))
   
@@ -226,7 +163,6 @@ export default function secondBubble(data) {
         .data(newC)
         .transition()
         .duration(1000)
-        .style("fill", "yellow")
         .attr("cy", d => y(d.key))
         .attr("r", d => z(d.value))
   
@@ -241,54 +177,11 @@ export default function secondBubble(data) {
   
   
     }
-    // selection on change update
-    d3.selectAll('.selection-values2')
-      .on('change', updateBubble)
-  
-    d3.selectAll('.contact-values2')
-      .on('change', updateBubble)
-  
-    d3.selectAll('.totstand-values2')
-      .on('change', updateBubble)
-  
-    d3.selectAll('.resultaat-values2')
-      .on('change', updateBubble)
+    // radio button on change update
 
+    d3.selectAll(("input[name='states2']")).on("change", updateBubble2)
     //update pattern ends here
 
-
-    // let achtergrond = d3.select('.content')
-    //   .append('g')
-    //   .attr('class', 'text')
-  
-    // achtergrond
-    //   .append('p')
-    //   .attr("text-anchor", "middle")
-    //   .style("font-size", ".9em")
-    //   .text("achtergrond")
-  
-    // achtergrond
-    //   .append('p')
-    //   .attr("text-anchor", "middle")
-    //   .style("font-size", ".9em")
-    //   .text("contact")
-  
-  
-    // achtergrond
-    //   .append('p')
-    //   .attr("text-anchor", "middle")
-    //   .style("font-size", ".9em")
-    //   .attr('class', 'totstand-txt')
-    //   .text("totstand")
-  
-    // achtergrond
-    //   .append('p')
-    //   .attr("text-anchor", "middle")
-    //   .style("font-size", ".9em")
-    //   .attr('class', 'resultaat-txt')
-    //   .text("resultaat na contact")
-  
-  
   
     //tooltip
   

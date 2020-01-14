@@ -1,9 +1,14 @@
-svg {
+svg.bubble-plot {
     display: block;
     position: relative;
-    color: white;
+    color: black;
     top: -14em;
-    left: 15em;
+    left: 18em;
+}
+#my_dataviz{
+    top: 11em;
+    display: block;
+    position: relative;
 }
 
 /* .content{
@@ -136,18 +141,54 @@ div.tooltip {
     width: 10em;
 }
 
-#herkomst-radio {
+#herkomst-radio, #herkomst-radio2 {
     color: white;
-    left: -49em;
+    left: -58em;
     margin: -5em;
-    top: 53em;
+    top: 51em;
     position: relative;
     z-index: 99;
     font-size: 0.9em;
 
 }
 
+#herkomst-radio2{
+    left:-11em;
+}
+form h2 {
+    font-size:1.2em;
+    color:rgb(143, 143, 143);
+}
+span{
+    font-weight:800;
+}
+
 input[type="radio"]:checked+label {
     font-weight: 500;
     color:yellow;
+    background: #af0a2e;
+}
+
+input{
+    visibility: hidden;
+}
+
+label{
+    cursor: pointer;
+    padding: .3em;
+    background: #1c1b1d;
+    margin: 0.3em;
+    width: 16em;
+    display: inline-block;
+    padding: 0.5em;
+    font-size: 0.8em;
+    border-radius: 0.3em;
+    transition: 200ms ease;
+    text-align: center;
+    font-weight: 100;
+}
+
+
+label:hover{
+    background: #683441;
 }
