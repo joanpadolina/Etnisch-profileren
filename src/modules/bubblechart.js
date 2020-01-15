@@ -148,7 +148,7 @@ export default function bubbleChart(data) {
       data.forEach(d => d.total = total);
       let percentage = data.map(d => d.percentage = Math.round(d.value / total * 100));
       data.forEach(d => d.categorie = selectedOption);
-
+      data.sort((a,b)=> a.key - b.key)
       data = data.filter(d => d.key !== "99999")
       
       return data

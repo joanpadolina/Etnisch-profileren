@@ -48,6 +48,7 @@ export default function secondBubble(data) {
   let percentage = dataCijfer.map(d => d.percent = Math.round(d.value / sumData * 100))
   dataCijfer.forEach(d => d.total = sumData)
   console.log(dataCijfer)
+
   // y axis
   let y = d3.scaleBand()
     .range([0, height])
@@ -126,8 +127,9 @@ export default function secondBubble(data) {
     .attr('opacity', .5)
     .attr("stroke", "#838383")
 
-  barPlot
-    .exit().remove()
+  barPlot.exit().remove()
+
+
 
   //main tooltip
   // dataCijfer.forEach(d => d.afkomst = "Totaal")
@@ -188,10 +190,13 @@ export default function secondBubble(data) {
       let total = data.reduce((prev, cur) => prev + cur.value, 0)
       data.forEach(d => d.total = total);
       let percentage = data.map(d => d.percentage = Math.round(d.value / total * 100));
-      data.forEach(d => d.categorie = selectedOption);
-
+      data.forEach(d => d.categorie = selectedOption)
+      data.sort((a,b)=> a.key - b.key)
       data = data.filter(d => d.key !== "99999")
+   
 
+
+      console.log(data)
       return data
     }
 
@@ -202,7 +207,6 @@ export default function secondBubble(data) {
     let newD = getPercentage(resultaatNest)
 
     // console.log(newA.map(d => d.total))
-    console.log(newA)
     // function addText() {
     //   if(newA[0].categorie === selectedOption) {
     //     console.log(currentId+"-label");
@@ -217,13 +221,18 @@ export default function secondBubble(data) {
     //   }
     // }
     // addText();
+    // barPlot
+    //   .attr("r", function (d) {
+    //     return d.r
+    //   })
 
     barPlot
       .data(newA)
       .transition()
-      .duration(1000)
+      .duration(900)
       .attr("cy", d => y(d.key))
       .attr("r", d => z(d.percentage))
+    // .ease(d3.easeBounce)
 
 
     barPlot
@@ -232,6 +241,7 @@ export default function secondBubble(data) {
       .duration(1000)
       .attr("cy", d => y(d.key))
       .attr("r", d => z(d.percentage))
+
 
     barPlot
       .data(newC)
@@ -247,12 +257,14 @@ export default function secondBubble(data) {
       .attr("cy", d => y(d.key))
       .attr("r", d => z(d.percentage))
 
-      
+    // barPlot.exit()
+    //   .transition(500)
+    //   .attr("r", 1e-6)
+    //   .remove()
 
     // console.log(newA, newB, newC, newD)
 
     //tooltip
-
 
     // add the dots with tooltips
     svg.selectAll("circle")
