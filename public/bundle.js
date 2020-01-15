@@ -1,10 +1,9 @@
 (function () {
   'use strict';
 
-  // import valueAchtergrond from './selections.js'
-
   function bubbleChart(data) {
 
+    
 
     // set the dimensions and margins of the graph
     let margin = {
@@ -33,11 +32,18 @@
       .entries(data);
 
     dataCijfer.pop();
+    
+    //chazz the man
+    let sumData = dataCijfer.reduce((prev, cur) => prev + cur.value, 0);
+    let percentage = dataCijfer.map(d => d.value = Math.round(d.value / sumData * 100));
+
 
     // X axis
     let y = d3.scaleBand()
       .range([0, height])
-      .domain(data.map(d => d.cijfer).sort((a, b) => a - b));
+      .domain(dataCijfer.map(d => d.key).sort((a, b) => b - a));
+
+      console.log(y.domain());
 
     svg.append("g")
       .attr("class", "axis")
@@ -63,8 +69,6 @@
       .key(d => d.cijfer)
       .rollup(leaves => leaves.length)
       .entries(data);
-
-    valueAchtergrond.pop();
 
     // nest in contact with police
     let contactWith = d3.nest()
@@ -98,7 +102,7 @@
       .data(dataCijfer)
       .enter()
       .append("circle");
-
+      console.log('datacijrer', dataCijfer);
     barPlot
       .attr('class', 'horizonCircle')
       .attr('transform', 'translate(0,19)')
@@ -112,31 +116,50 @@
     barPlot
       .exit().remove();
 
+    dataCijfer.forEach(d => d.afkomst = "Totaal");
+    // add the dots with tooltips
+    svg.selectAll("circle")
+      .data(dataCijfer)
+      .on("mouseover", function (d) {
+        div.transition()
+          .duration(200)
+          .style("opacity", .9);
+        div.html(`${d.afkomst}: ${d.value}%`)
+          .style("left", (d3.event.pageX) + "px")
+          .style("top", (d3.event.pageY - 28) + "px");
+      })
+      .on("mouseout", function (d) {
+        div.transition()
+          .duration(500)
+          .style("opacity", 0);
+      });
+
+      
+
+      // console.log("datacijfer",dataCijfer)
 
     // update pattern starts here
     function updateBubble() {
-
+    
       const selectedOption = this.value;
 
-      //update on background
-      let updateAchtergrond = valueAchtergrond.filter(row => row.key == selectedOption);
-      let newA = updateAchtergrond.map(d => d.values).flat();
-      // console.log(newA)
+      function getPercentage(data) {
+        data = data.filter(row => row.key == selectedOption);
+        data = data.map(d => d.values).flat();
+        
+        let total = data.reduce((prev, cur) => prev + cur.value, 0);
+        let percentage = data.map(d => d.value = Math.round(d.value / total * 100));
+        data.forEach(d => d.categorie = selectedOption);
+        data = data.filter(d => d.key !== "99999");
+        return data
+      }
 
-      //update on contact with
-      let updateContact = contactWith.filter(row => row.key == selectedOption);
-      let newB = updateContact.map(d => d.values).flat();
-      // console.log(updateContact)
 
-      //update on totstand 
-      let updateTotstand = totstandNest.filter(row => row.key == selectedOption);
-      let newC = updateTotstand.map(d => d.values).flat();
-      // console.log(updateTotstand)
+      let newA = getPercentage(valueAchtergrond);
+      let newB = getPercentage(contactWith);
+      let newC = getPercentage(totstandNest);
+      let newD = getPercentage(resultaatNest);
 
-      //update on totstand 
-      let updateResultaat = resultaatNest.filter(row => row.key == selectedOption);
-      let newD = updateResultaat.map(d => d.values).flat();
-      // console.log(updateResultaat)
 
       barPlot
         .data(newA)
@@ -190,7 +213,7 @@
         div.transition()
           .duration(200)
           .style("opacity", .9);
-        div.html(` ${d.value}`)
+        div.html(`${d.categorie}: ${d.value}%`)
           .style("left", (d3.event.pageX) + "px")
           .style("top", (d3.event.pageY - 28) + "px");
       })
@@ -201,7 +224,6 @@
       });
 
 
-      
 
   }
 
@@ -427,7 +449,10 @@
       // X axis
       let y = d3.scaleBand()
         .range([0, height])
-        .domain(data.map(d => d.cijfer).sort((a, b) => a - b));
+        .domain(data.map(d => d.cijfer).sort((a, b) => b - a));
+
+        // need to remove the 99999 given in ranking
+      
     
       svg.append("g")
         .attr("class", "axis")
@@ -445,7 +470,7 @@
       let z = d3.scaleLinear()
         .domain([0, d3.max(dataCijfer.map(d => d.value))])
         .range([1, 70]);
-    
+
       // nesting achtergrond
       let valueAchtergrond = d3.nest()
         .key(d => d.achtergrond)
@@ -499,7 +524,14 @@
         .style("fill", "red")
         .attr('opacity', .5)
         .attr("stroke", "black");
-    
+
+      
+      
+      function percentage(current, total){
+        return current * 100/total
+      }
+
+      console.log(percentage(29, 200));
     
       barPlot
         .exit().remove();

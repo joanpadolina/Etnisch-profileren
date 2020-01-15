@@ -42,7 +42,10 @@ export default function secondBubble(data) {
     // X axis
     let y = d3.scaleBand()
       .range([0, height])
-      .domain(data.map(d => d.cijfer).sort((a, b) => a - b))
+      .domain(data.map(d => d.cijfer).sort((a, b) => b - a))
+
+      // need to remove the 99999 given in ranking
+    
   
     svg.append("g")
       .attr("class", "axis")
@@ -60,7 +63,7 @@ export default function secondBubble(data) {
     let z = d3.scaleLinear()
       .domain([0, d3.max(dataCijfer.map(d => d.value))])
       .range([1, 70]);
-  
+
     // nesting achtergrond
     let valueAchtergrond = d3.nest()
       .key(d => d.achtergrond)
@@ -114,7 +117,14 @@ export default function secondBubble(data) {
       .style("fill", "red")
       .attr('opacity', .5)
       .attr("stroke", "black")
-  
+
+    
+    
+    function percentage(current, total){
+      return current * 100/total
+    }
+
+    console.log(percentage(29, 200))
   
     barPlot
       .exit().remove()
