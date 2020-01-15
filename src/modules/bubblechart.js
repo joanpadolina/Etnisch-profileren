@@ -29,7 +29,7 @@ export default function bubbleChart(data) {
 
   //chazz the man
   let sumData = dataCijfer.reduce((prev, cur) => prev + cur.value, 0)
-  let percentage = dataCijfer.map(d => d.value = Math.round(d.value / sumData * 100))
+  let percentage = dataCijfer.map(d => d.percent = Math.round(d.value / sumData * 100))
 
 
   // y axis
@@ -52,7 +52,7 @@ export default function bubbleChart(data) {
 
   // Add a scale for bubble size
   let z = d3.scaleLinear()
-    .domain([0, d3.max(dataCijfer.map(d => d.value))])
+    .domain([0, d3.max(dataCijfer.map(d => d.percent))])
     .range([1, 70]);
 
   // nesting achtergrond
@@ -97,9 +97,9 @@ export default function bubbleChart(data) {
 
   barPlot
     .attr('class', 'horizonCircle')
-    .attr('transform', 'translate(0,19)')
+    .attr('transform', 'translate(0,30)')
     .attr("cy", d => y(d.key))
-    .attr("r", d => z(d.value))
+    .attr("r", d => z(d.percent))
     .style("fill", "yellow")
     .attr('opacity', .5)
     .attr("stroke", "black")
@@ -110,13 +110,20 @@ export default function bubbleChart(data) {
 
   dataCijfer.forEach(d => d.afkomst = "Totaal")
   // add the dots with tooltips
+
+    // * tooltip
+
+    let div = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
   svg.selectAll("circle")
     .data(dataCijfer)
     .on("mouseover", function (d) {
       div.transition()
         .duration(200)
-        .style("opacity", .9);
-      div.html(`${d.afkomst}: ${d.value}%`)
+        .style("opacity", .9)
+        div.html(` Cijfer: <span>${d.key}</span></br>percentage: <span>${d.percent}%</span> </br> aantal: ${d.value}`)
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY - 28) + "px");
     })
@@ -141,13 +148,15 @@ export default function bubbleChart(data) {
       data.forEach(d => d.total = total);
       let percentage = data.map(d => d.percentage = Math.round(d.value / total * 100));
       data.forEach(d => d.categorie = selectedOption);
+
       data = data.filter(d => d.key !== "99999")
+      
       return data
     }
 
-    let documentTest = document.querySelector('.first')
+    // let documentTest = document.querySelector('.first')
 
-    console.log(documentTest)
+    // console.log(documentTest)
 
 
     let newA = getPercentage(valueAchtergrond)
@@ -185,6 +194,27 @@ export default function bubbleChart(data) {
       .attr("cy", d => y(d.key))
       .attr("r", d => z(d.percentage))
 
+
+
+  // add the dots with tooltips
+  svg.selectAll("circle")
+  .data(newA)
+  .on("mouseover", function (d) {
+    div.transition()
+      .duration(200)
+      .style("opacity", .9);
+      div.html(`<span>${d.categorie}</span> </br>Cijfer: <span>${d.key}</span></br> percentage: ${d.percentage}% </br> aantal: ${d.value}`)
+      .style("left", (d3.event.pageX) + "px")
+      .style("top", (d3.event.pageY - 28) + "px");
+  })
+  .on("mouseout", function (d) {
+    div.transition()
+      .duration(500)
+      .style("opacity", 0);
+  });
+
+
+
   }
 
   // radio button
@@ -194,30 +224,6 @@ export default function bubbleChart(data) {
   
 
   // --- update pattern ends here --- ///
-
-
-  // * tooltip
-
-  let div = d3.select("body").append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 0);
-
-  // add the dots with tooltips
-  svg.selectAll("circle")
-    .data(valueAchtergrond)
-    .on("mouseover", function (d) {
-      div.transition()
-        .duration(200)
-        .style("opacity", .9);
-      div.html(`<span>${d.categorie}</span>:</br> percentage: ${d.percentage}% </br> aantal: ${d.value}`)
-        .style("left", (d3.event.pageX) + "px")
-        .style("top", (d3.event.pageY - 28) + "px");
-    })
-    .on("mouseout", function (d) {
-      div.transition()
-        .duration(500)
-        .style("opacity", 0);
-    });
 
 
 

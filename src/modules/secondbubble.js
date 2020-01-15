@@ -34,20 +34,20 @@ export default function secondBubble(data) {
       "translate(" + margin.left + "," + margin.top + ")");
 
   // nested data with given number
-  let dataCijfer = d3.nest()
+  let dataNew = d3.nest()
     .key(d => d.cijfer)
     .rollup(leaves => leaves.length)
     .sortKeys(d3.ascending)
     .entries(data)
-  dataCijfer.pop()
+
+  let dataCijfer = dataNew.filter(d => d.key !== "99999")
 
 
   //chazz the man
   let sumData = dataCijfer.reduce((prev, cur) => prev + cur.value, 0)
-  let percentage = dataCijfer.map(d => d.value = Math.round(d.value / sumData * 100))
-
-
-
+  let percentage = dataCijfer.map(d => d.percent = Math.round(d.value / sumData * 100))
+  dataCijfer.forEach(d => d.total = sumData)
+  console.log(dataCijfer)
   // y axis
   let y = d3.scaleBand()
     .range([0, height])
@@ -68,7 +68,7 @@ export default function secondBubble(data) {
 
   // Add a scale for bubble size
   let z = d3.scaleLinear()
-    .domain([0, d3.max(dataCijfer.map(d => d.value))])
+    .domain([0, d3.max(dataCijfer.map(d => d.percent))])
     .range([1, 70]);
 
   // nesting achtergrond
@@ -119,9 +119,9 @@ export default function secondBubble(data) {
 
   barPlot
     .attr('class', 'horizonCircle')
-    .attr('transform', 'translate(0,19)')
+    .attr('transform', 'translate(0,30)')
     .attr("cy", d => y(d.key))
-    .attr("r", d => z(d.value))
+    .attr("r", d => z(d.percent))
     .style("fill", "blue")
     .attr('opacity', .5)
     .attr("stroke", "#838383")
@@ -130,15 +130,22 @@ export default function secondBubble(data) {
     .exit().remove()
 
   //main tooltip
-  dataCijfer.forEach(d => d.afkomst = "Totaal")
+  // dataCijfer.forEach(d => d.afkomst = "Totaal")
+
   // add the dots with tooltips
+
+
+  let div = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
   svg.selectAll("circle")
     .data(dataCijfer)
     .on("mouseover", function (d) {
       div.transition()
         .duration(200)
-        .style("opacity", .9);
-      div.html(`${d.afkomst}: ${d.value}%`)
+        .style("opacity", .9)
+      div.html(` Cijfer: <span>${d.key}</span></br>percentage: <span>${d.percent}%</span> </br> aantal: ${d.value}`)
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY - 28) + "px");
     })
@@ -147,20 +154,21 @@ export default function secondBubble(data) {
         .duration(500)
         .style("opacity", 0);
     });
-    console.log(valueAchtergrond)
 
-  // update pattern starts here
+
+  // --- update pattern ends here --- ///
+
   function updateBubble2() {
-    // const currentId = this.id
 
-    
+
+
 
     const selectedOption = this.value
-    
+
     // d3.select(this.id) 
 
     // get total to show information
-    
+
     // function getTotalFromSelection(data) {
     //   data = data.filter(row => row.key == selectedOption)
     //   data = data.map(d => d.values).flat()
@@ -172,6 +180,7 @@ export default function secondBubble(data) {
 
 
 
+    // get percentage from total 
     function getPercentage(data) {
       data = data.filter(row => row.key == selectedOption)
       data = data.map(d => d.values).flat()
@@ -181,11 +190,11 @@ export default function secondBubble(data) {
       let percentage = data.map(d => d.percentage = Math.round(d.value / total * 100));
       data.forEach(d => d.categorie = selectedOption);
 
-
       data = data.filter(d => d.key !== "99999")
+
       return data
-    }      
-    
+    }
+
 
     let newA = getPercentage(valueAchtergrond)
     let newB = getPercentage(contactWith)
@@ -193,7 +202,7 @@ export default function secondBubble(data) {
     let newD = getPercentage(resultaatNest)
 
     // console.log(newA.map(d => d.total))
-  
+    console.log(newA)
     // function addText() {
     //   if(newA[0].categorie === selectedOption) {
     //     console.log(currentId+"-label");
@@ -216,6 +225,7 @@ export default function secondBubble(data) {
       .attr("cy", d => y(d.key))
       .attr("r", d => z(d.percentage))
 
+
     barPlot
       .data(newB)
       .transition()
@@ -234,9 +244,32 @@ export default function secondBubble(data) {
       .data(newD)
       .transition()
       .duration(1000)
-      .style("fill", "red")
       .attr("cy", d => y(d.key))
       .attr("r", d => z(d.percentage))
+
+      
+
+    // console.log(newA, newB, newC, newD)
+
+    //tooltip
+
+
+    // add the dots with tooltips
+    svg.selectAll("circle")
+      .data(newA)
+      .on("mouseover", function (d) {
+        div.transition()
+          .duration(200)
+          .style("opacity", .9);
+        div.html(`<span>${d.categorie}</span> </br>Cijfer: <span>${d.key}</span></br> percentage: ${d.percentage}% </br> aantal: ${d.value}`)
+          .style("left", (d3.event.pageX) + "px")
+          .style("top", (d3.event.pageY - 28) + "px");
+      })
+      .on("mouseout", function (d) {
+        div.transition()
+          .duration(500)
+          .style("opacity", 0);
+      });
 
 
 
@@ -247,28 +280,5 @@ export default function secondBubble(data) {
     .on("change", updateBubble2)
   //update pattern ends here
 
-
-  //tooltip
-
-  let div = d3.select("body").append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 0);
-
-  // add the dots with tooltips
-  svg.selectAll("circle")
-    .data(valueAchtergrond)
-    .on("mouseover", function (d) {
-      div.transition()
-        .duration(200)
-        .style("opacity", .9);
-      div.html(`<span>${d.categorie}</span>:</br> percentage: ${d.percentage}% </br> aantal: ${d.value}`)
-        .style("left", (d3.event.pageX) + "px")
-        .style("top", (d3.event.pageY - 28) + "px");
-    })
-    .on("mouseout", function (d) {
-      div.transition()
-        .duration(500)
-        .style("opacity", 0);
-    });
 
 }
