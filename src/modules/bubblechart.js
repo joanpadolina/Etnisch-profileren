@@ -1,8 +1,4 @@
-
 export default function bubbleChart(data) {
-
-  
-
   // set the dimensions and margins of the graph
   let margin = {
       top: 10,
@@ -11,7 +7,7 @@ export default function bubbleChart(data) {
       left: 100
     },
     width = 860 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    height = 700 - margin.top - margin.bottom;
 
   let svg = d3.select("#my_dataviz")
     .append("svg")
@@ -30,24 +26,22 @@ export default function bubbleChart(data) {
     .entries(data)
 
   dataCijfer.pop()
-  
+
   //chazz the man
   let sumData = dataCijfer.reduce((prev, cur) => prev + cur.value, 0)
   let percentage = dataCijfer.map(d => d.value = Math.round(d.value / sumData * 100))
 
 
-  // X axis
+  // y axis
   let y = d3.scaleBand()
     .range([0, height])
     .domain(dataCijfer.map(d => d.key).sort((a, b) => b - a))
-
-    console.log(y.domain())
 
   svg.append("g")
     .attr("class", "axis")
     .call(d3.axisLeft(y))
 
-  // Y axis
+  // x axis
   let x = d3.scaleLinear()
     .domain([0, d3.max(dataCijfer.map(d => d.value))])
     .range([0, width])
@@ -100,7 +94,7 @@ export default function bubbleChart(data) {
     .data(dataCijfer)
     .enter()
     .append("circle")
-    console.log('datacijrer', dataCijfer)
+
   barPlot
     .attr('class', 'horizonCircle')
     .attr('transform', 'translate(0,19)')
@@ -132,25 +126,28 @@ export default function bubbleChart(data) {
         .style("opacity", 0);
     });
 
-    
 
-    // console.log("datacijfer",dataCijfer)
-
-  // update pattern starts here
+  // --- update pattern ends here --- ///
   function updateBubble() {
-  
+
     const selectedOption = this.value
 
+  // get percentage from total 
     function getPercentage(data) {
       data = data.filter(row => row.key == selectedOption)
       data = data.map(d => d.values).flat()
-      
+
       let total = data.reduce((prev, cur) => prev + cur.value, 0)
-      let percentage = data.map(d => d.value = Math.round(d.value / total * 100));
+      data.forEach(d => d.total = total);
+      let percentage = data.map(d => d.percentage = Math.round(d.value / total * 100));
       data.forEach(d => d.categorie = selectedOption);
       data = data.filter(d => d.key !== "99999")
       return data
     }
+
+    let documentTest = document.querySelector('.first')
+
+    console.log(documentTest)
 
 
     let newA = getPercentage(valueAchtergrond)
@@ -164,21 +161,21 @@ export default function bubbleChart(data) {
       .transition()
       .duration(1000)
       .attr("cy", d => y(d.key))
-      .attr("r", d => z(d.value))
+      .attr("r", d => z(d.percentage))
 
     barPlot
       .data(newB)
       .transition()
       .duration(1000)
       .attr("cy", d => y(d.key))
-      .attr("r", d => z(d.value))
+      .attr("r", d => z(d.percentage))
 
     barPlot
       .data(newC)
       .transition()
       .duration(1000)
       .attr("cy", d => y(d.key))
-      .attr("r", d => z(d.value))
+      .attr("r", d => z(d.percentage))
 
     barPlot
       .data(newD)
@@ -186,19 +183,20 @@ export default function bubbleChart(data) {
       .duration(1000)
       .style("fill", "red")
       .attr("cy", d => y(d.key))
-      .attr("r", d => z(d.value))
+      .attr("r", d => z(d.percentage))
 
   }
 
-  // radio buttons
+  // radio button
 
   d3.selectAll(("input[name='states']")).on("change", updateBubble)
+  
+  
 
-  //update pattern ends here
+  // --- update pattern ends here --- ///
 
 
-
-  //tooltip
+  // * tooltip
 
   let div = d3.select("body").append("div")
     .attr("class", "tooltip")
@@ -211,7 +209,7 @@ export default function bubbleChart(data) {
       div.transition()
         .duration(200)
         .style("opacity", .9);
-      div.html(`${d.categorie}: ${d.value}%`)
+      div.html(`<span>${d.categorie}</span>:</br> percentage: ${d.percentage}% </br> aantal: ${d.value}`)
         .style("left", (d3.event.pageX) + "px")
         .style("top", (d3.event.pageY - 28) + "px");
     })

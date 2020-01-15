@@ -2,17 +2,20 @@ svg.bubble-plot {
     display: block;
     position: relative;
     color: black;
-    top: -14em;
+    top:-1em;
     left: 16em;
 }
+
 svg.bubble-plot2 {
     display: block;
     position: relative;
     color: black;
     left: 27em;
 }
-#my_dataviz{
-    top: 14em;
+
+#my_dataviz {
+    top: 12em;
+    left:5em;
     display: block;
     position: relative;
 }
@@ -133,9 +136,9 @@ svg.bubble-plot2 {
 div.tooltip {
     position: absolute;
     text-align: center;
-    width: 60px;
-    height: 28px;
-    padding: 2px;
+    width:auto;
+    height: auto;
+    padding: .9em;
     font: 12px sans-serif;
     background: lightsteelblue;
     border: 0px;
@@ -147,7 +150,8 @@ div.tooltip {
     width: 10em;
 }
 
-#herkomst-radio, #herkomst-radio2 {
+#herkomst-radio,
+#herkomst-radio2 {
     color: white;
     left: -58em;
     margin: -5em;
@@ -158,28 +162,30 @@ div.tooltip {
 
 }
 
-#herkomst-radio2{
-    left:-11em;
+#herkomst-radio2 {
+    left: -11em;
 }
+
 form h2 {
-    font-size:1.2em;
-    color:rgb(143, 143, 143);
+    font-size: 1.2em;
+    color: rgb(143, 143, 143);
 }
-span{
-    font-weight:800;
+
+span {
+    font-weight: 800;
 }
 
 input[type="radio"]:checked+label {
     font-weight: 500;
-    color:yellow;
+    color: yellow;
     background: #af0a2e;
 }
 
-input{
+input {
     visibility: hidden;
 }
 
-label{
+label {
     cursor: pointer;
     padding: .3em;
     background: #1c1b1d;
@@ -187,7 +193,7 @@ label{
     width: 16em;
     display: inline-block;
     padding: 0.5em;
-    font-size: 0.8em;
+    font-size: 1em;
     border-radius: 0.3em;
     transition: 200ms ease;
     text-align: center;
@@ -195,6 +201,20 @@ label{
 }
 
 
-label:hover{
+label:hover {
     background: #683441;
+}
+
+.header {
+    top: 21em;
+    display: block;
+    position: relative;
+}
+.first{
+    z-index: 99;
+    color: #ce6363;
+    position: relative;
+    display: block;
+    left: -45em;
+    top: 30.2em;
 }
