@@ -623,6 +623,7 @@ button:hover {
   background-color: rgba(0,0,0,0.3);
   padding: 1em;
   height: auto;
+  width: 28em;
 }
 
 
