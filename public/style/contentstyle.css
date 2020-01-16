@@ -13,12 +13,12 @@ svg.bubble-plot2 {
     left: 45em;
     top: -45.1em;
 
+
 }
 
 #my_dataviz {
     display: block;
     position: relative;
-    left: -3em;
 }
 
 
@@ -145,7 +145,7 @@ div.tooltip {
     width: 10em;
 }
 .form1, .form2{
-    top: -117em;
+    top: -76em;
     left: -28em;
     margin-left: auto;
     margin-right: auto;
@@ -156,7 +156,7 @@ div.tooltip {
 .form2{
     left: 14em;
     position: relative;
-    top: -147.5em;
+    top: -106.5em;
     width: 16em;
 }
 
@@ -166,11 +166,13 @@ div.tooltip {
     color: white;
     position: relative;
     font-size: 0.9em;
+    left:1em;
 
 }
 
 #herkomst-radio2 {
     left: 12em;
+    top: -0.3em;
 }
 
 form h2 {
@@ -214,9 +216,10 @@ label:hover {
 }
 
 .header {
-    top: 21em;
+    top: -3em;
     display: block;
     position: relative;
+    left: -30em;
 }
 .first, .second{
     color: white;
@@ -226,17 +229,23 @@ label:hover {
     width: auto;
     height: auto;
     text-align: center;
-    left: 13.8em;
+    left: 14.4em;
     top: -5em;
 }
 
 .second{
-    left: -3.6em;
+    left: -3.1em;
     top: -5.1em;
 }
 
 .vertrouwen{
     display: block;
     position: relative;
-    top:7em;
+    top:10em;
+}
+
+.bear{
+    display: block;
+    position: relative;
+    top: 34em;
 }

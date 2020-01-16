@@ -1,5 +1,5 @@
 export default function barChart(data) {
-console.log(data)
+// console.log(data)
 
     let terechtNest = d3.nest()
         .key(d => d.terecht)
@@ -7,11 +7,11 @@ console.log(data)
         .rollup(leaves => leaves.length)
         .entries(data)
 
-    let splitNein = terechtNest.pop()
+//     let splitNein = terechtNest.pop()
 
-    let groupedTerecht = maakMooi(terechtNest)
-    console.log(terechtNest)
-    console.log(groupedTerecht)
+//     let groupedTerecht = maakMooi(terechtNest)
+//     console.log(terechtNest)
+//     console.log(groupedTerecht)
 
     // kris
 
@@ -40,9 +40,14 @@ console.log(data)
                     welWesters: [],
                 })
 
+    
+
             return newObject
         }, {})
     }
+
+//    let testing = maakMooi(terechtNest)
+//    console.log(newObject)
 
 
 

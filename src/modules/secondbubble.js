@@ -2,16 +2,6 @@
 
 export default function secondBubble(data) {
 
-  // data terecht behandel of niet
-
-  let terechtNest = d3.nest()
-    .key(d => d.achtergrond)
-    .key(d => d3.sum(d.freq))
-    .rollup(leaves => leaves.length)
-    .entries(data)
-
-  let splitNein = terechtNest.pop()
-  console.log(terechtNest)
 
 
   // set the dimensions and margins of the graph
@@ -48,7 +38,7 @@ export default function secondBubble(data) {
   let sumData = dataCijfer.reduce((prev, cur) => prev + cur.value, 0)
   let percentage = dataCijfer.map(d => d.percent = Math.round(d.value / sumData * 100))
   dataCijfer.forEach(d => d.total = sumData)
-  console.log(dataCijfer)
+  // console.log(dataCijfer)
 
   // y axis
   let y = d3.scaleBand()
@@ -160,13 +150,6 @@ export default function secondBubble(data) {
         .duration(500)
         .style("opacity", 0);
     });
-  // totstandNest.push({
-  //   key: "2",
-  //   value: 0,
-  //   total: 271,
-  //   percentage: 0,
-  //   categorie: "Ik ging naar de politie toe"
-  // })
 
   // --- update pattern ends here --- ///
 
@@ -242,7 +225,7 @@ export default function secondBubble(data) {
       .duration(600)
       .attr("cy", d => y(d.key))
       .attr("r", d => z(d.percentage))
-      .ease(d3.easeBack)
+      .ease(d3.easeBounce)
 
 
 
@@ -254,7 +237,7 @@ export default function secondBubble(data) {
       .duration(600)
       .attr("cy", d => y(d.key))
       .attr("r", d => z(d.percentage))
-      .ease(d3.easeBack)
+      .ease(d3.easeBounce)
 
 
     barPlot
@@ -265,7 +248,7 @@ export default function secondBubble(data) {
       .duration(600)
       .attr("cy", d => y(d.key))
       .attr("r", d => z(d.percentage))
-      .ease(d3.easeBack)
+      .ease(d3.easeBounce)
 
     barPlot.exit().remove()
 

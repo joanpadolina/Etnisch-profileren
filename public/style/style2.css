@@ -107,7 +107,7 @@ main {
 
 
 /* https://codepen.io/912lab/pen/YPYezp */
-/* .glitch {
+.glitch {
   color: black;
   font-size: 3em;
   position: relative;
@@ -266,8 +266,7 @@ main {
   overflow: hidden;
   clip: rect(0, 900px, 0, 0);
   animation: noise-anim-2 3s infinite linear alternate-reverse;
-} */
-
+} 
 
 
 
@@ -360,16 +359,6 @@ main {
   margin-top: 100vh;
   z-index: 5;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 /* ALGEMEEN */
@@ -561,15 +550,21 @@ button:hover {
 
 /* GRAPH 2 */
 
+/* GRAPH 2 */
+
 .graph2 section {
   display: flex;
   justify-content: space-around;
   width: 100vw;
-  margin-top: 10vh;
+  height: auto;
+  text-align: left;
+  margin-top: 3vh;
 }
 
 .graph2 img {
-  width: 40vw;
+  width: 50vw;
+  margin-bottom: 10vh;
+  margin-top: 2vh;
 }
 
 .indicatoren2 {
@@ -582,6 +577,21 @@ button:hover {
 .indicator2 {
   margin-top: 0.5em;
 }
+
+.buttongraph2a {
+  position: absolute;
+  margin-top: 32vh;
+  margin-left: 35vw;
+  width: 13vw;
+}
+
+.buttongraph2b {
+  position: absolute;
+  margin-top: 32vh;
+  margin-left: 35vw;
+  width: 13vw;
+}
+
 
 
 
@@ -614,9 +624,6 @@ button:hover {
   padding: 1em;
   height: auto;
 }
-
-
-
 
 
 
@@ -733,4 +740,11 @@ button:hover {
     padding-left: 5vw;
     padding-right: 5vw;
   }
+}
+
+
+
+
+.invisible {
+  display: none;
 }

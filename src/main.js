@@ -77,7 +77,7 @@ function newData() {
             // testNest(newDataResults)
             myVisualChart(newDataResults)
             secondBubble(newDataResults)
-            barChart(newDataResults)
+            // barChart(newDataResults)
 
         })
 
