@@ -186,7 +186,8 @@ span {
 
 input[type="radio"]:checked+label {
     font-weight: 500;
-    color: yellow;
+    font-family: RubikBold;
+    color: white;
     background: #af0a2e;
 }
 
@@ -203,7 +204,7 @@ label {
     display: inline-block;
     padding: 0.5em;
     font-size: 1em;
-    font-family: Roboto;
+    font-family: RobotoLight;
     border-radius: 0.3em;
     transition: 200ms ease;
     text-align: center;
@@ -248,4 +249,9 @@ label:hover {
     display: block;
     position: relative;
     top: 38em;
+}
+
+span{
+    font-family: RubikBold;
+
 }
