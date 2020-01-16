@@ -22,13 +22,14 @@
         "translate(" + margin.left + "," + margin.top + ")");
 
     // nested data with given number
-    let dataCijfer = d3.nest()
+    let dataNew = d3.nest()
       .key(d => d.cijfer)
       .rollup(leaves => leaves.length)
-      .sortKeys(d3.ascending)
       .entries(data);
 
-    dataCijfer.pop();
+    dataNew.sort((a, b) => a.key - b.key);
+
+    let dataCijfer = dataNew.filter(d => d.key !== "99999");
 
     //chazz the man
     let sumData = dataCijfer.reduce((prev, cur) => prev + cur.value, 0);
@@ -94,7 +95,7 @@
 
     // Circle size horizontal overal
     let barPlot = svg.selectAll("mycircle")
-      .data(dataCijfer)
+      .data(dataCijfer, d => d.main = d.key)
       .enter()
       .append("circle");
 
@@ -114,9 +115,9 @@
     dataCijfer.forEach(d => d.afkomst = "Totaal");
     // add the dots with tooltips
 
-      // * tooltip
+    // * tooltip
 
-      let div = d3.select("body").append("div")
+    let div = d3.select("body").append("div")
       .attr("class", "tooltip")
       .style("opacity", 0);
 
@@ -126,7 +127,7 @@
         div.transition()
           .duration(200)
           .style("opacity", .9);
-          div.html(` Cijfer: <span>${d.key}</span></br>percentage: <span>${d.percent}%</span> </br> aantal: ${d.value}`)
+        div.html(` Cijfer: <span>${d.key}</span></br>percentage: <span>${d.percent}%</span> </br> aantal: ${d.value}`)
           .style("left", (d3.event.pageX) + "px")
           .style("top", (d3.event.pageY - 28) + "px");
       })
@@ -142,7 +143,9 @@
 
       const selectedOption = this.value;
 
-    // get percentage from total 
+
+
+      // get percentage from total 
       function getPercentage(data) {
         data = data.filter(row => row.key == selectedOption);
         data = data.map(d => d.values).flat();
@@ -151,15 +154,13 @@
         data.forEach(d => d.total = total);
         let percentage = data.map(d => d.percentage = Math.round(d.value / total * 100));
         data.forEach(d => d.categorie = selectedOption);
-        data.sort((a,b)=> a.key - b.key);
+        data.sort((a, b) => a.key - b.key);
         data = data.filter(d => d.key !== "99999");
-        
+
         return data
       }
 
-      // let documentTest = document.querySelector('.first')
 
-      // console.log(documentTest)
 
 
       let newA = getPercentage(valueAchtergrond);
@@ -168,26 +169,54 @@
       let newD = getPercentage(resultaatNest);
 
 
+      // let one = document.querySelector('.first').innerHTML = `${newA[0].total || newB[0].total || newC[0].total} totaal aantal respondenten`
+      // let two = document.querySelector('.second').innerHTML = `${newB[0].total} totaal aantal respondenten`
+
+
+      // console.log(newA.map(d => d.total))
+      // function addText() {
+      //   let pushedTxt = []
+      //   console.log(pushedTxt)
+      //   if (newA[0].categorie === selectedOption) {
+      //     return pushedTxt.push(newA[0].total)
+      //   } else if (newB[0].categorie === selectedOption) {
+      //    return  pushedTxt.push(newB[0].total)
+      //   } else if (newC[0].categorie === selectedOption) {
+      //     return pushedTxt.push(newC[0].total)
+      //   } 
+      // }
+      // addText();
+      // barPlot
+      //   .attr("r", function (d) {
+      //     return d.r
+      //   })
+      barPlot.exit().remove();
+
       barPlot
         .data(newA)
         .transition()
         .duration(1000)
         .attr("cy", d => y(d.key))
-        .attr("r", d => z(d.percentage));
+        .attr("r", d => z(d.percentage))
+        .ease(d3.easeBounce);
 
       barPlot
         .data(newB)
         .transition()
         .duration(1000)
         .attr("cy", d => y(d.key))
-        .attr("r", d => z(d.percentage));
+        .attr("r", d => z(d.percentage))
+        .ease(d3.easeBounce);
 
       barPlot
-        .data(newC)
+        .data(newC, d => d.newc = d.key)
         .transition()
         .duration(1000)
         .attr("cy", d => y(d.key))
-        .attr("r", d => z(d.percentage));
+        .attr("r", d => z(d.percentage))
+        .ease(d3.easeBounce);
+
+      console.log(newC);
 
       barPlot
         .data(newD)
@@ -195,27 +224,39 @@
         .duration(1000)
         .style("fill", "red")
         .attr("cy", d => y(d.key))
-        .attr("r", d => z(d.percentage));
+        .attr("r", d => z(d.percentage))
+        .ease(d3.easeBounce);
+      barPlot.exit().remove();
 
 
+      // add the dots with tooltips
+      svg.selectAll("circle")
+        .data(newA)
+        .on("mouseover", function (d) {
+          div.transition()
+            .duration(200)
+            .style("opacity", .9);
+          div.html(`<span>${d.categorie}</span> </br>Cijfer: <span>${d.key}</span></br> percentage: ${d.percentage}% </br> aantal: ${d.value}`)
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+        })
+        .on("mouseout", function (d) {
+          div.transition()
+            .duration(500)
+            .style("opacity", 0);
+        });
 
-    // add the dots with tooltips
-    svg.selectAll("circle")
-    .data(newA)
-    .on("mouseover", function (d) {
-      div.transition()
-        .duration(200)
-        .style("opacity", .9);
-        div.html(`<span>${d.categorie}</span> </br>Cijfer: <span>${d.key}</span></br> percentage: ${d.percentage}% </br> aantal: ${d.value}`)
-        .style("left", (d3.event.pageX) + "px")
-        .style("top", (d3.event.pageY - 28) + "px");
-    })
-    .on("mouseout", function (d) {
-      div.transition()
-        .duration(500)
-        .style("opacity", 0);
-    });
+      let infoText = d3.select('.first')
+        .data(newA)
+        .html(d => d.total + '</br> respondenten');
 
+      let infoText2 = d3.select('.first')
+        .data(newB)
+        .html(d => d.total + '</br> respondenten');
+
+      let infoText3 = d3.select('.first')
+        .data(newC)
+        .html(d => d.total + '</br> respondenten');
 
 
     }
@@ -223,8 +264,8 @@
     // radio button
 
     d3.selectAll(("input[name='states']")).on("change", updateBubble);
-    
-    
+
+
 
     // --- update pattern ends here --- ///
 
@@ -416,14 +457,14 @@
 
     // data terecht behandel of niet
 
-    // let terechtNest = d3.nest()
-    //   .key(d => d.terecht)
-    //   .key(d => d.cijfer)
-    //   .rollup(leaves => leaves.length)
-    //   .entries(data)
+    let terechtNest = d3.nest()
+      .key(d => d.achtergrond)
+      .key(d => d3.sum(d.freq))
+      .rollup(leaves => leaves.length)
+      .entries(data);
 
-    //   let splitNein = terechtNest.pop()
-    //   console.log(terechtNest)
+    let splitNein = terechtNest.pop();
+    console.log(terechtNest);
 
 
     // set the dimensions and margins of the graph
@@ -449,8 +490,9 @@
     let dataNew = d3.nest()
       .key(d => d.cijfer)
       .rollup(leaves => leaves.length)
-      .sortKeys(d3.ascending)
       .entries(data);
+
+    dataNew.sort((a, b) => a.key - b.key);
 
     let dataCijfer = dataNew.filter(d => d.key !== "99999");
 
@@ -524,9 +566,12 @@
     valueResultaat.pop();
 
 
+
     // Circle size horizontal overal
     let barPlot = svg.selectAll("mycircle")
-      .data(dataCijfer)
+      .data(dataCijfer, function (d) {
+        return d
+      })
       .enter()
       .append("circle");
 
@@ -568,7 +613,13 @@
           .duration(500)
           .style("opacity", 0);
       });
-
+    // totstandNest.push({
+    //   key: "2",
+    //   value: 0,
+    //   total: 271,
+    //   percentage: 0,
+    //   categorie: "Ik ging naar de politie toe"
+    // })
 
     // --- update pattern ends here --- ///
 
@@ -603,12 +654,9 @@
         data.forEach(d => d.total = total);
         let percentage = data.map(d => d.percentage = Math.round(d.value / total * 100));
         data.forEach(d => d.categorie = selectedOption);
-        data.sort((a,b)=> a.key - b.key);
+        data.sort((a, b) => a.key - b.key);
         data = data.filter(d => d.key !== "99999");
-     
 
-
-        console.log(data);
         return data
       }
 
@@ -638,43 +686,58 @@
       //     return d.r
       //   })
 
+
       barPlot
+        .data(newA, function (d) {
+          return d.newa = d.key;
+        })
+        .transition()
+        .duration(600)
+        .attr("cy", d => y(d.key))
+        .attr("r", d => z(d.percentage))
+        .ease(d3.easeBack);
+
+
+
+      barPlot
+        .data(newB, function (d) {
+          return d.newb = d.key;
+        })
+        .transition()
+        .duration(600)
+        .attr("cy", d => y(d.key))
+        .attr("r", d => z(d.percentage))
+        .ease(d3.easeBack);
+
+
+      barPlot
+        .data(newC, function (d) {
+          return d.newc = d.key;
+        })
+        .transition()
+        .duration(600)
+        .attr("cy", d => y(d.key))
+        .attr("r", d => z(d.percentage))
+        .ease(d3.easeBack);
+
+      barPlot.exit().remove();
+
+
+      let infoText = d3.select('.second')
         .data(newA)
-        .transition()
-        .duration(900)
-        .attr("cy", d => y(d.key))
-        .attr("r", d => z(d.percentage));
-      // .ease(d3.easeBounce)
+        .html(d => d.total + '</br> respondenten');
 
 
-      barPlot
+      let infoText2 = d3.select('.second')
         .data(newB)
-        .transition()
-        .duration(1000)
-        .attr("cy", d => y(d.key))
-        .attr("r", d => z(d.percentage));
+        .html(d => d.total + '</br> respondenten');
 
-
-      barPlot
+      let infoText3 = d3.select('.second')
         .data(newC)
-        .transition()
-        .duration(1000)
-        .attr("cy", d => y(d.key))
-        .attr("r", d => z(d.percentage));
+        .html(d => d.total + '</br> respondenten');
 
-      barPlot
-        .data(newD)
-        .transition()
-        .duration(1000)
-        .attr("cy", d => y(d.key))
-        .attr("r", d => z(d.percentage));
 
-      // barPlot.exit()
-      //   .transition(500)
-      //   .attr("r", 1e-6)
-      //   .remove()
 
-      // console.log(newA, newB, newC, newD)
 
       //tooltip
 
@@ -759,7 +822,8 @@
                           geslacht: data.Geslacht,
                           achtergrond: data.Herkomst_def,
                           leeftijdcategorie: data.Leeftijd,
-                          arrestatie: data.polben_gevolg_arrestatie
+                          arrestatie: data.polben_gevolg_arrestatie,
+                          freq: data.freqcontact
                           // hulp:data.Polben_hulp,
                           // thuis: data.Polben_thuis,
                           // uiterlijk:data.Polben_uiterlijk,

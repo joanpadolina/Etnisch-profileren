@@ -2,38 +2,31 @@ svg.bubble-plot {
     display: block;
     position: relative;
     color: black;
-    top:-1em;
-    left: 16em;
+    top:-1.3em;
+    left: 31em;
 }
 
 svg.bubble-plot2 {
     display: block;
     position: relative;
     color: black;
-    left: 27em;
+    left: 45em;
+    top: -45.1em;
+
 }
 
 #my_dataviz {
-    top: 12em;
-    left:5em;
     display: block;
     position: relative;
+    left: -3em;
 }
 
-/* .content{
-    top:25em;
-    display: block;
-    position: relative;
-    left:2em;
 
-} */
 
 .content {
-    top: 76em;
     display: block;
     position: relative;
     left: 2em;
-    z-index: 99;
 }
 
 .selection-values {
@@ -144,26 +137,40 @@ div.tooltip {
     border: 0px;
     border-radius: 8px;
     pointer-events: none;
+    box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.40);
+    z-index: 99;
 }
 
 .logo {
     width: 10em;
 }
+.form1, .form2{
+    top: -117em;
+    left: -28em;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    display: block;
+    width: 16em;
+}
+.form2{
+    left: 14em;
+    position: relative;
+    top: -147.5em;
+    width: 16em;
+}
+
 
 #herkomst-radio,
 #herkomst-radio2 {
     color: white;
-    left: -58em;
-    margin: -5em;
-    top: 51em;
     position: relative;
-    z-index: 99;
     font-size: 0.9em;
 
 }
 
 #herkomst-radio2 {
-    left: -11em;
+    left: 12em;
 }
 
 form h2 {
@@ -188,12 +195,13 @@ input {
 label {
     cursor: pointer;
     padding: .3em;
-    background: #1c1b1d;
-    margin: 0.3em;
+    background: #3e3c3fab;
+    margin: 0.34em;
     width: 16em;
     display: inline-block;
     padding: 0.5em;
     font-size: 1em;
+    font-family: Roboto;
     border-radius: 0.3em;
     transition: 200ms ease;
     text-align: center;
@@ -210,11 +218,25 @@ label:hover {
     display: block;
     position: relative;
 }
-.first{
-    z-index: 99;
-    color: #ce6363;
-    position: relative;
+.first, .second{
+    color: white;
+    position: absolute;
+    display: inline-block;
+    font-size: 1.6em;
+    width: auto;
+    height: auto;
+    text-align: center;
+    left: 13.8em;
+    top: -5em;
+}
+
+.second{
+    left: -3.6em;
+    top: -5.1em;
+}
+
+.vertrouwen{
     display: block;
-    left: -45em;
-    top: 30.2em;
+    position: relative;
+    top:7em;
 }

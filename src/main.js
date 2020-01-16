@@ -58,7 +58,8 @@ function newData() {
                         geslacht: data.Geslacht,
                         achtergrond: data.Herkomst_def,
                         leeftijdcategorie: data.Leeftijd,
-                        arrestatie: data.polben_gevolg_arrestatie
+                        arrestatie: data.polben_gevolg_arrestatie,
+                        freq: data.freqcontact
                         // hulp:data.Polben_hulp,
                         // thuis: data.Polben_thuis,
                         // uiterlijk:data.Polben_uiterlijk,

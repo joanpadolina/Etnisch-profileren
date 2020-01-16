@@ -1,0 +1,231 @@
+svg.bubble-plot {
+    display: block;
+    position: relative;
+    color: black;
+    top:-1.3em;
+    left: 10em;
+}
+
+svg.bubble-plot2 {
+    display: block;
+    position: relative;
+    color: black;
+    left: 25em;
+}
+
+#my_dataviz {
+    top: 12em;
+    left:5em;
+    display: block;
+    position: relative;
+}
+
+/* .content{
+    top:25em;
+    display: block;
+    position: relative;
+    left:2em;
+
+} */
+
+.content {
+    top: 76em;
+    display: block;
+    position: relative;
+    left: 2em;
+    z-index: 99;
+}
+
+.selection-values {
+    position: relative;
+    display: block;
+    top: -98em;
+}
+
+.selection-values2 {
+    position: relative;
+    display: block;
+    top: -104em;
+    left: 56em
+}
+
+.contact-values {
+    position: relative;
+    display: block;
+    top: -96em;
+}
+
+.contact-values2 {
+    position: relative;
+    display: block;
+    top: -102em;
+    left: 56em;
+}
+
+.totstand-values {
+    position: relative;
+    display: block;
+    top: -90em;
+
+}
+
+.totstand-values2 {
+    position: relative;
+    display: block;
+    top: -96em;
+    left: 56em;
+
+}
+
+.resultaat-values {
+    position: relative;
+    display: block;
+    top: -95em;
+}
+
+.resultaat-values2 {
+    position: relative;
+    display: block;
+    top: -101em;
+    left: 56em;
+
+}
+
+.text {
+    color: white;
+    position: relative;
+    display: block;
+    top: -55em;
+}
+
+.text>p {
+    float: left;
+    margin-left: 1em;
+
+}
+
+.totstand-txt {
+    left: 15em;
+    position: relative;
+    display: block;
+
+}
+
+.resultaat-txt {
+    left: 29em;
+    position: relative;
+    display: block;
+}
+
+.domain,
+.tick line,
+.tick {
+    stroke: white;
+}
+
+.highlight {
+    background: #ff0000;
+    position: relative;
+    width: 23.5em;
+    height: 2em;
+    /* transform: translate(2.9em, -26em); */
+    z-index: -1;
+    transform: translateZ(-2px) translate(7.9em, -31em) scale(1.27);
+}
+
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    width:auto;
+    height: auto;
+    padding: .9em;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+    box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.40);
+    z-index: 99;
+}
+
+.logo {
+    width: 10em;
+}
+
+#herkomst-radio,
+#herkomst-radio2 {
+    color: white;
+    left: -58em;
+    margin: -5em;
+    top: 51em;
+    position: relative;
+    z-index: 99;
+    font-size: 0.9em;
+
+}
+
+#herkomst-radio2 {
+    left: -11em;
+}
+
+form h2 {
+    font-size: 1.2em;
+    color: rgb(143, 143, 143);
+}
+
+span {
+    font-weight: 800;
+}
+
+input[type="radio"]:checked+label {
+    font-weight: 500;
+    color: yellow;
+    background: #af0a2e;
+}
+
+input {
+    visibility: hidden;
+}
+
+label {
+    cursor: pointer;
+    padding: .3em;
+    background: #1c1b1d;
+    margin: 0.3em;
+    width: 16em;
+    display: inline-block;
+    padding: 0.5em;
+    font-size: 1em;
+    border-radius: 0.3em;
+    transition: 200ms ease;
+    text-align: center;
+    font-weight: 100;
+}
+
+
+label:hover {
+    background: #683441;
+}
+
+.header {
+    top: 21em;
+    display: block;
+    position: relative;
+}
+.first, .second{
+    z-index: 3;
+    color: white;
+    position: absolute;
+    display: block;
+    top: 31.6em;
+    left: 17.3em;
+    font-size: 1.6em;
+    width: auto;
+    height: auto;
+    text-align: center;
+    border-radius: 0.4em;
+}
+
+.second{
+    left: 26.7em;
+}

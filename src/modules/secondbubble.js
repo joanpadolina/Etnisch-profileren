@@ -4,14 +4,14 @@ export default function secondBubble(data) {
 
   // data terecht behandel of niet
 
-  // let terechtNest = d3.nest()
-  //   .key(d => d.terecht)
-  //   .key(d => d.cijfer)
-  //   .rollup(leaves => leaves.length)
-  //   .entries(data)
+  let terechtNest = d3.nest()
+    .key(d => d.achtergrond)
+    .key(d => d3.sum(d.freq))
+    .rollup(leaves => leaves.length)
+    .entries(data)
 
-  //   let splitNein = terechtNest.pop()
-  //   console.log(terechtNest)
+  let splitNein = terechtNest.pop()
+  console.log(terechtNest)
 
 
   // set the dimensions and margins of the graph
@@ -37,8 +37,9 @@ export default function secondBubble(data) {
   let dataNew = d3.nest()
     .key(d => d.cijfer)
     .rollup(leaves => leaves.length)
-    .sortKeys(d3.ascending)
     .entries(data)
+
+  dataNew.sort((a, b) => a.key - b.key)
 
   let dataCijfer = dataNew.filter(d => d.key !== "99999")
 
@@ -112,9 +113,12 @@ export default function secondBubble(data) {
   valueResultaat.pop()
 
 
+
   // Circle size horizontal overal
   let barPlot = svg.selectAll("mycircle")
-    .data(dataCijfer)
+    .data(dataCijfer, function (d) {
+      return d
+    })
     .enter()
     .append("circle")
 
@@ -156,7 +160,13 @@ export default function secondBubble(data) {
         .duration(500)
         .style("opacity", 0);
     });
-
+  // totstandNest.push({
+  //   key: "2",
+  //   value: 0,
+  //   total: 271,
+  //   percentage: 0,
+  //   categorie: "Ik ging naar de politie toe"
+  // })
 
   // --- update pattern ends here --- ///
 
@@ -191,12 +201,9 @@ export default function secondBubble(data) {
       data.forEach(d => d.total = total);
       let percentage = data.map(d => d.percentage = Math.round(d.value / total * 100));
       data.forEach(d => d.categorie = selectedOption)
-      data.sort((a,b)=> a.key - b.key)
+      data.sort((a, b) => a.key - b.key)
       data = data.filter(d => d.key !== "99999")
-   
 
-
-      console.log(data)
       return data
     }
 
@@ -226,43 +233,58 @@ export default function secondBubble(data) {
     //     return d.r
     //   })
 
+
     barPlot
+      .data(newA, function (d) {
+        return d.newa = d.key;
+      })
+      .transition()
+      .duration(600)
+      .attr("cy", d => y(d.key))
+      .attr("r", d => z(d.percentage))
+      .ease(d3.easeBack)
+
+
+
+    barPlot
+      .data(newB, function (d) {
+        return d.newb = d.key;
+      })
+      .transition()
+      .duration(600)
+      .attr("cy", d => y(d.key))
+      .attr("r", d => z(d.percentage))
+      .ease(d3.easeBack)
+
+
+    barPlot
+      .data(newC, function (d) {
+        return d.newc = d.key;
+      })
+      .transition()
+      .duration(600)
+      .attr("cy", d => y(d.key))
+      .attr("r", d => z(d.percentage))
+      .ease(d3.easeBack)
+
+    barPlot.exit().remove()
+
+
+    let infoText = d3.select('.second')
       .data(newA)
-      .transition()
-      .duration(900)
-      .attr("cy", d => y(d.key))
-      .attr("r", d => z(d.percentage))
-    // .ease(d3.easeBounce)
+      .html(d => d.total + '</br> respondenten')
 
 
-    barPlot
+    let infoText2 = d3.select('.second')
       .data(newB)
-      .transition()
-      .duration(1000)
-      .attr("cy", d => y(d.key))
-      .attr("r", d => z(d.percentage))
+      .html(d => d.total + '</br> respondenten')
 
-
-    barPlot
+    let infoText3 = d3.select('.second')
       .data(newC)
-      .transition()
-      .duration(1000)
-      .attr("cy", d => y(d.key))
-      .attr("r", d => z(d.percentage))
+      .html(d => d.total + '</br> respondenten')
 
-    barPlot
-      .data(newD)
-      .transition()
-      .duration(1000)
-      .attr("cy", d => y(d.key))
-      .attr("r", d => z(d.percentage))
 
-    // barPlot.exit()
-    //   .transition(500)
-    //   .attr("r", 1e-6)
-    //   .remove()
 
-    // console.log(newA, newB, newC, newD)
 
     //tooltip
 
