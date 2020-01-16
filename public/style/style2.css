@@ -373,6 +373,7 @@ article p {
   color: white;
   font-family: "RobotoRegular";
   margin-top: 1em;
+  opacity: .8;
   /* width: 40vw;
   margin-left: 30vw;
   margin-bottom: 5vh; */
@@ -403,11 +404,18 @@ button {
   font-family: "RobotoMedium";
   margin: 1em;
   font-size: 1em;
+  transition: 500ms ease;
+}
+
+.button2{
+  background-color: rgb(117, 113, 108);
 }
 
 button:hover {
   background-color: #FFF7AE;
   background-color: grey;
+  color: white;
+  font-family: RubikBold;
 }
 
 
@@ -441,6 +449,7 @@ button:hover {
   width: 40vw;
   margin-left: 30vw;
   margin-bottom: 5vh;
+  opacity: .8;
 }
 
 .vwidd {
