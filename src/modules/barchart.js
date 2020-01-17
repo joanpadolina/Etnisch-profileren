@@ -10,44 +10,46 @@ export default function barChart(data) {
 //     let splitNein = terechtNest.pop()
 
 //     let groupedTerecht = maakMooi(terechtNest)
-//     console.log(terechtNest)
+    console.log(terechtNest)
 //     console.log(groupedTerecht)
+
 
     // kris
 
-    function maakMooi(data) {
-        return data.reduce((newObject, currentItem) => {
-            // console.log(currentItem)
+//     function maakMooi(data) {
+//         return data.reduce((newObject, currentItem) => {
+//             // console.log(currentItem)
     
-            newObject[currentItem.key] = currentItem.values
-                .reduce((newObj, current) => {
-                    const nietWestersTalen = ['Surinaams', 'Marokkaans', 'Turks', 'Overig niet-Westers','Voormalig Nederlandse Antillen']
-                    const isNietWesterseTaal = nietWestersTalen.find(taal => taal === current.key)
+//             newObject[currentItem.value] = currentItem.values
+//                 .reduce((newObj, current) => {
+//                     const nietWestersTalen = ['Surinaams', 'Marokkaans', 'Turks', 'Overig niet-Westers','Voormalig Nederlandse Antillen']
+//                     const isNietWesterseTaal = nietWestersTalen.find(taal => taal === current.key)
 
-                    newObj.welWesters = newObj.welWesters.filter(item => {
-                        return item.key == 'Nederlands'
-                    })
+//                     newObj.welWesters = newObj.welWesters.filter(item => {
+//                         return item.key == 'Nederlands'
+//                     })
                     
-                    if (isNietWesterseTaal) {
-                        newObj.nietWesters.push(current)
-                    } else {
-                        newObj.welWesters.push(current)
-                    }
+//                     if (isNietWesterseTaal) {
+//                         d3.sum(nietWestersTalen)
+//                         newObj.nietWesters.push(current)
+//                     } else {
+//                         newObj.welWesters.push(current)
+//                     }
 
-                    return newObj
-                }, {
-                    nietWesters: [],
-                    welWesters: [],
-                })
+//                     return newObj
+//                 }, {
+//                     nietWesters: [],
+//                     welWesters: [],
+//                 })
 
     
 
-            return newObject
-        }, {})
-    }
+//             return newObject
+//         }, {})
+//     }
 
 //    let testing = maakMooi(terechtNest)
-//    console.log(newObject)
+//    console.log(testing)
 
 
 

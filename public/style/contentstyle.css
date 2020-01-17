@@ -167,16 +167,19 @@ div.tooltip {
     position: relative;
     font-size: 0.9em;
     left:1em;
+    top: -40.8em;
+    display: inline-block;
 
 }
 
 #herkomst-radio2 {
     left: 12em;
-    top: -0.3em;
+    top: -48.7em;
 }
 
 form h2 {
-    font-size: 1.2em;
+    font-size: .9em;
+    padding:.5em;
     color: rgb(143, 143, 143);
 }
 
@@ -222,21 +225,28 @@ label:hover {
     position: relative;
     left: -30em;
 }
+
+
+.totaltext{
+    display: inline-block;
+    position: relative;
+    top: -113em;
+}
+
 .first, .second{
     color: white;
-    position: absolute;
-    display: inline-block;
     font-size: 1.6em;
-    width: auto;
-    height: auto;
     text-align: center;
-    left: 14.4em;
-    top: -5em;
+    position: absolute;
+    left: -8em;
+    top: -2em;
+
+
 }
 
 .second{
-    left: -3.1em;
-    top: -5.1em;
+    left: 0.7em;
+    top: -2em;
 }
 
 .vertrouwen{

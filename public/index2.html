@@ -196,12 +196,15 @@
               </div> -->
       <div class="barchart-ep"></div>
     </div>
-
+    <div class="totaltext">
+      <p class="first"></p>
+      <p class="second"></p>
+    </div>
 
     <div class="form1">
-      <p class="first"></p>
+
       <form action="" id="herkomst-radio">
-        <h2>afkomst</h2>
+        <h2>Wat is uw culturele achtergrond?</h2>
         <input type="radio" name="states" value="Nederlands" id="Nederlands">
         <label for="Nederlands">
           Nederlands
@@ -233,7 +236,8 @@
         </label>
 
         <h2>
-          contact gehad met de politie
+          Heeft u de afgelopen 12 MAANDEN wel eens contact gehad
+          met de politie?
         </h2>
 
         <input type="radio" name="states" value="Ja" id="Wel contact gehad">
@@ -243,7 +247,7 @@
         <label for="Geen contact gehad"><span>Geen</span> contact gehad</label>
 
         <h2>
-          reden contact
+          Hoe kwam uw LAATSTE contact met de politie tot stand?
         </h2>
 
         <input type="radio" name="states" value="De politie kwam naar mij toe" id="De politie kwam naar mij toe">
@@ -253,60 +257,72 @@
         <label for="Ik ging naar de politie toe"><span>Ik ging naar</span> de politie toe</label>
 
       </form>
+
     </div>
     <div class="form2">
-      <p class="second"></p>
+
+
       <form action="" id="herkomst-radio2">
-        <h2>afkomst</h2>
-        <input type="radio" name="states2" value="Nederlands" id="Nederlands2">
+
+        <h2>Vond u het terecht of onterecht dat de politie naar u toe
+          kwam?</h2>
+        <input type="radio" name="states2" value="Zeer onterecht" id="Nederlands2">
         <label for="Nederlands2">
-          Nederlands
+          Zeer onterecht
         </label>
         <br />
-        <input type="radio" name="states2" value="Overig niet-Westers" id="Overige-niet-Westers2">
+        <input type="radio" name="states2" value="Onterecht" id="Overige-niet-Westers2">
         <label for="Overige-niet-Westers2" id="Overige-niet-Westers2-label">
-          Overige niet-Westers
+          Onterecht
         </label>
         <br />
-        <input type="radio" name="states2" value="Surinaams" id="Surinaams2">
+        <input type="radio" name="states2" value="Niet terecht, niet onterecht" id="Surinaams2">
         <label for="Surinaams2">
-          Surinaams
+          Niet terecht, niet onterecht
         </label>
         <br />
-        <input type="radio" name="states2" value="Voormalig Nederlandse Antillen" id="Voormalig-Nederlandse-Antillen2">
+        <input type="radio" name="states2" value="Terecht" id="Voormalig-Nederlandse-Antillen2">
         <label for="Voormalig-Nederlandse-Antillen2" id="Voormalig-Nederlandse-Antillen2-label">
-          Voormalig Nederlandse Antillen
+          Terecht
         </label>
         <br />
-        <input type="radio" name="states2" value="Westers" id="Westers2">
+        <input type="radio" name="states2" value="Zeer terecht" id="Westers2">
         <label for="Westers2">
-          Westers
-        </label>
-        <br />
-        <input type="radio" name="states2" value="Marokkaans" id="Marokkaans2">
-        <label for="Marokkaans2">
-          Marokkaans
+          Zeer terecht
         </label>
 
-        <h2>
-          contact gehad met de politie
-        </h2>
-
-        <input type="radio" name="states2" value="Ja" id="Wel contact gehad2">
-        <label for="Wel contact gehad2"><span>Wel</span> contact gehad</label>
-        <br />
-        <input type="radio" name="states2" value="Nee" id="Geen contact gehad2">
-        <label for="Geen contact gehad2"><span>Geen</span> contact gehad</label>
 
         <h2>
-          reden contact
+          “Ik denk dat de politie naar mij toe kwam vanwege mijn
+          culturele of religieuze achtergrond”
         </h2>
 
-        <input type="radio" name="states2" value="De politie kwam naar mij toe" id="De politie kwam naar mij toe2">
-        <label for="De politie kwam naar mij toe2">De politie <span>kwam naar mij</span> toe</label>
+        <input type="radio" name="states2" value="Helemaal mee oneens" id="Wel contact gehad2">
+        <label for="Wel contact gehad2">Helemaal mee oneens</label>
         <br />
-        <input type="radio" name="states2" value="Ik ging naar de politie toe" id="Ik ging naar de politie toe2">
-        <label for="Ik ging naar de politie toe2"><span>Ik ging naar</span> de politie toe</label>
+        <input type="radio" name="states2" value="Mee oneens" id="Geen contact gehad2">
+        <label for="Geen contact gehad2">Mee oneens</label>
+        <br />
+        <input type="radio" name="states2" value="Niet mee eens en niet mee oneens" id="nietmee">
+        <label for="nietmee">Niet mee eens en niet mee oneens</label>
+        <br />
+        <input type="radio" name="states2" value="Mee eens" id="oneens1">
+        <label for="oneens1">Mee eens</label>
+        <br />
+        <input type="radio" name="states2" value="Helemaal mee eens" id="oneens2">
+        <label for="oneens2">Helemaal mee eens</label>
+
+        <!-- <h2>
+              Hoe kwam uw LAATSTE contact met de politie tot stand?
+          </h2>
+
+          <input type="radio" name="states2" value="De politie kwam naar mij toe" id="De politie kwam naar mij toe2">
+          <label for="De politie kwam naar mij toe2">De politie <span>kwam naar mij</span> toe</label>
+          <br />
+          <input type="radio" name="states2" value="Ik ging naar de politie toe" id="Ik ging naar de politie toe2">
+          <label for="Ik ging naar de politie toe2"><span>Ik ging naar</span> de politie toe</label> -->
+
+      </form>
     </div>
     </div>
 
@@ -315,7 +331,7 @@
   <article class="bear">
     <img src="../public/images/svg/bear.svg" alt="">
     <p>in samenwerking met Controle Alt Delete & Prompbitious</p>
-    <p>	© Kim Garrard | Isabel Mik | Joan Padolina</p>
+    <p> © Kim Garrard | Isabel Mik | Joan Padolina</p>
   </article>
 
 

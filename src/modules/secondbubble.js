@@ -3,7 +3,6 @@
 export default function secondBubble(data) {
 
 
-
   // set the dimensions and margins of the graph
   let margin = {
       top: 10,
@@ -94,13 +93,23 @@ export default function secondBubble(data) {
 
   // nest resultaat contact
   let resultaatNest = d3.nest()
-    .key(d => d.terecht)
+    .key(d => d.stellingTerecht)
     .key(d => d.cijfer)
     .rollup(leaves => leaves.length)
     .entries(data)
 
+  console.log(data)
+
   let valueResultaat = resultaatNest.map(d => d.key)
   valueResultaat.pop()
+
+  let stellingReligie = d3.nest()
+    .key(d => d.stellingachtergrond)
+    .key(d => d.cijfer)
+    .rollup(leaves => leaves.length)
+    .entries(data)
+
+  console.log(stellingReligie)
 
 
 
@@ -124,6 +133,7 @@ export default function secondBubble(data) {
   barPlot.exit().remove()
 
 
+  console.log(resultaatNest)
 
   //main tooltip
   // dataCijfer.forEach(d => d.afkomst = "Totaal")
@@ -195,6 +205,8 @@ export default function secondBubble(data) {
     let newB = getPercentage(contactWith)
     let newC = getPercentage(totstandNest)
     let newD = getPercentage(resultaatNest)
+    let newE = getPercentage(stellingReligie)
+    console.log(newE)
 
     // console.log(newA.map(d => d.total))
     // function addText() {
@@ -222,7 +234,7 @@ export default function secondBubble(data) {
         return d.newa = d.key;
       })
       .transition()
-      .duration(600)
+      .duration(800)
       .attr("cy", d => y(d.key))
       .attr("r", d => z(d.percentage))
       .ease(d3.easeBounce)
@@ -234,7 +246,7 @@ export default function secondBubble(data) {
         return d.newb = d.key;
       })
       .transition()
-      .duration(600)
+      .duration(800)
       .attr("cy", d => y(d.key))
       .attr("r", d => z(d.percentage))
       .ease(d3.easeBounce)
@@ -245,10 +257,32 @@ export default function secondBubble(data) {
         return d.newc = d.key;
       })
       .transition()
-      .duration(600)
+      .duration(800)
       .attr("cy", d => y(d.key))
       .attr("r", d => z(d.percentage))
       .ease(d3.easeBounce)
+
+    barPlot
+      .data(newD, function (d) {
+        return d.newd = d.key;
+      })
+      .transition()
+      .duration(800)
+      .attr("cy", d => y(d.key))
+      .attr("r", d => z(d.percentage))
+      .ease(d3.easeBounce)
+
+    barPlot
+      .data(newE, function (d) {
+        return d.newd = d.key;
+      })
+      .transition()
+      .duration(800)
+      .attr("cy", d => y(d.key))
+      .attr("r", d => z(d.percentage))
+      .ease(d3.easeBounce)
+
+
 
     barPlot.exit().remove()
 
@@ -266,6 +300,15 @@ export default function secondBubble(data) {
       .data(newC)
       .html(d => d.total + '</br> respondenten')
 
+    let infoText4 = d3.select('.second')
+      .data(newD)
+      .html(d => d.total + '</br> respondenten')
+
+    let infoText5 = d3.select('.second')
+      .data(newE)
+      .html(d => d.total + '</br> respondenten')
+
+
 
 
 
@@ -273,7 +316,7 @@ export default function secondBubble(data) {
 
     // add the dots with tooltips
     svg.selectAll("circle")
-      .data(newA)
+      .data(newD)
       .on("mouseover", function (d) {
         div.transition()
           .duration(200)
