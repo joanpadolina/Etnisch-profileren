@@ -17,9 +17,6 @@ export default function secondBubble(data) {
   // console.log(nederlands)
 
 
-
-
-
   // set the dimensions and margins of the graph
   let margin = {
       top: 10,
@@ -129,6 +126,10 @@ export default function secondBubble(data) {
     .entries(nietWester)
 
 
+
+
+
+
   // Circle size horizontal overal
   let barPlot = svg.selectAll("circle")
     .data(dataCijfer, function (d) {
@@ -145,6 +146,15 @@ export default function secondBubble(data) {
     .style("fill", "blue")
     .attr('opacity', .5)
     .attr("stroke", "#838383")
+
+//color change
+  let colorbut = d3.selectAll(("input[name='kleur']"))
+    .on("change", function () {
+      svg.selectAll("circle")
+        .transition()
+        .duration(400)
+        .style("fill", d3.select(this).property("value"))
+    })
 
 
 
@@ -173,7 +183,7 @@ export default function secondBubble(data) {
 
 
 
-console.log(stellingReligie)
+  console.log(stellingReligie)
   // --- update pattern ends here --- ///
 
   function updateBubble2() {
@@ -277,7 +287,9 @@ console.log(stellingReligie)
       .ease(d3.easeBounce)
 
     barPlot
-      .data(newD, function(d){return d.key})
+      .data(newD, function (d) {
+        return d.key
+      })
       .transition()
       .duration(800)
       .attr("cy", d => y(d.key))

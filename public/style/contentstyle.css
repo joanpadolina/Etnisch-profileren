@@ -2,18 +2,15 @@ svg.bubble-plot {
     display: block;
     position: relative;
     color: black;
-    top:-1.3em;
+    top: -1.3em;
     left: 31em;
 }
-
 svg.bubble-plot2 {
     display: block;
     position: relative;
     color: black;
     left: 45em;
     top: -45.1em;
-
-
 }
 
 #my_dataviz {
@@ -21,7 +18,6 @@ svg.bubble-plot2 {
     position: relative;
     top: 7em;
 }
-
 
 
 .content {
@@ -130,7 +126,7 @@ svg.bubble-plot2 {
 div.tooltip {
     position: absolute;
     text-align: center;
-    width:auto;
+    width: auto;
     height: auto;
     padding: .9em;
     font: 12px sans-serif;
@@ -138,14 +134,16 @@ div.tooltip {
     border: 0px;
     border-radius: 8px;
     pointer-events: none;
-    box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.40);
+    box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.40);
     z-index: 99;
 }
 
 .logo {
     width: 10em;
 }
-.form1, .form2{
+
+.form1,
+.form2 {
     top: -41em;
     left: -28em;
     margin-left: auto;
@@ -154,7 +152,8 @@ div.tooltip {
     display: block;
     width: 16em;
 }
-.form2{
+
+.form2 {
     left: 14em;
     position: relative;
     top: -71.5em;
@@ -167,7 +166,7 @@ div.tooltip {
     color: white;
     position: relative;
     font-size: 0.9em;
-    left:1em;
+    left: 1em;
     top: -40.8em;
     display: inline-block;
 
@@ -181,7 +180,7 @@ div.tooltip {
 
 form h2 {
     font-size: .9em;
-    padding:.5em;
+    padding: .5em;
     color: rgb(143, 143, 143);
 }
 
@@ -189,11 +188,12 @@ span {
     font-weight: 800;
 }
 
-input[type="radio"]:checked+label {
+#herkomst-radio2>input[type="radio"]:checked+label, 
+#herkomst-radio>input[type="radio"]:checked+label {
     font-weight: 500;
     font-family: RubikBold;
     color: white;
-    background: #af0a2e;
+    background: #86273c;
 }
 
 input {
@@ -229,13 +229,14 @@ label:hover {
 }
 
 
-.totaltext{
+.totaltext {
     display: inline-block;
     position: relative;
     top: -81.4em;
 }
 
-.first, .second{
+.first,
+.second {
     color: white;
     font-size: 1.6em;
     text-align: center;
@@ -246,24 +247,66 @@ label:hover {
 
 }
 
-.second{
+.second {
     left: 0.7em;
     top: -2em;
 }
 
-.vertrouwen{
+.vertrouwen {
     display: block;
     position: relative;
-    top:10em;
+    top: 10em;
 }
 
-.bear{
+.bear {
     display: block;
     position: relative;
-    top: 38em;
+    top: 48em;
 }
 
-span{
+span {
     font-family: RubikBold;
 
 }
+.colorbuttons{
+    left: -2em;
+    position: relative;
+}
+
+.colorbuttons p{
+    top: 1.2em;
+    position: relative;
+    left: -2.1em;
+}
+.colorbuttons > label{
+    width: 3em;
+    margin: -.5em;
+    top: 2em;
+    display: inline-block;
+    position: relative;
+    border-radius: 10em;
+    left: 1.2em;
+
+}
+
+label.white{
+    background:white;
+}
+label.rood{
+    background: red;
+}
+label.blauw{
+    background:blue;
+}
+label.geel{
+    background:yellow;
+}
+
+.colorbuttons input[type="radio"]:checked+label {
+    border:2px solid white;
+
+}
+/* 
+.horizoncircle{
+    blur:2;
+} */

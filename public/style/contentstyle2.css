@@ -187,7 +187,7 @@ input {
     visibility: hidden;
 }
 
-label {
+.form1 label, .form2 label {
     cursor: pointer;
     padding: .3em;
     background: #1c1b1d;
@@ -203,7 +203,7 @@ label {
 }
 
 
-label:hover {
+.form1 label:hover, .form2 label:hover {
     background: #683441;
 }
 
@@ -226,6 +226,30 @@ label:hover {
     border-radius: 0.4em;
 }
 
-.second{
-    /* left: 26.7em; */
+.colorbuttons > label{
+    width: 3em;
+    margin: -.5em;
+    top: 2em;
+    display: inline-block;
+    position: relative;
+    border-radius: 10em;
+    left: 1.2em;
+}
+
+label.white{
+    background:white;
+}
+label.rood{
+    background: red;
+}
+label.blauw{
+    background:blue;
+}
+label.geel{
+    background:yellow;
+}
+
+.colorbuttons input[type="radio"]:checked+label {
+    border:2px solid white;
+
 }

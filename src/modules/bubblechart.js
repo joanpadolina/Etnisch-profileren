@@ -121,6 +121,13 @@ export default function bubbleChart(data) {
     .attr('opacity', .5)
     .attr("stroke", "black")
 
+    let colorbut = d3.selectAll(("input[name='kleur1']"))
+    .on("change", function () {
+      svg.selectAll("circle")
+        .transition()
+        .duration(400)
+        .style("fill", d3.select(this).property("value"))
+    })
 
 
 
