@@ -1,5 +1,13 @@
 export default function bubbleChart(data) {
+
+
+  const nederlands = data.filter(object => {
+    if (object.achtergrond == "Nederlands") return object
+  })
+
+
   // set the dimensions and margins of the graph
+
   let margin = {
       top: 10,
       right: 30,
@@ -22,7 +30,7 @@ export default function bubbleChart(data) {
   let dataNew = d3.nest()
     .key(d => d.cijfer)
     .rollup(leaves => leaves.length)
-    .entries(data)
+    .entries(nederlands)
 
   dataNew.sort((a, b) => a.key - b.key)
 
@@ -54,21 +62,21 @@ export default function bubbleChart(data) {
   // Add a scale for bubble size
   let z = d3.scaleLinear()
     .domain([0, d3.max(dataCijfer.map(d => d.percent))])
-    .range([1, 70]);
+    .range([1, 60]);
 
   // nesting achtergrond
   let valueAchtergrond = d3.nest()
     .key(d => d.achtergrond)
     .key(d => d.cijfer)
     .rollup(leaves => leaves.length)
-    .entries(data)
+    .entries(nederlands)
 
   // nest in contact with police
   let contactWith = d3.nest()
     .key(d => d.contact)
     .key(d => d.cijfer)
     .rollup(leaves => leaves.length)
-    .entries(data)
+    .entries(nederlands)
 
 
   // nest totstand 
@@ -76,18 +84,24 @@ export default function bubbleChart(data) {
     .key(d => d.totstand)
     .key(d => d.cijfer)
     .rollup(leaves => leaves.length)
-    .entries(data)
+    .entries(nederlands)
 
   // nest resultaat contact
   let resultaatNest = d3.nest()
     .key(d => d.terecht)
     .key(d => d.cijfer)
     .rollup(leaves => leaves.length)
-    .entries(data)
+    .entries(nederlands)
 
   let valueResultaat = resultaatNest.map(d => d.key)
   valueResultaat.pop()
 
+
+  let stellingReligie = d3.nest()
+    .key(d => d.stellingachtergrond)
+    .key(d => d.cijfer)
+    .rollup(leaves => leaves.length)
+    .entries(nederlands)
 
 
   // Circle size horizontal overal
@@ -106,8 +120,8 @@ export default function bubbleChart(data) {
     .attr("stroke", "black")
 
 
-  barPlot
-    .exit().remove()
+  // barPlot
+  //   .exit().remove()
 
   dataCijfer.forEach(d => d.afkomst = "Totaal")
   // add the dots with tooltips
@@ -133,7 +147,7 @@ export default function bubbleChart(data) {
         .duration(500)
         .style("opacity", 0);
     });
-
+console.log(stellingReligie)
 
   // --- update pattern ends here --- ///
   function updateBubble() {
@@ -164,6 +178,8 @@ export default function bubbleChart(data) {
     let newB = getPercentage(contactWith)
     let newC = getPercentage(totstandNest)
     let newD = getPercentage(resultaatNest)
+    let newE = getPercentage(stellingReligie)
+
 
 
     // let one = document.querySelector('.first').innerHTML = `${newA[0].total || newB[0].total || newC[0].total} totaal aantal respondenten`
@@ -190,7 +206,9 @@ export default function bubbleChart(data) {
     barPlot.exit().remove()
 
     barPlot
-      .data(newA)
+      .data(newA, function (d) {
+        return d.key
+      })
       .transition()
       .duration(1000)
       .attr("cy", d => y(d.key))
@@ -198,7 +216,9 @@ export default function bubbleChart(data) {
       .ease(d3.easeBounce)
 
     barPlot
-      .data(newB)
+      .data(newB, function (d) {
+        return d.key
+      })
       .transition()
       .duration(1000)
       .attr("cy", d => y(d.key))
@@ -213,22 +233,43 @@ export default function bubbleChart(data) {
       .attr("r", d => z(d.percentage))
       .ease(d3.easeBounce)
 
-    console.log(newC)
-
     barPlot
-      .data(newD)
+      .data(newD, function (d) {
+        return d.key
+      })
       .transition()
       .duration(1000)
-      .style("fill", "red")
       .attr("cy", d => y(d.key))
       .attr("r", d => z(d.percentage))
       .ease(d3.easeBounce)
-    barPlot.exit().remove()
+
+
+    barPlot
+      .data(newE, function (d) {
+        return d.key;
+      })
+      .transition()
+      .duration(800)
+      .attr("cy", d => y(d.key))
+      .attr("r", d => z(d.percentage))
+      .ease(d3.easeBounce)
+
+    console.log(newE)
+
+    barPlot.attr("r", function (d) {
+      return Math.sqrt(d.key);
+    });
+
+
+    barPlot.exit().transition()
+      .attr("r", 5)
+      .remove();
+
 
 
     // add the dots with tooltips
     svg.selectAll("circle")
-      .data(newA)
+      .data(newD)
       .on("mouseover", function (d) {
         div.transition()
           .duration(200)
@@ -255,6 +296,13 @@ export default function bubbleChart(data) {
       .data(newC)
       .html(d => d.total + '</br> respondenten')
 
+    let infoText4 = d3.select('.first')
+      .data(newD)
+      .html(d => d.total + '</br> respondenten')
+
+    let infoText5 = d3.select('.first')
+      .data(newE)
+      .html(d => d.total + '</br> respondenten')
 
   }
 

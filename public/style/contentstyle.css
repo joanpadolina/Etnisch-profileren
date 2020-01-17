@@ -19,6 +19,7 @@ svg.bubble-plot2 {
 #my_dataviz {
     display: block;
     position: relative;
+    top: 7em;
 }
 
 
@@ -174,7 +175,8 @@ div.tooltip {
 
 #herkomst-radio2 {
     left: 12em;
-    top: -48.7em;
+    top: -55.5em;
+
 }
 
 form h2 {

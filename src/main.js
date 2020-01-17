@@ -77,36 +77,38 @@ function newData() {
             // testNest(newDataResults)
             myVisualChart(newDataResults)
             secondBubble(newDataResults)
-            barChart(newDataResults)
+            // barChart(newDataResults)
 
         })
 
 }
 
-function testNest(newDataResults) {
-    let backgroundNest = d3.nest()
-        .key(d => d.achtergrond)
-        .rollup(leaves => leaves.length)
-        .entries(newDataResults)
-    console.log(backgroundNest)
+function testNest(data) {
 
-   let sumBackground = backgroundNest.map(d => {
-        if (d.key === "Surinaams" || d.key === "Marokkaans" || d.key === "Turks") {
-            let allValue = d
-            console.log(allValue)
-        }
-    })
+    console.log(data)
+//     let backgroundNest = d3.nest()
+//         .key(d => d.achtergrond)
+//         .rollup(leaves => leaves.length)
+//         .entries(newDataResults)
+//     console.log(backgroundNest)
 
-    let newMap = backgroundNest
-    .map(d =>{
-        return{
-            nederlandseNl : d.key === "Nederlands",
-            nietwesters: d.key === "Surinaams" || d.key === "Marokkaans" || d.key === "Turks",
-            westers: d.key === "Westers"
-        }
-    })
-    console.log(newMap)
+//    let sumBackground = backgroundNest.map(d => {
+//         if (d.key === "Surinaams" || d.key === "Marokkaans" || d.key === "Turks") {
+//             let allValue = d
+//             console.log(allValue)
+//         }
+//     })
+
+//     let newMap = backgroundNest
+//     .map(d =>{
+//         return{
+//             nederlandseNl : d.key === "Nederlands",
+//             nietwesters: d.key === "Surinaams" || d.key === "Marokkaans" || d.key === "Turks",
+//             westers: d.key === "Westers"
+//         }
+//     })
+//     console.log(newMap)
 }
 
-// testNest()
+testNest()
 newData()

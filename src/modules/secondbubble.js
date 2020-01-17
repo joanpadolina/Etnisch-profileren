@@ -2,6 +2,23 @@
 
 export default function secondBubble(data) {
 
+  console.log(data)
+
+  const nietWester = data.filter(object => {
+    if (object.achtergrond !== 'Nederlands' && object.achtergrond !== "Westers" && object.achtergrond !== "Onbekend") {
+      return object
+    }
+  })
+
+  const nederlands = data.filter(object => {
+    if (object.achtergrond == "Nederlands") return object
+  })
+
+  // console.log(nederlands)
+
+
+
+
 
   // set the dimensions and margins of the graph
   let margin = {
@@ -26,7 +43,7 @@ export default function secondBubble(data) {
   let dataNew = d3.nest()
     .key(d => d.cijfer)
     .rollup(leaves => leaves.length)
-    .entries(data)
+    .entries(nietWester)
 
   dataNew.sort((a, b) => a.key - b.key)
 
@@ -60,7 +77,7 @@ export default function secondBubble(data) {
   // Add a scale for bubble size
   let z = d3.scaleLinear()
     .domain([0, d3.max(dataCijfer.map(d => d.percent))])
-    .range([1, 70]);
+    .range([1, 60]);
 
   // nesting achtergrond
   let valueAchtergrond = d3.nest()
@@ -87,7 +104,7 @@ export default function secondBubble(data) {
     .key(d => d.totstand)
     .key(d => d.cijfer)
     .rollup(leaves => leaves.length)
-    .entries(data)
+    .entries(nietWester)
 
   let valueTotstand = totstandNest.map(d => d.key)
 
@@ -96,9 +113,11 @@ export default function secondBubble(data) {
     .key(d => d.stellingTerecht)
     .key(d => d.cijfer)
     .rollup(leaves => leaves.length)
-    .entries(data)
+    .entries(nietWester)
 
-  console.log(data)
+  console.log(resultaatNest)
+
+
 
   let valueResultaat = resultaatNest.map(d => d.key)
   valueResultaat.pop()
@@ -107,16 +126,13 @@ export default function secondBubble(data) {
     .key(d => d.stellingachtergrond)
     .key(d => d.cijfer)
     .rollup(leaves => leaves.length)
-    .entries(data)
-
-  console.log(stellingReligie)
-
+    .entries(nietWester)
 
 
   // Circle size horizontal overal
-  let barPlot = svg.selectAll("mycircle")
+  let barPlot = svg.selectAll("circle")
     .data(dataCijfer, function (d) {
-      return d
+      return d.key
     })
     .enter()
     .append("circle")
@@ -130,17 +146,10 @@ export default function secondBubble(data) {
     .attr('opacity', .5)
     .attr("stroke", "#838383")
 
-  barPlot.exit().remove()
 
-
-  console.log(resultaatNest)
-
-  //main tooltip
-  // dataCijfer.forEach(d => d.afkomst = "Totaal")
+  // barPlot.exit().remove()
 
   // add the dots with tooltips
-
-
   let div = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
@@ -161,6 +170,9 @@ export default function secondBubble(data) {
         .style("opacity", 0);
     });
 
+
+
+console.log(stellingReligie)
   // --- update pattern ends here --- ///
 
   function updateBubble2() {
@@ -206,7 +218,6 @@ export default function secondBubble(data) {
     let newC = getPercentage(totstandNest)
     let newD = getPercentage(resultaatNest)
     let newE = getPercentage(stellingReligie)
-    console.log(newE)
 
     // console.log(newA.map(d => d.total))
     // function addText() {
@@ -229,9 +240,10 @@ export default function secondBubble(data) {
     //   })
 
 
+
     barPlot
       .data(newA, function (d) {
-        return d.newa = d.key;
+        return d.key;
       })
       .transition()
       .duration(800)
@@ -243,27 +255,6 @@ export default function secondBubble(data) {
 
     barPlot
       .data(newB, function (d) {
-        return d.newb = d.key;
-      })
-      .transition()
-      .duration(800)
-      .attr("cy", d => y(d.key))
-      .attr("r", d => z(d.percentage))
-      .ease(d3.easeBounce)
-
-
-    barPlot
-      .data(newC, function (d) {
-        return d.newc = d.key;
-      })
-      .transition()
-      .duration(800)
-      .attr("cy", d => y(d.key))
-      .attr("r", d => z(d.percentage))
-      .ease(d3.easeBounce)
-
-    barPlot
-      .data(newD, function (d) {
         return d.key;
       })
       .transition()
@@ -271,6 +262,27 @@ export default function secondBubble(data) {
       .attr("cy", d => y(d.key))
       .attr("r", d => z(d.percentage))
       .ease(d3.easeBounce)
+
+
+
+    barPlot
+      .data(newC, function (d) {
+        return d.key;
+      })
+      .transition()
+      .duration(800)
+      .attr("cy", d => y(d.key))
+      .attr("r", d => z(d.percentage))
+      .ease(d3.easeBounce)
+
+    barPlot
+      .data(newD, function(d){return d.key})
+      .transition()
+      .duration(800)
+      .attr("cy", d => y(d.key))
+      .attr("r", d => z(d.percentage))
+      .ease(d3.easeBounce)
+
 
     barPlot
       .data(newE, function (d) {
@@ -283,9 +295,35 @@ export default function secondBubble(data) {
       .ease(d3.easeBounce)
 
 
+    barPlot.attr("r", function (d) {
+      return Math.sqrt(d.key);
+    });
 
-    barPlot.exit().remove().merge()
 
+    barPlot.exit().transition()
+      .attr("r", 5)
+      .remove();
+
+
+
+    //tooltip
+
+    // add the dots with tooltips
+    svg.selectAll("circle")
+      .data(newD)
+      .on("mouseover", function (d) {
+        div.transition()
+          .duration(200)
+          .style("opacity", .9);
+        div.html(`<span>${d.categorie}</span> </br>Cijfer: <span>${d.key}</span></br> percentage: ${d.percentage}% </br> aantal: ${d.value}`)
+          .style("left", (d3.event.pageX) + "px")
+          .style("top", (d3.event.pageY - 28) + "px");
+      })
+      .on("mouseout", function (d) {
+        div.transition()
+          .duration(500)
+          .style("opacity", 0);
+      });
 
     let infoText = d3.select('.second')
       .data(newA)
@@ -312,24 +350,6 @@ export default function secondBubble(data) {
 
 
 
-    //tooltip
-
-    // add the dots with tooltips
-    svg.selectAll("circle")
-      .data(newD)
-      .on("mouseover", function (d) {
-        div.transition()
-          .duration(200)
-          .style("opacity", .9);
-        div.html(`<span>${d.categorie}</span> </br>Cijfer: <span>${d.key}</span></br> percentage: ${d.percentage}% </br> aantal: ${d.value}`)
-          .style("left", (d3.event.pageX) + "px")
-          .style("top", (d3.event.pageY - 28) + "px");
-      })
-      .on("mouseout", function (d) {
-        div.transition()
-          .duration(500)
-          .style("opacity", 0);
-      });
 
 
 

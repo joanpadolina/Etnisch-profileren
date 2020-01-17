@@ -10,7 +10,7 @@ export default function barChart(data) {
 //     let splitNein = terechtNest.pop()
 
 //     let groupedTerecht = maakMooi(terechtNest)
-    console.log(terechtNest)
+    // console.log(terechtNest)
 //     console.log(groupedTerecht)
 
 
