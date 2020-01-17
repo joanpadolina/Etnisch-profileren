@@ -147,7 +147,8 @@ export default function secondBubble(data) {
     .attr("stroke", "#838383")
 
 
-  // barPlot.exit().remove()
+
+  barPlot.exit().remove()
 
   // add the dots with tooltips
   let div = d3.select("body").append("div")
@@ -301,7 +302,7 @@ console.log(stellingReligie)
 
 
     barPlot.exit().transition()
-      .attr("r", 5)
+      .attr("r", 0)
       .remove();
 
 
@@ -327,24 +328,24 @@ console.log(stellingReligie)
 
     let infoText = d3.select('.second')
       .data(newA)
-      .html(d => d.total + '</br> respondenten')
+      .html(d => d.total + '</br> Nederlanders met een niet-westers achtergrond')
 
 
     let infoText2 = d3.select('.second')
       .data(newB)
-      .html(d => d.total + '</br> respondenten')
+      .html(d => d.total + '</br> Nederlanders met een niet-westers achtergrond')
 
     let infoText3 = d3.select('.second')
       .data(newC)
-      .html(d => d.total + '</br> respondenten')
+      .html(d => d.total + '</br> Nederlanders met een niet-westers achtergrond')
 
     let infoText4 = d3.select('.second')
       .data(newD)
-      .html(d => d.total + '</br> respondenten')
+      .html(d => d.total + '</br> Nederlanders met een niet-westers achtergrond')
 
     let infoText5 = d3.select('.second')
       .data(newE)
-      .html(d => d.total + '</br> respondenten')
+      .html(d => d.total + '</br> Nederlanders met een niet-westers achtergrond')
 
 
 

@@ -108,8 +108,10 @@
 
 
     // Circle size horizontal overal
-    let barPlot = svg.selectAll("mycircle")
-      .data(dataCijfer, d => d.main = d.key)
+    let barPlot = svg.selectAll("circle")
+      .data(dataCijfer, function (d) {
+        return d.key
+      })
       .enter()
       .append("circle");
 
@@ -123,8 +125,7 @@
       .attr("stroke", "black");
 
 
-    // barPlot
-    //   .exit().remove()
+
 
     dataCijfer.forEach(d => d.afkomst = "Totaal");
     // add the dots with tooltips
@@ -150,7 +151,7 @@
           .duration(500)
           .style("opacity", 0);
       });
-  console.log(stellingReligie);
+    console.log(stellingReligie);
 
     // --- update pattern ends here --- ///
     function updateBubble() {
@@ -177,8 +178,8 @@
 
 
 
-      let newA = getPercentage(valueAchtergrond);
-      let newB = getPercentage(contactWith);
+      // let newA = getPercentage(valueAchtergrond)
+      // let newB = getPercentage(contactWith)
       let newC = getPercentage(totstandNest);
       let newD = getPercentage(resultaatNest);
       let newE = getPercentage(stellingReligie);
@@ -206,27 +207,27 @@
       //   .attr("r", function (d) {
       //     return d.r
       //   })
-      barPlot.exit().remove();
 
-      barPlot
-        .data(newA, function (d) {
-          return d.key
-        })
-        .transition()
-        .duration(1000)
-        .attr("cy", d => y(d.key))
-        .attr("r", d => z(d.percentage))
-        .ease(d3.easeBounce);
 
-      barPlot
-        .data(newB, function (d) {
-          return d.key
-        })
-        .transition()
-        .duration(1000)
-        .attr("cy", d => y(d.key))
-        .attr("r", d => z(d.percentage))
-        .ease(d3.easeBounce);
+      // barPlot
+      //   .data(newA, function (d) {
+      //     return d.key
+      //   })
+      //   .transition()
+      //   .duration(1000)
+      //   .attr("cy", d => y(d.key))
+      //   .attr("r", d => z(d.percentage))
+      //   .ease(d3.easeBounce)
+
+      // barPlot
+      //   .data(newB, function (d) {
+      //     return d.key
+      //   })
+      //   .transition()
+      //   .duration(1000)
+      //   .attr("cy", d => y(d.key))
+      //   .attr("r", d => z(d.percentage))
+      //   .ease(d3.easeBounce)
 
       barPlot
         .data(newC, d => d.newc = d.key)
@@ -257,15 +258,16 @@
         .attr("r", d => z(d.percentage))
         .ease(d3.easeBounce);
 
+
       console.log(newE);
 
-      barPlot.attr("r", function (d) {
-        return Math.sqrt(d.key);
-      });
-
+      barPlot
+        .attr("r", function (d) {
+          return Math.sqrt(d.key);
+        });
 
       barPlot.exit().transition()
-        .attr("r", 5)
+        .attr("r", 0)
         .remove();
 
 
@@ -287,25 +289,19 @@
             .style("opacity", 0);
         });
 
-      let infoText = d3.select('.first')
-        .data(newA)
-        .html(d => d.total + '</br> respondenten');
 
-      let infoText2 = d3.select('.first')
-        .data(newB)
-        .html(d => d.total + '</br> respondenten');
 
       let infoText3 = d3.select('.first')
         .data(newC)
-        .html(d => d.total + '</br> respondenten');
+        .html(d => d.total + '</br> Nederlandse Nederlanders');
 
       let infoText4 = d3.select('.first')
         .data(newD)
-        .html(d => d.total + '</br> respondenten');
+        .html(d => d.total + '</br> Nederlandse Nederlanders');
 
       let infoText5 = d3.select('.first')
         .data(newE)
-        .html(d => d.total + '</br> respondenten');
+        .html(d => d.total + '</br> Nederlandse Nederlanders');
 
     }
 
@@ -470,7 +466,8 @@
       .attr("stroke", "#838383");
 
 
-    // barPlot.exit().remove()
+
+    barPlot.exit().remove();
 
     // add the dots with tooltips
     let div = d3.select("body").append("div")
@@ -624,7 +621,7 @@
 
 
       barPlot.exit().transition()
-        .attr("r", 5)
+        .attr("r", 0)
         .remove();
 
 
@@ -650,24 +647,24 @@
 
       let infoText = d3.select('.second')
         .data(newA)
-        .html(d => d.total + '</br> respondenten');
+        .html(d => d.total + '</br> Nederlanders met een niet-westers achtergrond');
 
 
       let infoText2 = d3.select('.second')
         .data(newB)
-        .html(d => d.total + '</br> respondenten');
+        .html(d => d.total + '</br> Nederlanders met een niet-westers achtergrond');
 
       let infoText3 = d3.select('.second')
         .data(newC)
-        .html(d => d.total + '</br> respondenten');
+        .html(d => d.total + '</br> Nederlanders met een niet-westers achtergrond');
 
       let infoText4 = d3.select('.second')
         .data(newD)
-        .html(d => d.total + '</br> respondenten');
+        .html(d => d.total + '</br> Nederlanders met een niet-westers achtergrond');
 
       let infoText5 = d3.select('.second')
         .data(newE)
-        .html(d => d.total + '</br> respondenten');
+        .html(d => d.total + '</br> Nederlanders met een niet-westers achtergrond');
 
 
 
