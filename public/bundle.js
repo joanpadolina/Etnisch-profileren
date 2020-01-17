@@ -724,7 +724,7 @@
 
       barPlot
         .data(newD, function (d) {
-          return d.newd = d.key;
+          return d.key;
         })
         .transition()
         .duration(800)
@@ -734,7 +734,7 @@
 
       barPlot
         .data(newE, function (d) {
-          return d.newd = d.key;
+          return d.key;
         })
         .transition()
         .duration(800)
@@ -744,7 +744,7 @@
 
 
 
-      barPlot.exit().remove();
+      barPlot.exit().remove().merge();
 
 
       let infoText = d3.select('.second')

@@ -264,7 +264,7 @@ export default function secondBubble(data) {
 
     barPlot
       .data(newD, function (d) {
-        return d.newd = d.key;
+        return d.key;
       })
       .transition()
       .duration(800)
@@ -274,7 +274,7 @@ export default function secondBubble(data) {
 
     barPlot
       .data(newE, function (d) {
-        return d.newd = d.key;
+        return d.key;
       })
       .transition()
       .duration(800)
@@ -284,7 +284,7 @@ export default function secondBubble(data) {
 
 
 
-    barPlot.exit().remove()
+    barPlot.exit().remove().merge()
 
 
     let infoText = d3.select('.second')

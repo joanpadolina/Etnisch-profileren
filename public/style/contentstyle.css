@@ -145,7 +145,7 @@ div.tooltip {
     width: 10em;
 }
 .form1, .form2{
-    top: -76em;
+    top: -41em;
     left: -28em;
     margin-left: auto;
     margin-right: auto;
@@ -156,7 +156,7 @@ div.tooltip {
 .form2{
     left: 14em;
     position: relative;
-    top: -106.5em;
+    top: -71.5em;
     width: 16em;
 }
 
@@ -230,7 +230,7 @@ label:hover {
 .totaltext{
     display: inline-block;
     position: relative;
-    top: -113em;
+    top: -81.4em;
 }
 
 .first, .second{
