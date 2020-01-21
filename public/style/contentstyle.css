@@ -2,34 +2,36 @@ svg.bubble-plot {
     display: block;
     position: relative;
     color: black;
-    top: -1.3em;
-    left: 31em;
+    top: 20.7vh;
+    left: 33vw;
 }
+
 svg.bubble-plot2 {
     display: block;
     position: relative;
     color: black;
-    left: 45em;
-    top: -45.1em;
+    left: 47vw;
+    top: -81.3vh;
 }
 
 #my_dataviz {
     display: block;
     position: relative;
-    top: 20em;
+    top: 10vh;
+    left: -19vw;
 }
 
 
 .content {
     display: block;
     position: relative;
-    left: 2em;
+    left: 2vw;
 }
 
 .selection-values {
     position: relative;
     display: block;
-    top: -98em;
+    top: -98vh;
 }
 
 .selection-values2 {
@@ -144,19 +146,20 @@ div.tooltip {
 
 .form1,
 .form2 {
-    top: -41em;
-    left: -28em;
+    top: -106vh;
+    left: -32vw;
     margin-left: auto;
     margin-right: auto;
     position: relative;
     display: block;
     width: 16em;
+    heigh: 10vh;
 }
 
 .form2 {
-    left: 4em;
+    left: 4vw;
     position: relative;
-    top: -58.3em;
+    top: -127.2vh;
     width: 16em;
 }
 
@@ -196,12 +199,13 @@ span {
     font-weight: 800;
 }
 
-#herkomst-radio2>input[type="radio"]:checked+label{
+#herkomst-radio2>input[type="radio"]:checked+label {
     font-weight: 500;
     font-family: RubikBold;
     color: white;
     background: rgba(4, 0, 255, 0.514);
-} 
+}
+
 #herkomst-radio>input[type="radio"]:checked+label {
     font-weight: 500;
     font-family: RubikBold;
@@ -231,23 +235,25 @@ label {
     top: 5em;
     position: relative;
 }
-.ruimte{
-    top:7em;
+
+.ruimte {
+    top: 7em;
 }
 
-.form2  h2{
+.form2 h2 {
     left: 27em;
 }
 
 .form1 label:hover {
     background: rgba(255, 255, 0, 0.603);
-    color:black;
+    color: black;
 }
 
 .form2 label:hover {
     background: rgba(0, 17, 255, 0.616);
 
 }
+
 .header {
     top: -3em;
     display: block;
@@ -266,7 +272,8 @@ label {
 .vertrouwen {
     display: block;
     position: relative;
-    top: -4em;
+    top: -2vh;
+    left: -19vw;
 }
 
 .bear {
@@ -279,19 +286,21 @@ span {
     font-family: RubikBold;
 
 }
-.colorbuttons{
+
+.colorbuttons {
     left: 2.3em;
     position: relative;
     top: 6em;
 
 }
 
-.colorbuttons p{
+.colorbuttons p {
     top: 1.2em;
     position: relative;
     left: -2.1em;
 }
-.colorbuttons > label{
+
+.colorbuttons>label {
     width: 3em;
     margin: -.5em;
     top: 2em;
@@ -302,54 +311,318 @@ span {
 
 }
 
-label.white{
-    background:white;
+label.white {
+    background: white;
 }
-label.rood{
+
+label.rood {
     background: red;
 }
-label.blauw{
-    background:blue;
+
+label.blauw {
+    background: blue;
 }
-label.geel{
-    background:yellow;
+
+label.geel {
+    background: yellow;
 }
 
 .colorbuttons input[type="radio"]:checked+label {
-    border:2px solid white;
+    border: 2px solid white;
 
 }
 
-h3{
-    font-family:RubikBold;
-}
-.nietnltext h3{
+h3 {
     font-family: RubikBold;
-    color:rgb(19, 89, 241);
+}
+
+.nietnltext h3 {
+    font-family: RubikBold;
+    color: rgb(19, 89, 241);
     width: 11em;
     text-align: left;
 }
-.nederlandtxt h3{
-    width:1em;
-    color:yellow;
+
+.nederlandtxt h3 {
+    width: 1em;
+    color: yellow;
 }
-.nederlandtxt{
+
+.nederlandtxt {
     left: 7em;
     display: block;
     position: relative;
     top: -32em;
 }
-.nietnltext{
+
+.nietnltext {
     position: relative;
     left: 17em;
     top: -55.7em;
 }
 
-.first, .second{
+.first,
+.second {
     text-align: left;
     font-size: 1.4em;
     color: white;
     font-family: RubikBold;
     top: -1em;
     position: relative;
+}
+
+p.txtbeoordeeld,
+p.textlaag {
+    top: 8.6vh;
+    left: -3.6vw;
+    font-size: 0.8em;
+    position: relative;
+}
+
+p.textlaag {
+    top: 65.7vw;
+}
+
+/* .indivertrouwen {
+    height: 10em;
+    left: 42.5vw;
+    width: 27em;
+    position: relative;
+}
+
+.discriptionvertrouwen {
+    text-align: left;
+    width: 41.3vw;
+    position: relative;
+    left: 14vw;
+} */
+
+.bear img {
+    width: 5em;
+
+}
+
+.bear {
+    position: relative;
+    top: -6vh;
+    height: 1vh;
+}
+
+
+.graph3 {
+    height: 180vh;
+}
+
+@media (min-width:1024px) {
+    .vertrouwen {
+        left: 1vw;
+        top: 1vh;
+    }
+
+    .form2 {
+        top: -144.4vh;
+        left: 5vw;
+    }
+
+    #my_dataviz {
+        left: 0vw;
+    }
+
+    svg.bubble-plot {
+        top: 10vh;
+    }
+
+    p.txtbeoordeeld {
+        top: 26.6vh;
+        left: -3.7vw;
+    }
+
+    p.textlaag {
+        top: 103vh;
+        left: -3.2vw;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* 
+    svg.bubble-plot2,
+    .selection-values2,
+    .form2 {
+        display: none;
+    } */
+
+}
+
+@media (max-width: 755px) {
+
+    svg.bubble-plot,
+    .selection-values1,
+    .form1 {
+        display: none;
+    }
+
+
+
+    svg.bubble-plot2 {
+        left: 57vw;
+        width: 14em;
+        top: -140vh;
+    }
+
+
+    .form2 form h2 {
+        font-size: .9em;
+    }
+
+    .form2 form {
+        left: 0vw;
+        top: 9vh;
+    }
+
+    .form2 {
+        top: -134.2vh;
+    }
+
+    .form2 form h2 {
+        width: 40vw;
+        top: 18.9vh !important;
+        left: 14vw !important;
+        margin-bottom: 0;
+    }
+
+    .form2 label {
+        top: 19vh;
+        margin: 0.6em;
+        padding: 0.4em;
+    }
+
+    .colorbuttons {
+        top: 16vh;
+    }
+
+    .colorbuttons label {
+        top: 3vh;
+        left: 3.6vw;
+    }
+
+    .graph3 {
+        height: 188vh;
+    }
+
+    .discriptionvertrouwen {
+        margin-left: -6vw;
+        width: 90vw;
+    }
+
+    .nederlandtxt {
+        top: -66vh;
+        left: 20vw;
+    }
+
+    .nietnltext {
+        top: -51.7em;
+    }
+
+    .bubble-plot {
+        left: 100vw;
+    }
+
+    .form1 form h2 {
+        font-size: .6em;
+    }
+
+    .form1 form {
+        left: 0vw;
+        top: 0vh;
+    }
+
+    .form1 form h2 {
+        width: 19em;
+        left: 10vw;
+
+    }
+
+    /* plot1 */
+    /* p.txtbeoordeeld {
+        left: 52vw;
+        top: 47.2vh;
+    } 
+    p.textlaag {
+        left: 52vw;
+        top: 123.4vh;
+    }*/
+
+    p.txtbeoordeeld {
+        left: -8vw;
+        top: -123.4vh;
+    }
+    p.textlaag{
+        top: -48.3vw;
+        left: -6.5vw;
+    }
+
+
+}
+
+@media(min-width: 20em) and (max-width: 47em) {
+
+    /* svg.bubble-plot2,
+    .selection-values2,
+    .form2 {
+        display: none;
+    } */
+
+    .vertrouwen {
+        top: 145.8vh;
+        left: -29vw;
+    }
+
+    .discription1 {
+        width: 90vw;
+        left: 1vw;
+    }
+
+    .nederlandtxt h3 {
+        top: -33vh;
+        left: 44vw;
+    }
+
+    /* svg.bubble-plot {
+        left: 100vw;
+    } */
+
+    /* .vertrouwen {
+        top: -24.2vh;
+        left: -29vw;
+
+    } */
+
+
+    .form1 form h2 {
+        font-size: .9em;
+        top: 9.9vh !important;
+        left: 11vw !important;
+    }
+
+    .form1 {
+        left: -10vw;
+        top: 0vh;
+    }
+
+    .form1 form h2 {
+        width: 19em;
+        left: 0;
+        top: 0;
+        margin: auto;
+    }
+
+    .txtbeoordeeld {
+        left: 52vw;
+        top: 47.2vh;
+    }
+
+    .textlaag {
+        left: 52vw;
+        top: 123.4vh;
+    }
 }

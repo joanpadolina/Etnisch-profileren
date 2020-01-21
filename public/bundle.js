@@ -164,17 +164,21 @@
       let stellingReligie = religieNesting(nederlands);
 
 
+
+
       // svg circle chart starts here //
 
       // Circle size horizontal overal
       let barPlot = svg.selectAll("circle")
         .data(dataCijfer, function (d) {
           return d.key
-        })
+        });
+
+      let circleEnter = barPlot
         .enter()
         .append("circle");
 
-      barPlot
+      circleEnter
         .attr('class', 'horizonCircle')
         .attr('transform', 'translate(0,30)')
         .attr("cy", d => y(d.key))
@@ -183,7 +187,7 @@
         .attr('opacity', .5)
         .attr("stroke", "#838383");
 
-    //color change
+      //color change
       let colorbut = d3.selectAll(("input[name='kleur1']"))
         .on("change", function () {
           svg.selectAll("circle")
@@ -194,7 +198,9 @@
 
 
 
-      barPlot.exit().remove();
+      circleEnter.exit().remove();
+
+      console.log(barPlot);
       // first tooltip for overal data information
 
       let div = d3.select("body").append("div")
@@ -249,7 +255,7 @@
 
 
 
-        barPlot
+        circleEnter
           .data(newC, function (d) {
             return d.key;
           })
@@ -259,7 +265,7 @@
           .attr("r", d => z(d.percentage))
           .ease(d3.easeBounce);
 
-        barPlot
+    circleEnter
           .data(newD, function (d) {
             return d.key
           })
@@ -269,8 +275,10 @@
           .attr("r", d => z(d.percentage))
           .ease(d3.easeBounce);
 
+        console.log(circleEnter);
 
-        barPlot
+
+        circleEnter
           .data(newE, function (d) {
             return d.key;
           })
@@ -281,12 +289,12 @@
           .ease(d3.easeBounce);
 
 
-        barPlot.attr("r", function (d) {
+        circleEnter.attr("r", function (d) {
           return Math.sqrt(d.key);
         });
 
 
-        barPlot.exit().transition()
+        circleEnter.exit().transition()
           .attr("r", 0)
           .remove();
 
@@ -312,17 +320,17 @@
           });
 
 
-        let infoText3 = d3.select('.first')
-          .data(newC)
-          .html(d => d.total);
+        // let infoText3 = d3.select('.first')
+        //   .data(newC)
+        //   .html(d => d.total)
 
         let infoText4 = d3.select('.first')
           .data(newD)
           .html(d => d.total);
 
-        let infoText5 = d3.select('.first')
-          .data(newE)
-          .html(d => d.total);
+        // let infoText5 = d3.select('.first')
+        //   .data(newE)
+        //   .html(d => d.total)
       }
 
       // radio button on change update

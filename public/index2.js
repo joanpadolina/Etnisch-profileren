@@ -1,3 +1,11 @@
+/*jslint browser: true, devel: true, eqeq: true, plusplus: true, sloppy: true, vars: true, white: true*/
+/*eslint-env browser*/
+/*eslint 'no-console':0*/
+
+// window.onscroll = function(){
+// document.body.style.webkitPerspectiveOrigin =
+// window.scrollX + "px " + window.scrollY + "px";
+// }
 
 let button1 = document.querySelector(".button1");
 let button2 = document.querySelector(".button2");
@@ -9,6 +17,8 @@ let buttongraph2a = document.querySelector(".buttongraph2a");
 let buttongraph2b = document.querySelector(".buttongraph2b");
 let graph2imga = document.querySelector(".graph2imga");
 let graph2imgb = document.querySelector(".graph2imgb");
+let graph2imga_mobile = document.querySelector(".graph2imga_mobile");
+let graph2imgb_mobile = document.querySelector(".graph2imgb_mobile");
 let graph2pa = document.querySelector(".graph2pa");
 let graph2pb = document.querySelector(".graph2pb");
 
@@ -51,23 +61,28 @@ window.onbeforeunload = function () {
 
 
 buttongraph2a.onclick = function() {
-  graph2imga.classList.add("invisible");
-  graph2imgb.classList.remove("invisible");
+  graph2imga.classList.remove("invisible");
+  graph2imgb.classList.add("invisible");
+  graph2imga_mobile.classList.remove("invisible");
+  graph2imgb_mobile.classList.add("invisible");
 
-  buttongraph2a.classList.add("invisible");
-  buttongraph2b.classList.remove("invisible");
+  graph2pa.classList.remove("invisible");
+  graph2pb.classList.add("invisible");
 
-  graph2pa.classList.add("invisible");
-  graph2pb.classList.remove("invisible");
+  buttongraph2a.classList.remove("nietingedrukt");
+  buttongraph2b.classList.add("nietingedrukt");
 }
 
 buttongraph2b.onclick = function() {
-  graph2imgb.classList.add("invisible");
-  graph2imga.classList.remove("invisible");
+  graph2imgb.classList.remove("invisible");
+  graph2imga.classList.add("invisible");
 
-  buttongraph2b.classList.add("invisible");
-  buttongraph2a.classList.remove("invisible");
+  graph2imgb_mobile.classList.remove("invisible");
+  graph2imga_mobile.classList.add("invisible");
 
-  graph2pb.classList.add("invisible");
-  graph2pa.classList.remove("invisible");
+  graph2pb.classList.remove("invisible");
+  graph2pa.classList.add("invisible");
+
+  buttongraph2b.classList.remove("nietingedrukt");
+  buttongraph2a.classList.add("nietingedrukt");
 }

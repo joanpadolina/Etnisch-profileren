@@ -266,13 +266,9 @@ main {
   overflow: hidden;
   clip: rect(0, 900px, 0, 0);
   animation: noise-anim-2 3s infinite linear alternate-reverse;
-} 
-
-
-
-.wolken {
-  margin-top: 8em;
 }
+
+
 
 /* layout */
 .wrapper {
@@ -281,7 +277,7 @@ main {
   background: transparent;
   height: 100vh;
   width: 100vw;
-  perspective: 8px;
+  perspective: 8.5px;
   perspective-origin: 0%;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -300,28 +296,28 @@ main {
 }
 
 .parallax__layer__1 img {
-  bottom: 0;
+  top: 0;
   z-index: -1;
   transform-origin: 0;
   transform: translateZ(-9.5px) scale(2.2);
 }
 
 .parallax__layer__2 img {
-  bottom: 0;
+  top: 0;
   z-index: 2;
   transform-origin: 0;
   transform: translateZ(-7px) scale(1.88);
 }
 
 .parallax__layer__3 img {
-  bottom: 1em;
+  top: 1em;
   z-index: 2;
   transform-origin: 0;
   transform: translateZ(-4.5px) scale(1.57);
 }
 
 .parallax__layer__4 img {
-  bottom: 0;
+  top: 0;
   z-index: 3;
   transform-origin: 0;
   transform: translateZ(-2px) scale(1.25);
@@ -332,7 +328,7 @@ main {
   background-repeat: no-repeat;
   background-size: 100%;
   transform: scaleX(-1) scaleY(-1);
-  background-image: -webkit-linear-gradient(97deg, #191919 52%, rgba(0, 0, 0, 0) 0%);
+  background-image: -webkit-linear-gradient(97deg, #191919 60%, rgba(0, 0, 0, 0) 0%);
   display: block;
   position: absolute;
   top: 30vw;
@@ -356,9 +352,14 @@ main {
   top: 0;
   position: absolute;
   color: white;
+  opacity: .5;
   margin-top: 100vh;
   z-index: 5;
 }
+
+
+
+
 
 
 /* ALGEMEEN */
@@ -369,11 +370,17 @@ h2 {
   letter-spacing: 3px;
 }
 
+h3 {
+  font-family: "RubikBold";
+  color: white;
+  letter-spacing: 3px;
+}
+
 article p {
   color: white;
+  opacity: .8;
   font-family: "RobotoRegular";
   margin-top: 1em;
-  opacity: .8;
   /* width: 40vw;
   margin-left: 30vw;
   margin-bottom: 5vh; */
@@ -390,8 +397,6 @@ article {
   background-color: #FFF33D;
   width: 4em;
   height: 2px;
-  margin-left: auto;
-  margin-right: auto;
   margin-top: 0.4em;
 }
 
@@ -404,18 +409,17 @@ button {
   font-family: "RobotoMedium";
   margin: 1em;
   font-size: 1em;
-  transition: 500ms ease;
-}
-
-.button2{
-  background-color: rgb(117, 113, 108);
 }
 
 button:hover {
   background-color: #FFF7AE;
   background-color: grey;
-  color: white;
-  font-family: RubikBold;
+  cursor: pointer;
+}
+
+.indicatoren p {
+  color: rgba(255,255,255,0.8);
+  font-style: italic;
 }
 
 
@@ -449,13 +453,12 @@ button:hover {
   width: 40vw;
   margin-left: 30vw;
   margin-bottom: 5vh;
-  opacity: .8;
 }
 
 .vwidd {
   width: 100vw;
   height: 150vh;
-  background-color: white;
+  /* background-color: white; */
   overflow: scroll !important;
   margin-top: -5vw;
   padding-top: 15vh;
@@ -467,24 +470,26 @@ button:hover {
 }
 
 .buttonback {
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   position: absolute;
   left: 102vw;
   margin: 0;
   margin-top: -12vh;
+  width: 8vw;
 }
 
 .vwiddtext h2 {
   margin-top: -10vh;
-  color: #0048FF;
+  color: white;
 }
 
 .vwiddtext p {
-  color: black;
+  color: white;
 }
 
 .donutmap {
+  margin-top: 10vh;
   display: flex;
   justify-content: space-around;
 }
@@ -499,7 +504,8 @@ button:hover {
 }
 
 .leeftijden {
-  width: 80vw !important;
+  width: 90vw !important;
+  margin-top: 2vh !important;
 }
 
 
@@ -509,7 +515,7 @@ button:hover {
 
 .graph1 {
   /* background-color: #191919; */
-  background-image: -webkit-linear-gradient(97deg, #191919 88%, rgba(0, 0, 0, 0) 0%);
+  background-image: -webkit-linear-gradient(97deg, #191919 86%, rgba(0, 0, 0, 0) 0%);
   height: auto;
   padding-top: 0;
 }
@@ -529,7 +535,7 @@ button:hover {
   display: flex;
   justify-content: space-around;
   width: 100vw;
-  margin-top: 15vh;
+  margin-top: 20vh;
 }
 
 .description1 {
@@ -556,8 +562,6 @@ button:hover {
 
 
 
-
-/* GRAPH 2 */
 
 /* GRAPH 2 */
 
@@ -596,10 +600,19 @@ button:hover {
 
 .buttongraph2b {
   position: absolute;
-  margin-top: 32vh;
+  margin-top: 45vh;
   margin-left: 35vw;
   width: 13vw;
 }
+
+.nietingedrukt {
+  background-color: grey;
+}
+
+.buttongraph2b:hover, .buttongraph2a:hover {
+  background-color: #FFF33D;
+}
+
 
 
 
@@ -632,21 +645,79 @@ button:hover {
   background-color: rgba(0,0,0,0.3);
   padding: 1em;
   height: auto;
-  width: 28em;
 }
+
+.visiblemobile, .visibletablet {
+  display: none;
+}
+
+.huisjes1 {
+  position: absolute;
+  width: 25vw;
+}
+
+
+.huisjes2 {
+  position: absolute;
+  width: 25vw;
+  right: 0;
+}
+
+
+
 
 
 
 
 @media(min-width: 20em) and (max-width: 47em) {
 
+  .BG {
+    top: 0;
+  }
+
+  body {
+    background-color: black;
+  }
+
+  .BG {
+    position: fixed;
+    background-image: url("images/BG_mobile.png");
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: -10;
+    margin-top: 0;
+    background-color: black;
+  }
+
+  .invisiblemobile {
+    display: none !important;
+  }
+
+  .visiblemobile {
+    display: block !important;
+  }
+
   button {
     padding: 0.8em;
     margin: 0.5em;
   }
 
-  .titlewrapper {
-    margin-top: -150vh;
+  .wrapper, .visibletablet {
+    display: none;
+  }
+
+  .amsterdammobile {
+    width: 100.5vw;
+    z-index: -2;
+    margin-bottom: 2vh;
+  }
+
+  .titlediv {
+    position: absolute;
+    top: 0;
   }
 
   .title {
@@ -656,21 +727,6 @@ button:hover {
   .glitch {
     font-size: 2.5em;
   }
-
-  .yellowcircle {
-    margin-top: 10vw;
-    width: 28em;
-  }
-
-  .parallax__layer img {
-    bottom: -10vh;
-  }
-
-  .parallax__cover {
-    background-color: transparent !important;
-    background-image: none !important;
-  }
-
 
   .research {
     padding-top: 0vh;
@@ -684,7 +740,11 @@ button:hover {
   }
 
   .intro img {
-    width: 85vw;
+    width: 80vw;
+  }
+
+  .vwidd img {
+    width: 100vw;
   }
 
   .graph1 section {
@@ -716,22 +776,37 @@ button:hover {
   }
 
   .indicatoren p {
-    color: rgba(255,255,255,0.8);
-    font-style: italic;
     font-size: 0.9em;
   }
 
   .graph2 {
     height: auto;
+    margin-bottom: -10vh;
   }
 
   .graph2 section {
     height: auto;
   }
 
+  .graph2img {
+    width: 90vw;
+    margin-left: 5vw;
+    margin-top: 5vh;
+  }
+
+  .buttongraph2a, .buttongraph2b {
+    width: auto;
+    font-size: 0.85em;
+    width: 40vw;
+    margin: 0.5em;
+    position: relative;
+    margin-top: 3vh;
+  }
+
   .graph2 img {
     width: 90vw;
     margin-bottom: 5vh;
+    margin-left: 0;
   }
 
   .indicatoren2 {
@@ -746,15 +821,303 @@ button:hover {
     margin-top: 0vh;
   }
 
-  .graph3 h2 {
-    padding-left: 5vw;
-    padding-right: 5vw;
+  .indicatoren3 {
+    text-align: left;
+    width: 90vw;
+    margin-left: 5vw;
+    background-color: black;
+    padding: 0.5em;
+    margin-top: 5vh;
+  }
+
+  .buttonback {
+    width: 30vw;
+    margin-left: 3vw;
+  }
+
+  .vwiddtext {
+    margin-top: 8vh;
   }
 }
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  .graph1img {
+    display: none;
+  }
+
+  body {
+    background-color: black;
+  }
+
+  .visibletablet {
+    display: block !important;
+  }
+
+  .wrapper {
+    display: none;
+  }
+
+  .BG {
+    top: 0;
+  }
+
+  .visibletablet {
+    display: block !important;
+  }
+
+  button {
+    padding: 0.8em;
+    margin: 0.5em;
+  }
+
+  .wrapper {
+    display: none;
+  }
+
+  .amsterdamtablet {
+    width: 100.5vw;
+    z-index: -2;
+    margin-bottom: 2vh;
+  }
+
+  .titlediv {
+    position: absolute;
+    top: 0;
+  }
+
+  .title {
+    margin-left: 7vw;
+  }
+
+  .glitch:after {
+    left: -2px;
+  }
+
+
+  .research {
+    padding-top: 0vh;
+  }
+
+  .research p {
+    text-align: left;
+    width: 90vw;
+    margin-left: 5vw;
+    margin-top: 5vh;
+  }
+
+  .intro {
+    height: 70vh !important;
+  }
+
+  .donutmap {
+    display: block;
+  }
+
+  .intro img {
+    width: 50vw;
+  }
+
+  .graph1 section {
+    margin-top: 10vh;
+  }
+
+  section h2 {
+    font-size: 1.4em;
+  }
+
+  section {
+    align-items: center;
+  }
+
+  .buttonback {
+    width: 14vw;
+  }
+
+  .description1 {
+    text-align: left;
+    width: 90vw;
+    margin-left: 5vw;
+  }
+
+  .indicatoren1 {
+    text-align: left;
+    width: 90vw;
+    margin-left: 5vw;
+    background-color: black;
+    padding: 0.5em;
+    margin-top: 5vh;
+    margin-right: 5vw;
+  }
+
+  .indicatoren p {
+    font-size: 0.9em;
+  }
+
+  .graph2 {
+    height: auto;
+  }
+
+  .graph2img {
+    width: 90vw;
+    margin-left: 5vw;
+  }
+
+  .graph2 section {
+    height: auto;
+    display: block;
+  }
+
+  .buttongraph2a, .buttongraph2b {
+    width: auto;
+  }
+
+  .graph2 img {
+    width: 90vw;
+    margin-bottom: 5vh;
+    margin-left: 0;
+  }
+
+  .indicatoren2 {
+    text-align: left;
+    width: 90vw;
+    background-color: black;
+    padding: 0.5em;
+    margin-top: 3vh;
+    margin-bottom: 5vh;
+  }
+
+  .buttongraph2a, .buttongraph2b {
+    right: 4vw;
+    width: 25vw;
+    font-size: 0.9em;
+  }
+
+  .buttongraph2a {
+    margin-top: 25vh;
+  }
+
+  .buttongraph2b {
+    margin-top: 32vh;
+  }
+
+  .graph3 section {
+    margin-top: 0vh;
+  }
+
+  .indicatoren3 {
+    text-align: left;
+    width: 90vw;
+    margin-left: 5vw;
+    background-color: black;
+    padding: 0.5em;
+    margin-right: 5vw;
+  }
+
+}
+
+
+
+
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+  .intro img {
+    width: 40vw;
+  }
+
+  .buttongraph2a {
+    margin-top: 42vh;
+  }
+
+  .buttongraph2b {
+    margin-top: 52vh;
+  }
+
+  .donutmap {
+    display: flex;
+  }
+
+}
+
+
+
+
+
+
+
+@media (min-width: 1680px) {
+
+  .parallax__layer img {
+    position: absolute;
+    left: 0;
+    width: 1680px;
+  }
+
+}
+
+
+
+
 .invisible {
-  display: none;
+  display: none !important;
+}
+
+.invisible2 {
+  opacity: 0;
+}
+
+
+
+.testtest {
+  width: 85vw !important;
+  height: auto !important;
+  position: absolute;
+  left: 0;
+  z-index: 4;
+  margin-top: -1vh;
+}
+
+.testgraph {
+  overflow-x: auto;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+}
+
+.testgraph img {
+  height: 100vh;
+  width: auto;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.testa {
+  left: 0;
+  position: absolute;
+  z-index: 1;
+  margin-top: 0 !important;
+}
+
+.vwiddtext {
+  width: 90vw;
+  margin-left: 5vw;
+  text-align: left;
+}
+
+.vwiddmobilediv {
+  overflow-y: auto;
+  height: 195vh;
 }
