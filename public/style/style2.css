@@ -1,4 +1,6 @@
 @import 'contentstyle.css';
+@import 'mediaqueries.css';
+
 
 * {
     box-sizing: border-box;
