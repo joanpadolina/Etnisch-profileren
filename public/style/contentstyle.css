@@ -488,11 +488,12 @@ p.textlaag {
         top: 18.9vh !important;
         left: 14vw !important;
         margin-bottom: 0;
+        padding: 1em;
     }
 
     .form2 label {
         top: 19vh;
-        margin: 0.6em;
+        margin: 0.2em;
         padding: 0.4em;
     }
 
@@ -506,7 +507,7 @@ p.textlaag {
     }
 
     .graph3 {
-        height: 188vh;
+        height: auto;
     }
 
     .discriptionvertrouwen {
@@ -521,6 +522,13 @@ p.textlaag {
 
     .nietnltext {
         top: -51.7em;
+        left:1vw;
+    }
+    .nietnltext p {
+        right: -51vw;
+        top: -17vh;
+        font-size: 4em;
+        margin-bottom: -11vh;
     }
 
     .bubble-plot {
