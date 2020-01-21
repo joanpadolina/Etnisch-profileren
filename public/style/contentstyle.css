@@ -464,7 +464,7 @@ p.textlaag {
 
 
     svg.bubble-plot2 {
-        left: 57vw;
+        left: 49vw;
         width: 14em;
         top: -140vh;
     }
@@ -484,30 +484,43 @@ p.textlaag {
     }
 
     .form2 form h2 {
-        width: 40vw;
+        width: 47vw;
         top: 18.9vh !important;
-        left: 14vw !important;
+        left: 8.7vw !important;
         margin-bottom: 0;
         padding: 1em;
+    
     }
 
+    #herkomst-radio2{
+        top: -69.5em;
+    }
     .form2 label {
         top: 19vh;
         margin: 0.2em;
         padding: 0.4em;
+        left: 5vw;
+        width: 12em;
     }
 
     .colorbuttons {
-        top: 16vh;
+        top: 18vh;
     }
 
     .colorbuttons label {
         top: 3vh;
-        left: 3.6vw;
+        left: -6.4vw;
+        width: 2em;
+
+    }
+
+    .colorbuttons p {
+        left: -12.1vw;
+
     }
 
     .graph3 {
-        height: auto;
+        height: 190vh;
     }
 
     .discriptionvertrouwen {
@@ -522,12 +535,13 @@ p.textlaag {
 
     .nietnltext {
         top: -51.7em;
-        left:1vw;
+        left: 14vw;
     }
+
     .nietnltext p {
-        right: -51vw;
+        right: -57vw;
         top: -17vh;
-        font-size: 4em;
+        font-size: 3.6em;
         margin-bottom: -11vh;
     }
 
@@ -561,12 +575,13 @@ p.textlaag {
     }*/
 
     p.txtbeoordeeld {
-        left: -8vw;
-        top: -123.4vh;
+        left: 3vw;
+        top: -126.4vh;
     }
-    p.textlaag{
-        top: -48.3vw;
-        left: -6.5vw;
+
+    p.textlaag {
+        top: -113.3vw;
+        left: 2.5vw;
     }
 
 
