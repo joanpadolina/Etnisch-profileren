@@ -2,15 +2,17 @@
 <html lang="nl">
 
 <head>
+  
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Etnisch Profileren</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <link rel="stylesheet" href="./style/style2.css">
   <script src="https://d3js.org/d3.v4.js"></script>
   <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="images/bear.png" />
 </head>
 
 <body class="overflowx">
@@ -197,14 +199,18 @@
                   <img src="../src/assets/graphs/Dot plot test-1 2.png" alt="">
               </div> -->
       <!-- <div class="barchart-ep"></div> -->
-    </div>
+    
     <div class="totaltext">
-      <p class="first"></p>
-      <p class="second"></p>
+      
+    
+
     </div>
 
     <div class="form1">
-
+        <div class="nederlandtxt">
+            <h3 class="textInfo">Nederlandse Nederlanders</h3>
+            <p class="first">691</p>
+        </div>
       <form action="" id="herkomst-radio">
           <h2>Vond u het terecht of onterecht dat de politie naar u toe
               kwam?</h2>
@@ -223,13 +229,13 @@
               Niet terecht, niet onterecht
           </label>
           <br />
-          <input type="radio" name="states" value="Terecht" id="Voormalig-Nederlandse-Antillen">
-          <label for="Voormalig-Nederlandse-Antillen" id="Voormalig-Nederlandse-Antillen2-label">
+          <input type="radio" name="states" value="Terecht" id="terecht1">
+          <label for="terecht1">
               Terecht
           </label>
           <br />
-          <input type="radio" name="states" value="Zeer terecht" id="Westers">
-          <label for="Westers">
+          <input type="radio" name="states" value="Zeer terecht" id="terecht2">
+          <label for="terecht2">
               Zeer terecht
           </label>
 
@@ -259,10 +265,10 @@
           </h2>
 
           <input type="radio" name="states" value="De politie kwam naar mij toe" id="De politie kwam naar mij toe">
-          <label for="De politie kwam naar mij toe">De politie <span>kwam naar mij</span> toe</label>
+          <label for="De politie kwam naar mij toe" class="ruimte">De politie <span>kwam naar mij</span> toe</label>
           <br />
           <input type="radio" name="states" value="Ik ging naar de politie toe" id="Ik ging naar de politie toe">
-          <label for="Ik ging naar de politie toe"><span>Ik ging naar</span> de politie toe</label>
+          <label for="Ik ging naar de politie toe" class="ruimte"><span>Ik ging naar</span> de politie toe</label>
 
           <div class="colorbuttons">
               <p>kleur kiezen</p>
@@ -278,7 +284,11 @@
 
     </div>
     <div class="form2">
-
+        <div class="nietnltext">
+            <h3 class="textInfo">Nederlanders met een niet-westerse migratieachtergrond
+            </h3>
+          <p class="second">963</p>
+        </div>
 
       <form action="" id="herkomst-radio2">
 
@@ -335,10 +345,10 @@
           </h2>
 
           <input type="radio" name="states2" value="De politie kwam naar mij toe" id="De politie kwam naar mij toe2">
-          <label for="De politie kwam naar mij toe2">De politie <span>kwam naar mij</span> toe</label>
+          <label for="De politie kwam naar mij toe2" class="ruimte">De politie <span>kwam naar mij</span> toe</label>
           <br />
           <input type="radio" name="states2" value="Ik ging naar de politie toe" id="Ik ging naar de politie toe2">
-          <label for="Ik ging naar de politie toe2"><span>Ik ging naar</span> de politie toe</label>
+          <label for="Ik ging naar de politie toe2" class="ruimte"><span>Ik ging naar</span> de politie toe</label>
 
           <div class="colorbuttons">
             <p>kleur kiezen</p>
@@ -353,7 +363,7 @@
       </form>
     </div>
     </div>
-
+  </div>
   </article>
 
   <article class="bear">

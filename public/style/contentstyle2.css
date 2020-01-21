@@ -201,7 +201,13 @@ input {
     text-align: center;
     font-weight: 100;
 }
-
+.form1 label {
+    background:yellow;
+    color:black;
+}
+.form2 label{
+    background:blue;
+}
 
 .form1 label:hover, .form2 label:hover {
     background: #683441;
@@ -236,6 +242,7 @@ input {
     left: 1.2em;
 }
 
+
 label.white{
     background:white;
 }
@@ -252,4 +259,8 @@ label.geel{
 .colorbuttons input[type="radio"]:checked+label {
     border:2px solid white;
 
+}
+
+textInfo{
+    width:1em;
 }

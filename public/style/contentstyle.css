@@ -16,7 +16,7 @@ svg.bubble-plot2 {
 #my_dataviz {
     display: block;
     position: relative;
-    top: 7em;
+    top: 20em;
 }
 
 
@@ -154,9 +154,9 @@ div.tooltip {
 }
 
 .form2 {
-    left: 14em;
+    left: 4em;
     position: relative;
-    top: -71.5em;
+    top: -58.3em;
     width: 16em;
 }
 
@@ -174,26 +174,39 @@ div.tooltip {
 
 #herkomst-radio2 {
     left: 12em;
-    top: -55.5em;
+    top: -67.5em;
 
 }
 
 form h2 {
-    font-size: .9em;
-    padding: .5em;
-    color: rgb(143, 143, 143);
+    font-family: RobotoLight;
+    font-size: 0.9em;
+    padding: 0.6em;
+    color: rgb(212, 214, 197);
+    left: -9em;
+    position: relative;
+    text-align: left;
+    width: 13vw;
+    top: 7em;
+    margin-bottom: -6em;
+
 }
 
 span {
     font-weight: 800;
 }
 
-#herkomst-radio2>input[type="radio"]:checked+label, 
+#herkomst-radio2>input[type="radio"]:checked+label{
+    font-weight: 500;
+    font-family: RubikBold;
+    color: white;
+    background: rgba(4, 0, 255, 0.514);
+} 
 #herkomst-radio>input[type="radio"]:checked+label {
     font-weight: 500;
     font-family: RubikBold;
     color: white;
-    background: #86273c;
+    background: rgba(255, 255, 0, 0.514);
 }
 
 input {
@@ -214,13 +227,27 @@ label {
     transition: 200ms ease;
     text-align: center;
     font-weight: 100;
+    left: 5em;
+    top: 5em;
+    position: relative;
+}
+.ruimte{
+    top:7em;
 }
 
-
-label:hover {
-    background: #683441;
+.form2  h2{
+    left: 27em;
 }
 
+.form1 label:hover {
+    background: rgba(255, 255, 0, 0.603);
+    color:black;
+}
+
+.form2 label:hover {
+    background: rgba(0, 17, 255, 0.616);
+
+}
 .header {
     top: -3em;
     display: block;
@@ -235,27 +262,11 @@ label:hover {
     top: -81.4em;
 }
 
-.first,
-.second {
-    color: white;
-    font-size: 1.6em;
-    text-align: center;
-    position: absolute;
-    left: -8em;
-    top: -2em;
-
-
-}
-
-.second {
-    left: 0.7em;
-    top: -2em;
-}
 
 .vertrouwen {
     display: block;
     position: relative;
-    top: 10em;
+    top: -4em;
 }
 
 .bear {
@@ -269,8 +280,10 @@ span {
 
 }
 .colorbuttons{
-    left: -2em;
+    left: 2.3em;
     position: relative;
+    top: 6em;
+
 }
 
 .colorbuttons p{
@@ -306,7 +319,37 @@ label.geel{
     border:2px solid white;
 
 }
-/* 
-.horizoncircle{
-    blur:2;
-} */
+
+h3{
+    font-family:RubikBold;
+}
+.nietnltext h3{
+    font-family: RubikBold;
+    color:rgb(19, 89, 241);
+    width: 11em;
+    text-align: left;
+}
+.nederlandtxt h3{
+    width:1em;
+    color:yellow;
+}
+.nederlandtxt{
+    left: 7em;
+    display: block;
+    position: relative;
+    top: -32em;
+}
+.nietnltext{
+    position: relative;
+    left: 17em;
+    top: -55.7em;
+}
+
+.first, .second{
+    text-align: left;
+    font-size: 1.4em;
+    color: white;
+    font-family: RubikBold;
+    top: -1em;
+    position: relative;
+}

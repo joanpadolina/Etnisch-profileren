@@ -57,7 +57,7 @@ function newData() {
                         cijfer: data.rapportcijfer,
                         geslacht: data.Geslacht,
                         achtergrond: data.Herkomst_def,
-                        leeftijdcategorie: data.Leeftijd,
+                        leeftijdcategorie: data.Leeftijdscategorie,
                         arrestatie: data.polben_gevolg_arrestatie,
                         freq: data.freqcontact
                         // hulp:data.Polben_hulp,

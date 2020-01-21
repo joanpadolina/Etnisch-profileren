@@ -1,0 +1,202 @@
+// parallax
+
+@import 'navbar.css';
+@import 'contentstyle.css';
+@import 'secondpage.css';
+
+body{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Rubik';
+    /* background:black; */
+    overflow-x:hidden;
+}
+
+.bubble-plot2{
+  left:25em;
+  top:-45.1em;
+  position: relative;
+
+}
+h1{
+    color: #fbff00;
+    padding: .3em;
+    margin: 1em;
+    width: 20em;
+    /* background: #fff33d; */
+    position: relative;
+    top: -11em;
+}
+
+.legenda{
+    position: relative;
+    display: block;
+    width:10em;
+    left:0;
+}
+
+/* layout */
+.wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    perspective: 8px;
+    perspective-origin: 0%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  
+  .wrapper img {
+    position: absolute;
+    left: 0;
+    width: 3000px;
+    margin-left: -650px;
+  }
+  
+  .parallax_layer_l img{
+    width: 75em;
+    z-index: 0;
+    transform: translateZ(-15px) translate(111em,-52em) scale(1.33);
+  }
+  
+  .parallax__layer__0 img {
+    margin-top: 23em;
+  
+    transform-origin: 0;
+    transform: translateZ(-17px) translate(0em,-4em)scale(2.33);
+  }
+  
+  .parallax__layer__1 img {
+    margin-top: 19em;
+  
+    transform-origin: 0;
+    transform: translateZ(-14.5px)translate(0em, -1em) scale(2.14);
+  }
+  
+  .parallax__layer__2 img {
+    margin-top: 15em;
+  
+    transform-origin: 0;
+    transform: translateZ(-12px)translate(0em, -2em) scale(1.95);
+  }
+  
+  .parallax__layer__3 img {
+    margin-top: 12em;
+  
+    transform-origin: 0;
+    transform: translateZ(-9.5px)translate(0em, -3em) scale(1.76);
+  }
+  
+  .parallax__layer__4 img {
+    margin-top: 8.5em;
+  
+    transform-origin: 0;
+    transform: translateZ(-7px) translate(0em, -4em)scale(1.57);
+  }
+  
+  .parallax__layer__5 img {
+    margin-top: 4em;
+  
+    transform-origin: 0;
+    transform: translateZ(-4.5px) translate(0em, -5em)scale(1.37);
+  }
+  
+  .parallax__layer__6 img {
+    transform-origin: 0;
+    transform: translateZ(-2px)translate(0em, -6em) scale(1.19);
+  }
+  
+  .parallax__cover{
+    background: black;
+    display: block;
+    position: absolute;
+    top: 95%;
+    left: 0;
+    right: 0;
+    height: 2000px;
+    z-index: 2;
+  
+    margin-top: 70vh;
+  
+    transform-origin: 0;
+    transform: translateZ(-2px) scale(1.5);
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* Parallax Styles */
+  .parallax-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    perspective: 8px;
+    perspective-origin: 0%;
+    display: flex;
+  }
+  
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 150vh;
+    transform: translateZ(0px);
+  }
+  
+  .background img {
+    width: 100vw;
+  }
+  
+  .foreground {
+    margin-top: auto;
+    margin-bottom: -55vh;
+  
+  
+  
+    transform-origin: 0;
+    transform: translateZ(6px) scale(0.3);
+  
+    /* Uncomment the code below to see the difference the scale property makes! */
+    /* transform: translateZ(3px); */
+    /* transform: translateZ(0) scale(1); */
+  }
+  
+  .foreground img {
+    width: 20vw;
+  }
+  
+  
+  .purpleBG {
+    height: 100vh;
+    width: 100vw;
+    background-color: #2D112B;
+  }
+  
+  .connected-dot img, .connected-dot_1 img{
+    width: 91em;
+    left: 20em;
+}
+
+.connected-dot_1{
+    top:30em;
+}
+
+

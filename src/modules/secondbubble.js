@@ -127,9 +127,6 @@ export default function secondBubble(data) {
 
 
 
-
-
-
   // Circle size horizontal overal
   let barPlot = svg.selectAll("circle")
     .data(dataCijfer, function (d) {
@@ -147,7 +144,7 @@ export default function secondBubble(data) {
     .attr('opacity', .5)
     .attr("stroke", "#838383")
 
-//color change
+  //color change
   let colorbut = d3.selectAll(("input[name='kleur']"))
     .on("change", function () {
       svg.selectAll("circle")
@@ -182,30 +179,12 @@ export default function secondBubble(data) {
     });
 
 
-
-  console.log(stellingReligie)
   // --- update pattern ends here --- ///
 
   function updateBubble2() {
 
 
-
-
     const selectedOption = this.value
-
-    // d3.select(this.id) 
-
-    // get total to show information
-
-    // function getTotalFromSelection(data) {
-    //   data = data.filter(row => row.key == selectedOption)
-    //   data = data.map(d => d.values).flat()
-    //   let total = data.reduce((a,b)=> a + b.value, 0)
-    //   return total
-    // }
-    // console.log(getTotalFromSelection(valueAchtergrond))
-    // console.log(getTotalFromSelection(contactWith))
-
 
 
     // get percentage from total 
@@ -224,55 +203,10 @@ export default function secondBubble(data) {
     }
 
 
-    let newA = getPercentage(valueAchtergrond)
-    let newB = getPercentage(contactWith)
+
     let newC = getPercentage(totstandNest)
     let newD = getPercentage(resultaatNest)
     let newE = getPercentage(stellingReligie)
-
-    // console.log(newA.map(d => d.total))
-    // function addText() {
-    //   if(newA[0].categorie === selectedOption) {
-    //     console.log(currentId+"-label");
-    //     console.log(d3.select("#"+currentId+"-label").text(selectedOption + ": " + newA[0].total))
-    //     return d3.select("#"+currentId+"-label").html(selectedOption + ": </br>" + newA[0].total + " respondente");
-    //   } else if(newB[0].categorie === selectedOption) {
-    //     return d3.select("label"+currentId).html(selectedOption + ": " + newB.total)
-    //   } else if(newC[0].categorie === selectedOption){
-    //     return d3.select("label"+currentId).html(selectedOption + ": " + newC.total)
-    //   } else if(newD[0].categorie === selectedOption){
-    //     return d3.select("label"+currentId).html(selectedOption + ": " + newD.total)
-    //   }
-    // }
-    // addText();
-    // barPlot
-    //   .attr("r", function (d) {
-    //     return d.r
-    //   })
-
-
-
-    barPlot
-      .data(newA, function (d) {
-        return d.key;
-      })
-      .transition()
-      .duration(800)
-      .attr("cy", d => y(d.key))
-      .attr("r", d => z(d.percentage))
-      .ease(d3.easeBounce)
-
-
-
-    barPlot
-      .data(newB, function (d) {
-        return d.key;
-      })
-      .transition()
-      .duration(800)
-      .attr("cy", d => y(d.key))
-      .attr("r", d => z(d.percentage))
-      .ease(d3.easeBounce)
 
 
 
@@ -338,35 +272,20 @@ export default function secondBubble(data) {
           .style("opacity", 0);
       });
 
-    let infoText = d3.select('.second')
-      .data(newA)
-      .html(d => d.total + '</br> Nederlanders met een niet-westers achtergrond')
-
-
-    let infoText2 = d3.select('.second')
-      .data(newB)
-      .html(d => d.total + '</br> Nederlanders met een niet-westers achtergrond')
 
     let infoText3 = d3.select('.second')
       .data(newC)
-      .html(d => d.total + '</br> Nederlanders met een niet-westers achtergrond')
+      .html(d => d.total)
 
     let infoText4 = d3.select('.second')
       .data(newD)
-      .html(d => d.total + '</br> Nederlanders met een niet-westers achtergrond')
+      .html(d => d.total)
 
     let infoText5 = d3.select('.second')
       .data(newE)
-      .html(d => d.total + '</br> Nederlanders met een niet-westers achtergrond')
-
-
-
-
-
-
-
-
+      .html(d => d.total)
   }
+
   // radio button on change update
 
   d3.selectAll(("input[name='states2']"))
