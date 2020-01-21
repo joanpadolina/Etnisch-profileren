@@ -582,17 +582,17 @@ circleEnter
       });
 
 
-    // let infoText3 = d3.select('.first')
-    //   .data(newC)
-    //   .html(d => d.total)
+    let infoText3 = d3.select('.first')
+      .data(newC)
+      .html(d => d.total)
 
     let infoText4 = d3.select('.first')
       .data(newD)
       .html(d => d.total)
 
-    // let infoText5 = d3.select('.first')
-    //   .data(newE)
-    //   .html(d => d.total)
+    let infoText5 = d3.select('.first')
+      .data(newE)
+      .html(d => d.total)
   }
 
   // radio button on change update
