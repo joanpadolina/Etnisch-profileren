@@ -45,7 +45,7 @@ body {
 
 .BG {
   position: fixed;
-  background-image: url("images/BG.png");
+  background-image: url("../images/BG.png");
   background-repeat: no-repeat;
   background-size: 100vw 100vh;
   position: fixed;
@@ -619,14 +619,20 @@ button:hover {
 
 
 
+.graph1, .graph2, .graph3{
+  opacity: .9;
+}
 
-
+.button2{
+  background: rgb(119, 118, 96);
+}
 
 
 /* GRAPH 3 */
 
 .graph3 {
   background-image: -webkit-linear-gradient(97deg, #191919 80%, rgba(0, 0, 0, 0) 0%);
+
 }
 
 .graph3 section {
