@@ -1,7 +1,7 @@
 # Etnisch-profileren
 ## [Live te zien!](https://joanpadolina.github.io/Etnisch-profileren/public/index2.html)
-![gif](https://github.com/joanpadolina/Etnisch-profileren/blob/master/readmeassets/dataviz%20bubble.gif)
-![screen](https://github.com/joanpadolina/Etnisch-profileren/blob/master/readmeassets/bubblescreen.png)
+![gif](https://github.com/joanpadolina/Etnisch-profileren/blob/master/readmeassets/endchart.gif)
+![screen](https://github.com/joanpadolina/Etnisch-profileren/blob/master/readmeassets/d3.png)
 
 
 ## Download dit project
