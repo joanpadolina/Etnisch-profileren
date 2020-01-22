@@ -1,21 +1,8 @@
-// import valueAchtergrond from './selections.js'
-import {
-  religieNesting,
-  valueAchtergrondNesting
-} from './nesting.js'
-import {
-  contactNest
-} from './nesting.js'
-import {
-  totstandNesting
-} from './nesting.js'
-import {
-  resultaatNesting
-} from './nesting.js'
+
 
 export default function secondBubble(data) {
 
-  console.log(data)
+
 
   const nietWester = data.filter(object => {
     if (object.achtergrond !== 'Nederlands' && object.achtergrond !== "Westers" && object.achtergrond !== "Onbekend") {
@@ -65,15 +52,17 @@ export default function secondBubble(data) {
     .entries(nederlands)
 
   dataNew.sort((a, b) => a.key - b.key)
-
-  let dataCijfer = dataNew.filter(d => d.key !== "99999")
+  let dataCijfer = dataNew.filter(d => {
+    return d.key !== "99999"
+  })
 
 
   //chazz the man sum value and give total with percentage 
   let sumData = dataCijfer.reduce((prev, cur) => prev + cur.value, 0)
   let percentage = dataCijfer.map(d => d.percent = Math.round(d.value / sumData * 100))
   dataCijfer.forEach(d => d.total = sumData)
-  // console.log(dataCijfer)
+  dataCijfer.forEach(d => d.algemeen = 'algemeennl')
+
 
   // y axis
   let y = d3.scaleBand()
@@ -98,29 +87,6 @@ export default function secondBubble(data) {
     .domain([0, d3.max(dataCijfer.map(d => d.percent))])
     .range([1, 50]);
 
-  // nesting all data for preperation to updating
-  // background from data 
-  let valueAchtergrond = valueAchtergrondNesting(data)
-  valueAchtergrond.pop()
-
-  // nesting in contact
-  let contactWith = contactNest(data)
-
-  // selection contact with
-  let valueContact = contactWith.map(d => d.key)
-  // nesting who went to who 
-  let totstandNest = totstandNesting(nederlands)
-
-  let valueTotstand = totstandNest.map(d => d.key)
-  // nesting what happen after contact
-  let resultaatNest = resultaatNesting(nederlands)
-
-  let valueResultaat = resultaatNest.map(d => d.key)
-  valueResultaat.pop()
-  // nesting religion 
-  let stellingReligie = religieNesting(nederlands)
-
-
 
 
   // svg circle chart starts here //
@@ -135,8 +101,9 @@ export default function secondBubble(data) {
     .enter()
     .append("circle")
 
+
   circleEnter
-    .attr('class', 'horizonCircle')
+    .attr('class', 'nlCircle')
     .attr('transform', 'translate(0,30)')
     .attr("cy", d => y(d.key))
     .attr("r", d => z(d.percent))
@@ -154,10 +121,6 @@ export default function secondBubble(data) {
     })
 
 
-
-  circleEnter.exit().remove()
-
-  console.log(cirPlot)
   // first tooltip for overal data information
 
   let div = d3.select("body").append("div")
@@ -189,11 +152,17 @@ export default function secondBubble(data) {
 
     const selectedOption = this.value
 
-
-    // get percentage from total 
     function getPercentage(data) {
-      data = data.filter(row => row.key == selectedOption)
-      data = data.map(d => d.values).flat()
+      data = data.filter(row => {
+        if (row.stellingTerecht == selectedOption || row.totstand == selectedOption || row.stellingachtergrond == selectedOption) {
+          return row
+        }
+      })
+
+      data = d3.nest()
+        .key(d => d.cijfer)
+        .rollup(leaves => leaves.length)
+        .entries(data)
 
       let total = data.reduce((prev, cur) => prev + cur.value, 0)
       data.forEach(d => d.total = total);
@@ -205,63 +174,32 @@ export default function secondBubble(data) {
       return data
     }
 
+    const updateData = getPercentage(nederlands)
 
-    let newC = getPercentage(totstandNest)
-    let newD = getPercentage(resultaatNest)
-    let newE = getPercentage(stellingReligie)
+    let updateCir = circleEnter
 
-
-
-    circleEnter
-      .data(newC, function (d) {
-        return d.key;
-      })
+    updateCir
+      .data(updateData, d => d.key)
       .transition()
       .duration(800)
       .attr("cy", d => y(d.key))
       .attr("r", d => z(d.percentage))
       .ease(d3.easeBounce)
 
-    circleEnter
-      .data(newD, function (d) {
-        return d.key
-      })
-      .transition()
-      .duration(800)
-      .attr("cy", d => y(d.key))
-      .attr("r", d => z(d.percentage))
-      .ease(d3.easeBounce)
-
-    console.log(circleEnter)
-
-
-    circleEnter
-      .data(newE, function (d) {
-        return d.key;
-      })
-      .transition()
-      .duration(800)
-      .attr("cy", d => y(d.key))
-      .attr("r", d => z(d.percentage))
-      .ease(d3.easeBounce)
-
-
-    circleEnter.attr("r", function (d) {
-      return Math.sqrt(d.key);
+    updateCir.attr("r", function (d) {
+      return Math.sqrt(d.percentage);
     });
 
 
-    circleEnter.exit().transition()
+    updateCir.exit().transition()
       .attr("r", 0)
       .remove();
-
-
 
     //tooltip
 
     // add the dots with tooltips
-    svg.selectAll("circle")
-      .data(newD)
+    svg.selectAll(".nlCircle")
+      .data(updateData, d => d.key)
       .on("mouseover", function (d) {
         div.transition()
           .duration(200)
@@ -277,17 +215,41 @@ export default function secondBubble(data) {
       });
 
 
-    let infoText3 = d3.select('.first')
-      .data(newC)
+    d3.select('.first')
+      .data(updateData)
       .html(d => d.total)
 
-    let infoText4 = d3.select('.first')
-      .data(newD)
-      .html(d => d.total)
 
-    let infoText5 = d3.select('.first')
-      .data(newE)
-      .html(d => d.total)
+    if (selectedOption == "algemeennl") {
+      updateCir
+        .data(dataCijfer, d => d.key)
+        .transition()
+        .duration(800)
+        .attr("cy", d => y(d.key))
+        .attr("r", d => z(d.percent))
+        .ease(d3.easeBounce)
+      d3.select('.first')
+        .data(dataCijfer)
+        .html(d => d.total)
+
+      svg.selectAll("circle")
+        .data(dataCijfer)
+        .on("mouseover", function (d) {
+          div.transition()
+            .duration(200)
+            .style("opacity", .9)
+          div.html(` Cijfer: <span>${d.key}</span></br>percentage: <span>${d.percent}%</span> </br> aantal: ${d.value}`)
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+        })
+        .on("mouseout", function (d) {
+          div.transition()
+            .duration(500)
+            .style("opacity", 0);
+        });
+    }
+
+
   }
 
   // radio button on change update
