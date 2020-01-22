@@ -1,7 +1,22 @@
 # Etnisch-profileren
-Enquête data over etnisch profileren in Amsterdam. In samenwerking met CTRL-ALT-DELETE
+## [Live te zien!](https://joanpadolina.github.io/Etnisch-profileren/public/index2.html)
 
-Dit project maakt gebruik van data die niet bedoeld is voor openbaar gebruik.
+## Introductie
+
+CTRL-ALT-DELETE (CAD) is een organisatie die zich inzet in Etnisch profileren. Hierdoor hebben zij data binnen gekregen uit de enquête  met meer dan 1900 respondenten. Aan ons is gevraagd hier inzichten van te verkrijgen in de data. 
+
+### Dit project is mede mogelijk gemaakt door:
+* [Kim Garrard](https://github.com/kimgarrard) (tech)
+* Isabela Mik (design)
+* Joan Padolina (tech)
+
+
+## [Proces](https://joanpadolina.gitbook.io/product-biografie-promptbitious/)
+Ben je nieuwsgierig hoe dit project is verlopen en welke stappen wij hebben gevolgd? Dan verwijs ik je graag naar onze gitbook. Hier hebben wij voor beslissingen vast gelegd en verschillende schetsen tot een uitwerking gedocumenteerd. 
+
+
+## [Design Rationale](https://app.gitbook.com/@isa-hecker/s/etnisch-profileren/)
+Het design rationale gaat expliciet over onze ontwerp keuzen en welke visualisatie werkt en welke we achterwegen hebben gelaten. Ook hier is het proces te vinden.
 
 ## Project tools
 
