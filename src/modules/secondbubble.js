@@ -1,4 +1,17 @@
 // import valueAchtergrond from './selections.js'
+import {
+  religieNesting,
+  valueAchtergrondNesting
+} from './nesting.js'
+import {
+  contactNest
+} from './nesting.js'
+import {
+  totstandNesting
+} from './nesting.js'
+import {
+  resultaatNesting
+} from './nesting.js'
 
 export default function secondBubble(data) {
 
@@ -76,66 +89,39 @@ export default function secondBubble(data) {
     .domain([0, d3.max(dataCijfer.map(d => d.percent))])
     .range([1, 60]);
 
-  // nesting achtergrond
-  let valueAchtergrond = d3.nest()
-    .key(d => d.achtergrond)
-    .key(d => d.cijfer)
-    .rollup(leaves => leaves.length)
-    .entries(data)
 
-
+  // nesting all data for preperation to updating
+  // background from data 
+  let valueAchtergrond = valueAchtergrondNesting(data)
   valueAchtergrond.pop()
 
-  // nest in contact with police
-  let contactWith = d3.nest()
-    .key(d => d.contact)
-    .key(d => d.cijfer)
-    .rollup(leaves => leaves.length)
-    .entries(data)
+  // nesting in contact
+  let contactWith = contactNest(data)
 
   // selection contact with
   let valueContact = contactWith.map(d => d.key)
-
-  // nest totstand 
-  let totstandNest = d3.nest()
-    .key(d => d.totstand)
-    .key(d => d.cijfer)
-    .rollup(leaves => leaves.length)
-    .entries(nietWester)
+  // nesting who went to who 
+  let totstandNest = totstandNesting(nietWester)
 
   let valueTotstand = totstandNest.map(d => d.key)
-
-  // nest resultaat contact
-  let resultaatNest = d3.nest()
-    .key(d => d.stellingTerecht)
-    .key(d => d.cijfer)
-    .rollup(leaves => leaves.length)
-    .entries(nietWester)
-
-  console.log(resultaatNest)
-
-
+  // nesting what happen after contact
+  let resultaatNest = resultaatNesting(nietWester)
 
   let valueResultaat = resultaatNest.map(d => d.key)
   valueResultaat.pop()
-
-  let stellingReligie = d3.nest()
-    .key(d => d.stellingachtergrond)
-    .key(d => d.cijfer)
-    .rollup(leaves => leaves.length)
-    .entries(nietWester)
-
+  // nesting religion 
+  let stellingReligie = religieNesting(nietWester)
 
 
   // Circle size horizontal overal
-  let barPlot = svg.selectAll("circle")
+  let cirPlot = svg.selectAll("circle")
     .data(dataCijfer, function (d) {
       return d.key
     })
     .enter()
     .append("circle")
 
-  barPlot
+  cirPlot
     .attr('class', 'horizonCircle')
     .attr('transform', 'translate(0,30)')
     .attr("cy", d => y(d.key))
@@ -155,7 +141,7 @@ export default function secondBubble(data) {
 
 
 
-  barPlot.exit().remove()
+  cirPlot.exit().remove()
 
   // add the dots with tooltips
   let div = d3.select("body").append("div")
@@ -210,7 +196,7 @@ export default function secondBubble(data) {
 
 
 
-    barPlot
+    cirPlot
       .data(newC, function (d) {
         return d.key;
       })
@@ -220,7 +206,7 @@ export default function secondBubble(data) {
       .attr("r", d => z(d.percentage))
       .ease(d3.easeBounce)
 
-    barPlot
+    cirPlot
       .data(newD, function (d) {
         return d.key
       })
@@ -231,7 +217,7 @@ export default function secondBubble(data) {
       .ease(d3.easeBounce)
 
 
-    barPlot
+    cirPlot
       .data(newE, function (d) {
         return d.key;
       })
@@ -242,12 +228,12 @@ export default function secondBubble(data) {
       .ease(d3.easeBounce)
 
 
-    barPlot.attr("r", function (d) {
+    cirPlot.attr("r", function (d) {
       return Math.sqrt(d.key);
     });
 
 
-    barPlot.exit().transition()
+    cirPlot.exit().transition()
       .attr("r", 0)
       .remove();
 

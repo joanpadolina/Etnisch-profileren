@@ -225,3 +225,32 @@
         top:-10vh;
     }
 }
+@media (min-width:1024px) {
+    .vertrouwen {
+        left: 1vw;
+        top: 1vh;
+    }
+
+    .form2 {
+        top: -144.4vh;
+        left: 5vw;
+    }
+
+    #my_dataviz {
+        left: 0vw;
+    }
+
+    svg.bubble-plot {
+        top: 10vh;
+    }
+
+    p.txtbeoordeeld {
+        top: 26.6vh;
+        left: -3.6vw;
+    }
+
+    p.textlaag {
+        top: 103vh;
+        left: -3.2vw;
+    }
+}
