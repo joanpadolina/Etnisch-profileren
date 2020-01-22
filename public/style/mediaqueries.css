@@ -145,6 +145,8 @@
 
 }
 
+
+
 @media(min-width: 20em) and (max-width: 47em) {
 
     /* svg.bubble-plot2,
@@ -208,3 +210,18 @@
     }
 }
 
+@media(min-width: 1445px) {
+
+    svg.bubble-plot{
+        top:-3.2vh;
+    }
+    #my_dataviz{
+        top:1vh;
+    }
+    .textlaag{
+
+    }
+    .txtbeoordeeld{
+        top:-10vh;
+    }
+}
