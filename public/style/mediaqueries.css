@@ -210,30 +210,20 @@
     }
 }
 
-@media(min-width: 1445px) {
-
-    svg.bubble-plot{
-        top:-3.2vh;
-    }
-    #my_dataviz{
-        top:1vh;
-    }
-    .textlaag{
-
-    }
-    .txtbeoordeeld{
-        top:-10vh;
-    }
-}
-@media (min-width:1024px) {
+@media(min-width: 1025px) {
     .vertrouwen {
-        left: 1vw;
-        top: 1vh;
+        display: flexbox;
+        left: 0vw;
+        top: 0vh;
+        width: 100vw;
     }
 
     .form2 {
-        top: -144.4vh;
+        top: -130vh;
         left: 5vw;
+    }
+    .form1{
+        top:-97vh;
     }
 
     #my_dataviz {
@@ -241,7 +231,31 @@
     }
 
     svg.bubble-plot {
-        top: 10vh;
+        top: 255vh;
+    }
+}
+@media (min-width:1024px) {
+    .vertrouwen {
+        display: flexbox;
+        left: 0vw;
+        top: 0vh;
+        width: 100vw;
+    }
+
+    .form2 {
+        top: -140vh;
+        left: 5vw;
+    }
+    .form1{
+        top:-99vh;
+    }
+
+    #my_dataviz {
+        left: 0vw;
+    }
+
+    svg.bubble-plot {
+        top: 11vh;
     }
 
     p.txtbeoordeeld {
