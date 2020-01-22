@@ -2,6 +2,27 @@
 ## [Live te zien!](https://joanpadolina.github.io/Etnisch-profileren/public/index2.html)
 ![gif](https://github.com/joanpadolina/Etnisch-profileren/blob/master/readmeassets/dataviz%20bubble.gif)
 ![screen](https://github.com/joanpadolina/Etnisch-profileren/blob/master/readmeassets/bubblescreen.png)
+
+
+## Download dit project
+
+**stap 1 || download**
+
+```
+https://github.com/joanpadolina/Etnisch-profileren.git
+```
+
+**stap 2 || install** // in de terminal
+```js
+npm install
+```
+
+**stap 3 || server** // builden en live tonen // in de terminal
+
+```js
+npm run start
+```
+
 ## Introductie
 
 CTRL-ALT-DELETE (CAD) is een organisatie die zich inzet in Etnisch profileren. Hierdoor hebben zij data binnen gekregen uit de enquête  met meer dan 1900 respondenten. Aan ons is gevraagd hier inzichten van te verkrijgen in de data. 
@@ -82,25 +103,6 @@ Het design rationale gaat expliciet over onze ontwerp keuzen en welke visualisat
 * VSCode als code editor
 * [D3.js](https://d3js.org/)
 * Data van [CTRL-ALT-DELETE](https://controlealtdelete.nl/)
-
-## Project kloonen?
-
-**stap 1 || download**
-
-```
-https://github.com/joanpadolina/Etnisch-profileren.git
-```
-
-**stap 2 || install** // in de terminal
-```js
-npm install
-```
-
-**stap 3 || server** // builden en live tonen // in de terminal
-
-```js
-npm run start
-```
 
 
 ### Bronnenlijst
