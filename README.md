@@ -9,7 +9,7 @@
 **stap 1 || download**
 
 ```
-https://github.com/joanpadolina/Etnisch-profileren.git
+git clone https://github.com/joanpadolina/Etnisch-profileren.git
 ```
 
 **stap 2 || install** // in de terminal
@@ -18,10 +18,16 @@ npm install
 ```
 
 **stap 3 || server** // builden en live tonen // in de terminal
+*gebruik een live server tool om dit project te bekijken. Dit verschilt per code editor.
 
 ```js
 npm run start
 ```
+**stap 4 || localhost**
+```js
+localhost:8080
+```
+
 
 ## Introductie
 
