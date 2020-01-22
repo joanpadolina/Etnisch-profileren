@@ -82,6 +82,65 @@ Het resultaat na het ophalen is kan je in het volgende afbeelding zien:
 
 De visualisatie is gemaakt in het magische programma D3.js voor de inspiratie heb ik een [D3 Country Bubble Chart](https://github.com/UsabilityEtc/d3-country-bubble-chart) gevolgd. 
 
+### De setup:
+Alleerst voeg ik met de .enter() de circles toe die cijfer in de y-as plot. De eerste data die wordt weergegeven is het algemene vertrouwen tussen de twee groepen.
+
+
+
+```js
+  let cirPlot = svg.selectAll("circle")
+    .data(dataCijfer, function (d) {
+      return d.key
+    })
+
+  let circleEnter = cirPlot
+    .enter()
+    .append("circle")
+
+
+  circleEnter
+    .attr('class', 'nlCircle')
+    .attr('transform', 'translate(0,30)')
+    .attr("cy", d => y(d.key))
+    .attr("r", d => z(d.percent))
+    .style("fill", "yellow")
+    .attr('opacity', .5)
+    .attr("stroke", "#838383")
+```
+
+### de update // data filteren
+
+Om de juiste data binnen kijk je door de value van de 'radiobutton' die is gemaakt in HTML. Deze value geeft een waarde en zoekt vervolgens op in de data. Door te filteren haal je alleen de data op met deze waarde.
+
+```js
+    const selectedOption = this.value
+
+    function getPercentage(data) {
+      data = data.filter(row => {
+        if (row.stellingTerecht == selectedOption || row.totstand == selectedOption || row.stellingachtergrond == selectedOption) {
+          return row
+        }
+      })
+
+      data = d3.nest()
+        .key(d => d.cijfer)
+        .rollup(leaves => leaves.length)
+        .entries(data)
+
+      let total = data.reduce((prev, cur) => prev + cur.value, 0)
+      data.forEach(d => d.total = total);
+      let percentage = data.map(d => d.percentage = Math.round(d.value / total * 100));
+      data.forEach(d => d.categorie = selectedOption)
+      data.sort((a, b) => a.key - b.key)
+      data = data.filter(d => d.key !== "99999")
+
+      return data
+    }
+
+```
+
+Vervolgens maak ik gebruik van de d3.nest om alle de juiste totale waar te verkrijgen. Deze waarde is nodig omdat dit project niet werkt met absolute getallen. Hierbij is er een berekening gemaakt om het percentage te krijgen per categorie.
+
 
 ### Dit project is mede mogelijk gemaakt door:
 * Kim Garrard(tech)
