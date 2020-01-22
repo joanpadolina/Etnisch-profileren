@@ -57,6 +57,11 @@ Het resultaat na het ophalen is kan je in het volgende afbeelding zien:
 ![Imgur](https://i.imgur.com/qTjDWqM.png)
 
 
+## D3.js
+
+De visualisatie is gemaakt in het magische programma D3.js voor de inspiratie heb ik een [D3 Country Bubble Chart](https://github.com/UsabilityEtc/d3-country-bubble-chart) gevolgd. 
+
+
 ### Dit project is mede mogelijk gemaakt door:
 * Kim Garrard(tech)
 * Isabela Mik (design)
@@ -72,10 +77,11 @@ Het design rationale gaat expliciet over onze ontwerp keuzen en welke visualisat
 
 ## Project tools
 
-* Npm pakketen
-* Rollup.js voor building
+* [NPM](https://www.npmjs.com/)
+* [Rollup.js voor building](https://rollupjs.org/)
 * VSCode als code editor
-* Data uit [CTRL-ALT-DELETE](https://controlealtdelete.nl/)
+* [D3.js](https://d3js.org/)
+* Data van [CTRL-ALT-DELETE](https://controlealtdelete.nl/)
 
 ## Project kloonen?
 
