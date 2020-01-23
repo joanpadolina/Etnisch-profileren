@@ -78,6 +78,7 @@
         width: 100vw;
         margin: 0;
         top: 35vh !important;
+        z-index:-1;
     }
 
     .ruimte {
