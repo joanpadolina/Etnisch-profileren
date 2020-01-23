@@ -385,7 +385,7 @@ h3 {
 
 article p {
   color: white;
-  opacity: .8;
+  opacity: .9;
   font-family: "RobotoRegular";
   margin-top: 1em;
 }
@@ -464,7 +464,7 @@ button:hover {
 
 .research span, .description1 span {
   font-family: RobotoMedium;
-  background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgb(119, 118, 96, 0.6) 50%);
+  background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgb(0, 72, 255, 0.6) 50%);
   color: black;
   color: white;
   padding: 0.1em;
