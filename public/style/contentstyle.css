@@ -1,27 +1,30 @@
-
 svg.bubble-plot {
     display: block;
     position: relative;
     color: black;
-    top: 20.7vh;
-    left: 33vw;
 }
 
 svg.bubble-plot2 {
     display: block;
     position: relative;
     color: black;
-    left: 47vw;
-    top: -81.3vh;
+    width: 100vw !important;
 }
 
 #my_dataviz {
     display: block;
     position: relative;
-    top: 10vh;
-    left: -19vw;
+    display: flex;
+    justify-content: center;
+    width: 30vw;
+    margin-left: 35vw;
+    margin-right: 35vw;
+    top: 15vh !important;
 }
 
+.graph3 {
+    text-align: left !important;
+}
 
 .content {
     display: block;
@@ -145,40 +148,46 @@ div.tooltip {
     width: 10em;
 }
 
+.formsdiv {
+    width: 90vw;
+    margin-left: 5vw !important;
+    margin-right: 5vw !important;
+    top: 0;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    z-index: -1;
+}
+
 .form1,
 .form2 {
-    top: -106vh;
-    left: -32vw;
-    margin-left: auto;
-    margin-right: auto;
     position: relative;
     display: block;
-    width: 16em;
-    heigh: 10vh;
+    top: 0 !important;
+    left: 0 !important;
 }
 
 .form2 {
-    left: 4vw;
     position: relative;
-    top: -127.2vh;
-    width: 16em;
 }
 
+.form1 h2,
+.form2 h2 {
+    position: absolute;
+    width: 15vw;
+
+}
+
+.form2 h2 {
+    left: 1.2vw;
+}
 
 #herkomst-radio,
 #herkomst-radio2 {
     color: white;
     position: relative;
     font-size: 0.9em;
-    left: 1em;
-    top: -40.8em;
     display: inline-block;
-
-}
-
-#herkomst-radio2 {
-    left: 12em;
-    top: -67.5em;
 
 }
 
@@ -187,13 +196,9 @@ form h2 {
     font-size: 0.9em;
     padding: 0.6em;
     color: rgb(212, 214, 197);
-    left: -9em;
     position: relative;
     text-align: left;
     width: 13vw;
-    top: 7em;
-    margin-bottom: -6em;
-
 }
 
 span {
@@ -216,6 +221,7 @@ span {
 
 input {
     visibility: hidden;
+    position: absolute;
 }
 
 label {
@@ -232,17 +238,23 @@ label {
     transition: 200ms ease;
     text-align: center;
     font-weight: 100;
-    left: 5em;
-    top: 5em;
     position: relative;
 }
 
-.ruimte {
-    top: 7em;
+.labelsleft {
+    margin-left: 15vw;
 }
 
-.form2 h2 {
-    left: 27em;
+.labelsright {
+    margin-left: -15vw;
+}
+
+.ruimte {
+    margin-top: 6vh;
+}
+
+.ruimte2 {
+    margin-top: 10vh;
 }
 
 .form1 label:hover {
@@ -252,7 +264,6 @@ label {
 
 .form2 label:hover {
     background: rgba(0, 17, 255, 0.616);
-
 }
 
 .header {
@@ -269,12 +280,15 @@ label {
     top: -81.4em;
 }
 
-
 .vertrouwen {
     display: block;
     position: relative;
-    top: -2vh;
-    left: -19vw;
+    margin-top: 10vh;
+    left: -1em;
+    z-index: -1;
+}
+.legendatext{
+    z-index: -1;
 }
 
 .bear {
@@ -350,16 +364,16 @@ h3 {
 }
 
 .nederlandtxt {
-    left: 7em;
+    height: 18vh;
     display: block;
     position: relative;
-    top: -32em;
+    margin-left: 15vw;
 }
 
 .nietnltext {
     position: relative;
-    left: 17em;
-    top: -55.7em;
+    height: 18vh;
+    left: -15vw;
 }
 
 .first,
@@ -372,31 +386,21 @@ h3 {
     position: relative;
 }
 
+.legendatext {
+    width: 100vw;
+    text-align: center;
+    padding-top: 14vh;
+    position: absolute;
+}
+
 p.txtbeoordeeld,
 p.textlaag {
-    top: 8.6vh;
-    left: -3.6vw;
     font-size: 0.8em;
-    position: relative;
 }
 
 p.textlaag {
-    top: 65.7vw;
+    margin-top: 40vw;
 }
-
-/* .indivertrouwen {
-    height: 10em;
-    left: 42.5vw;
-    width: 27em;
-    position: relative;
-}
-
-.discriptionvertrouwen {
-    text-align: left;
-    width: 41.3vw;
-    position: relative;
-    left: 14vw;
-} */
 
 .bear img {
     width: 5em;

@@ -20,9 +20,9 @@ export default function secondBubble(data) {
   // set the dimensions and margins of the graph
   let margin = {
       top: 10,
-      right: 30,
+      right: 100,
       bottom: 70,
-      left: 100
+      left: 150
     },
     width = 860 - margin.left - margin.right,
     height = 700 - margin.top - margin.bottom;
@@ -51,6 +51,7 @@ export default function secondBubble(data) {
   let sumData = dataCijfer.reduce((prev, cur) => prev + cur.value, 0)
   let percentage = dataCijfer.map(d => d.percent = Math.round(d.value / sumData * 100))
   dataCijfer.forEach(d => d.total = sumData)
+ 
   // console.log(dataCijfer)
 
   // y axis
@@ -143,9 +144,7 @@ export default function secondBubble(data) {
     updateCir
       .data(updateData, d => d.key)
 
-    updateCir.exit().transition()
-      .attr("r", 0)
-      .remove();
+
 
     updateCir
       .transition()
@@ -158,7 +157,9 @@ export default function secondBubble(data) {
     updateCir.attr("r", function (d) {
       return Math.sqrt(d.percentage);
     });
-
+    updateCir.exit().transition()
+      .attr("r", 0)
+      .remove();
 
     //tooltip
 

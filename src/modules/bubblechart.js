@@ -26,12 +26,12 @@ export default function secondBubble(data) {
 
   // set the dimensions and margins of the graph
   let margin = {
-      top: 10,
+      top: 0,
       right: 30,
       bottom: 70,
       left: 100
     },
-    width = 860 - margin.left - margin.right,
+    width = 1200 - margin.left - margin.right,
     height = 700 - margin.top - margin.bottom;
 
   let svg = d3.select("#my_dataviz")

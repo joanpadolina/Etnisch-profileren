@@ -388,9 +388,6 @@ article p {
   opacity: .8;
   font-family: "RobotoRegular";
   margin-top: 1em;
-  /* width: 40vw;
-  margin-left: 30vw;
-  margin-bottom: 5vh; */
 }
 
 article {
@@ -467,15 +464,11 @@ button:hover {
 
 .research span, .description1 span {
   font-family: RobotoMedium;
-  background-color: #FFF33D;
-  background-color: grey;
-  /* background-color: rgb(119, 118, 96, 0.6); */
   background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgb(119, 118, 96, 0.6) 50%);
   color: black;
   color: white;
   padding: 0.1em;
 }
-
 
 .buttons {
   margin-top: 3vh;

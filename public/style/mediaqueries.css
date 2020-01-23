@@ -1,15 +1,4 @@
-
-  
 /* graph 3*/
-@media (min-width: 768px) and (max-width: 1024px) {
-    /* 
-    svg.bubble-plot2,
-    .selection-values2,
-    .form2 {
-        display: none;
-    } */
-
-}
 
 @media (max-width: 755px) {
 
@@ -20,91 +9,53 @@
     }
 
 
-
-    svg.bubble-plot2 {
-        left: 49vw;
-        width: 14em;
-        top: -140vh;
-    }
-
-
     .form2 form h2 {
         font-size: .9em;
     }
 
     .form2 form {
         left: 0vw;
-        top: 9vh;
-    }
-
-    .form2 {
-        top: -134.2vh;
     }
 
     .form2 form h2 {
-        width: 47vw;
-        top: 18.9vh !important;
-        left: 8.7vw !important;
+        width: 45vw;
         margin-bottom: 0;
-        padding: 1em;
-    
+        padding: 1em 0;
+
     }
 
-    #herkomst-radio2{
-        top: -69.5em;
-    }
     .form2 label {
-        top: 19vh;
         margin: 0.2em;
         padding: 0.4em;
-        left: 5vw;
-        width: 12em;
-    }
-
-    .colorbuttons {
-        top: 18vh;
+        width: 45vw;
     }
 
     .colorbuttons label {
-        top: 3vh;
-        left: -6.4vw;
         width: 2em;
 
     }
 
-    .colorbuttons p {
-        left: -12.1vw;
-
-    }
-
     .graph3 {
-        height: 190vh;
+        height: 260vh;
     }
 
     .discriptionvertrouwen {
-        margin-left: -6vw;
         width: 90vw;
     }
 
-    .nederlandtxt {
-        top: -66vh;
-        left: 20vw;
+    .nietnltext {
+        left: 0;
+        width: 100vw;
     }
 
-    .nietnltext {
-        top: -51.7em;
-        left: 14vw;
+    .nietnltext h3 {
+        width: 100%;
     }
+
 
     .nietnltext p {
-        right: -57vw;
-        top: -17vh;
-        font-size: 3.6em;
+        font-size: em;
         margin-bottom: -11vh;
-    }
-
-    .bubble-plot {
-        left: 100vw;
     }
 
     .form1 form h2 {
@@ -116,32 +67,6 @@
         top: 0vh;
     }
 
-    .form1 form h2 {
-        width: 19em;
-        left: 10vw;
-
-    }
-
-    /* plot1 */
-    /* p.txtbeoordeeld {
-        left: 52vw;
-        top: 47.2vh;
-    } 
-    p.textlaag {
-        left: 52vw;
-        top: 123.4vh;
-    }*/
-
-    p.txtbeoordeeld {
-        top: -125.4vh;
-        left: 0.2vw;
-    }
-
-    p.textlaag {
-        top: -69.3vw;
-        left: -0.5vw;    
-    }
-
 
 }
 
@@ -149,15 +74,23 @@
 
 @media(min-width: 20em) and (max-width: 47em) {
 
-    /* svg.bubble-plot2,
-    .selection-values2,
-    .form2 {
-        display: none;
-    } */
+    #my_dataviz {
+        width: 100vw;
+        margin: 0;
+        top: 35vh !important;
+    }
 
-    .vertrouwen {
-        top: 145.8vh;
-        left: -29vw;
+    .ruimte {
+        margin-top: 0vh;
+    }
+
+    svg.bubble-plot2 {
+        left: 36vw;
+
+    }
+
+    .form2 h2 {
+        position: relative;
     }
 
     .discription1 {
@@ -165,30 +98,11 @@
         left: 1vw;
     }
 
-    .nederlandtxt h3 {
-        top: -33vh;
-        left: 44vw;
-    }
-
-    /* svg.bubble-plot {
-        left: 100vw;
-    } */
-
-    /* .vertrouwen {
-        top: -24.2vh;
-        left: -29vw;
-
-    } */
-
-
     .form1 form h2 {
         font-size: .9em;
-        top: 9.9vh !important;
-        left: 11vw !important;
     }
 
     .form1 {
-        left: -10vw;
         top: 0vh;
     }
 
@@ -199,72 +113,30 @@
         margin: auto;
     }
 
+    .legendatext {
+        display: none;
+    }
+}
+
+
+@media(min-width: 1445px) {
+    #my_dataviz {
+        top: 1vh;
+    }
+
+    .textlaag {}
+
     .txtbeoordeeld {
-        left: 52vw;
-        top: 47.2vh;
+        top: -10vh;
     }
 
-    .textlaag {
-        left: 52vw;
-        top: 123.4vh;
-    }
 }
 
-@media(min-width: 1025px) {
-    .vertrouwen {
-        display: flexbox;
-        left: 0vw;
-        top: 0vh;
-        width: 100vw;
-    }
 
-    .form2 {
-        top: -130vh;
-        left: 5vw;
-    }
-    .form1{
-        top:-97vh;
-    }
 
-    #my_dataviz {
-        left: 0vw;
-    }
-
-    svg.bubble-plot {
-        top: 255vh;
-    }
-}
 @media (min-width:1024px) {
-    .vertrouwen {
-        display: flexbox;
-        left: 0vw;
-        top: 0vh;
-        width: 100vw;
-    }
-
-    .form2 {
-        top: -140vh;
-        left: 5vw;
-    }
-    .form1{
-        top:-99vh;
-    }
 
     #my_dataviz {
         left: 0vw;
-    }
-
-    svg.bubble-plot {
-        top: 11vh;
-    }
-
-    p.txtbeoordeeld {
-        top: 26.6vh;
-        left: -3.6vw;
-    }
-
-    p.textlaag {
-        top: 103vh;
-        left: -3.2vw;
     }
 }
