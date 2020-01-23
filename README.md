@@ -145,7 +145,7 @@ Om de juiste data binnen kijk je door de value van de 'radiobutton' die is gemaa
 
 ```
 
-Vervolgens maak ik gebruik van de d3.nest om alle de juiste totale waar te verkrijgen. Deze waarde is nodig omdat dit project niet werkt met absolute getallen. Hierbij is er een berekening gemaakt om het percentage te krijgen per categorie.
+Vervolgens maak ik gebruik van de d3.nest om de aantallen per ingevulde cijfer vast te stellen. Deze waarde is nodig omdat dit project niet werkt met absolute getallen. Hierbij is er een berekening gemaakt om het percentage te krijgen per categorie.
 
 
 ### Dit project is mede mogelijk gemaakt door:
