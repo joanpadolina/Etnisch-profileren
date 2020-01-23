@@ -26,7 +26,7 @@
 
 @font-face {
     font-family: "Rubik";
-    src: url("../fonts/Rubik-Bold.ttf") format("truetype");
+    src: url("../fonts/Rubik-Black.ttf") format("truetype");
 }
 
 body {
@@ -76,6 +76,11 @@ body {
 @font-face {
     font-family: "RobotoRegular";
     src: url("../fonts/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "RobotoBold";
+    src: url("../fonts/Roboto-Bold.ttf") format("truetype");
 }
 
 @font-face {
@@ -441,7 +446,7 @@ button:hover {
 
 .intro img {
   margin-top: 5vh;
-  width: 30vw;
+  width: 28vw;
 }
 
 .research {
@@ -451,10 +456,29 @@ button:hover {
   padding-top: 10vh;
 }
 
+.research h2 {
+  margin-bottom: 3vh;
+}
+
 .research p {
   width: 40vw;
   margin-left: 30vw;
-  margin-bottom: 5vh;
+}
+
+.research span, .description1 span {
+  font-family: RobotoMedium;
+  background-color: #FFF33D;
+  background-color: grey;
+  /* background-color: rgb(119, 118, 96, 0.6); */
+  background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgb(119, 118, 96, 0.6) 50%);
+  color: black;
+  color: white;
+  padding: 0.1em;
+}
+
+
+.buttons {
+  margin-top: 3vh;
 }
 
 .vwidd {
@@ -479,6 +503,10 @@ button:hover {
   margin: 0;
   margin-top: -12vh;
   width: 8vw;
+}
+
+.vwiddtext {
+  text-align: center;
 }
 
 .vwiddtext h2 {
@@ -527,7 +555,7 @@ button:hover {
 }
 
 .graph1 img {
-  width: 100vw;
+  width: 98vw;
   margin-top: 10vh;
   background-color: #191919;
   padding: 0em 1em 5em;
@@ -634,7 +662,8 @@ button:hover {
 
 .graph3 {
   background-image: -webkit-linear-gradient(97deg, #191919 80%, rgba(0, 0, 0, 0) 0%);
-
+  padding-top: 25vh !important;
+  margin-top: -10vh;
 }
 
 .graph3 section {
@@ -689,7 +718,7 @@ button:hover {
 
   .BG {
     position: fixed;
-    background-image: url("images/BG_mobile.png");
+    background-image: url("../images/BG_mobile.png");
     background-repeat: no-repeat;
     background-size: 100vw 100vh;
     position: fixed;
@@ -753,6 +782,15 @@ button:hover {
 
   .vwidd img {
     width: 100vw;
+  }
+
+  .vwiddmobilediv {
+    display: block !important;
+    height: 195vh;
+  }
+
+  .graph1 {
+    padding-top: 8vh;
   }
 
   .graph1 section {
@@ -825,6 +863,11 @@ button:hover {
     margin-top: 5vh;
   }
 
+  .graph3 {
+    padding-top: 30vh !important;
+    margin-top: -30vh;
+  }
+
   .graph3 section {
     margin-top: 0vh;
   }
@@ -862,10 +905,6 @@ button:hover {
 
 
 @media (min-width: 768px) and (max-width: 1024px) {
-
-  .graph1img {
-    display: none;
-  }
 
   body {
     background-color: black;
@@ -937,6 +976,8 @@ button:hover {
 
   .intro img {
     width: 50vw;
+    position: relative;
+    z-index: 5;
   }
 
   .graph1 section {
@@ -1117,15 +1158,4 @@ button:hover {
   position: absolute;
   z-index: 1;
   margin-top: 0 !important;
-}
-
-.vwiddtext {
-  width: 90vw;
-  margin-left: 5vw;
-  text-align: left;
-}
-
-.vwiddmobilediv {
-  overflow-y: auto;
-  height: 195vh;
 }

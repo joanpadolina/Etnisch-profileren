@@ -188,6 +188,7 @@
           return Math.sqrt(d.percentage);
         });
 
+
         updateCir.exit().transition()
           .attr("r", 0)
           .remove();
@@ -204,6 +205,11 @@
             div.html(`<span>${d.categorie}</span> </br>Cijfer: <span>${d.key}</span></br> percentage: ${d.percentage}% </br> aantal: ${d.value}`)
               .style("left", (d3.event.pageX) + "px")
               .style("top", (d3.event.pageY - 28) + "px");
+          })
+          .on("mouseout", function (d) {
+            div.transition()
+              .duration(500)
+              .style("opacity", 0);
           });
 
 
@@ -325,18 +331,18 @@
       // Add a scale for bubble size
       let z = d3.scaleLinear()
         .domain([0, d3.max(dataCijfer.map(d => d.percent))])
-        .range([1, 60]);
+        .range([0, 60]);
 
 
       // Circle size horizontal overal
       let cirPlot = svg.selectAll("circle")
         .data(dataCijfer, function (d) {
           return d.key
-        })
-        .enter()
+        });
+      let cirEnter = cirPlot.enter()
         .append("circle");
 
-      cirPlot
+      cirEnter
         .attr('class', 'horizonCircle')
         .attr('transform', 'translate(0,30)')
         .attr("cy", d => y(d.key))
@@ -356,7 +362,7 @@
 
 
 
-      cirPlot.exit().remove();
+
 
       // add the dots with tooltips
       let div = d3.select("body").append("div")
@@ -389,24 +395,27 @@
 
         const updateData = getPercentage(data, selectedOption);
 
-        let updateCir = cirPlot;
+        let updateCir = cirEnter;
 
         updateCir
-          .data(updateData, d => d.key)
+          .data(updateData, d => d.key);
+
+        updateCir.exit().transition()
+          .attr("r", 0)
+          .remove();
+
+        updateCir
           .transition()
           .duration(800)
           .attr("cy", d => y(d.key))
           .attr("r", d => z(d.percentage))
           .ease(d3.easeBounce);
 
+
         updateCir.attr("r", function (d) {
           return Math.sqrt(d.percentage);
         });
 
-
-        updateCir.exit().transition()
-          .attr("r", 0)
-          .remove();
 
         //tooltip
 

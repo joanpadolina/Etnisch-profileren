@@ -165,6 +165,7 @@ export default function secondBubble(data) {
       return Math.sqrt(d.percentage);
     });
 
+
     updateCir.exit().transition()
       .attr("r", 0)
       .remove();
@@ -182,6 +183,11 @@ export default function secondBubble(data) {
           .style("left", (d3.event.pageX) + "px")
           .style("top", (d3.event.pageY - 28) + "px");
       })
+      .on("mouseout", function (d) {
+        div.transition()
+          .duration(500)
+          .style("opacity", 0);
+      });
 
 
     d3.select('.first')

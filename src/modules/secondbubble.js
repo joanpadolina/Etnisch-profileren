@@ -74,7 +74,7 @@ export default function secondBubble(data) {
   // Add a scale for bubble size
   let z = d3.scaleLinear()
     .domain([0, d3.max(dataCijfer.map(d => d.percent))])
-    .range([1, 60]);
+    .range([0, 60]);
 
 
   // Circle size horizontal overal
@@ -82,10 +82,10 @@ export default function secondBubble(data) {
     .data(dataCijfer, function (d) {
       return d.key
     })
-    .enter()
+  let cirEnter = cirPlot.enter()
     .append("circle")
 
-  cirPlot
+  cirEnter
     .attr('class', 'horizonCircle')
     .attr('transform', 'translate(0,30)')
     .attr("cy", d => y(d.key))
@@ -105,7 +105,7 @@ export default function secondBubble(data) {
 
 
 
-  cirPlot.exit().remove()
+
 
   // add the dots with tooltips
   let div = d3.select("body").append("div")
@@ -138,24 +138,27 @@ export default function secondBubble(data) {
 
     const updateData = getPercentage(data, selectedOption)
 
-    let updateCir = cirPlot
+    let updateCir = cirEnter
 
     updateCir
       .data(updateData, d => d.key)
+
+    updateCir.exit().transition()
+      .attr("r", 0)
+      .remove();
+
+    updateCir
       .transition()
       .duration(800)
       .attr("cy", d => y(d.key))
       .attr("r", d => z(d.percentage))
       .ease(d3.easeBounce)
 
+
     updateCir.attr("r", function (d) {
       return Math.sqrt(d.percentage);
     });
 
-
-    updateCir.exit().transition()
-      .attr("r", 0)
-      .remove();
 
     //tooltip
 
