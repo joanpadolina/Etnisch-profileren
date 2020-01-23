@@ -1,8 +1,6 @@
-
+import {getPercentage} from './selectedData.js'
 
 export default function secondBubble(data) {
-
-
 
   const nietWester = data.filter(object => {
     if (object.achtergrond !== 'Nederlands' && object.achtergrond !== "Westers" && object.achtergrond !== "Onbekend") {
@@ -13,17 +11,17 @@ export default function secondBubble(data) {
   const nederlands = data.filter(object => {
     if (object.achtergrond == "Nederlands") return object
   })
-
+  data = nederlands
 
   let nlNest = d3.nest()
     .key(d => d.leeftijdcategorie)
     .rollup(leaves => leaves.length)
-    .entries(nederlands)
+    .entries(data)
 
   let nietNest = d3.nest()
     .key(d => d.leeftijdcategorie)
     .rollup(leaves => leaves.length)
-    .entries(nederlands)
+    .entries(data)
 
 
   // set the dimensions and margins of the graph
@@ -49,7 +47,7 @@ export default function secondBubble(data) {
   let dataNew = d3.nest()
     .key(d => d.cijfer)
     .rollup(leaves => leaves.length)
-    .entries(nederlands)
+    .entries(data)
 
   dataNew.sort((a, b) => a.key - b.key)
   let dataCijfer = dataNew.filter(d => {
@@ -149,32 +147,9 @@ export default function secondBubble(data) {
 
   function updateBubble() {
 
-
     const selectedOption = this.value
 
-    function getPercentage(data) {
-      data = data.filter(row => {
-        if (row.stellingTerecht == selectedOption || row.totstand == selectedOption || row.stellingachtergrond == selectedOption) {
-          return row
-        }
-      })
-
-      data = d3.nest()
-        .key(d => d.cijfer)
-        .rollup(leaves => leaves.length)
-        .entries(data)
-
-      let total = data.reduce((prev, cur) => prev + cur.value, 0)
-      data.forEach(d => d.total = total);
-      let percentage = data.map(d => d.percentage = Math.round(d.value / total * 100));
-      data.forEach(d => d.categorie = selectedOption)
-      data.sort((a, b) => a.key - b.key)
-      data = data.filter(d => d.key !== "99999")
-
-      return data
-    }
-
-    const updateData = getPercentage(nederlands)
+    const updateData = getPercentage(data, selectedOption)
 
     let updateCir = circleEnter
 
@@ -189,7 +164,6 @@ export default function secondBubble(data) {
     updateCir.attr("r", function (d) {
       return Math.sqrt(d.percentage);
     });
-
 
     updateCir.exit().transition()
       .attr("r", 0)
@@ -208,11 +182,6 @@ export default function secondBubble(data) {
           .style("left", (d3.event.pageX) + "px")
           .style("top", (d3.event.pageY - 28) + "px");
       })
-      .on("mouseout", function (d) {
-        div.transition()
-          .duration(500)
-          .style("opacity", 0);
-      });
 
 
     d3.select('.first')

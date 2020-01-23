@@ -1,10 +1,10 @@
-
+import {
+  getPercentage
+} from './selectedData.js'
 
 export default function secondBubble(data) {
 
-
-
-  const nietWester = data.filter(object => {
+  const nietwesters = data.filter(object => {
     if (object.achtergrond !== 'Nederlands' && object.achtergrond !== "Westers" && object.achtergrond !== "Onbekend") {
       return object
     }
@@ -14,7 +14,7 @@ export default function secondBubble(data) {
     if (object.achtergrond == "Nederlands") return object
   })
 
-  // console.log(nederlands)
+  data = nietwesters
 
 
   // set the dimensions and margins of the graph
@@ -40,7 +40,7 @@ export default function secondBubble(data) {
   let dataNew = d3.nest()
     .key(d => d.cijfer)
     .rollup(leaves => leaves.length)
-    .entries(nietWester)
+    .entries(data)
 
   dataNew.sort((a, b) => a.key - b.key)
 
@@ -131,36 +131,12 @@ export default function secondBubble(data) {
 
   // --- update pattern ends here --- ///
 
+
   function updateBubble2() {
-
-
-   
 
     const selectedOption = this.value
 
-    function getPercentage(data) {
-      data = data.filter(row => {
-        if (row.stellingTerecht == selectedOption || row.totstand == selectedOption || row.stellingachtergrond == selectedOption) {
-          return row
-        }
-      })
-
-      data = d3.nest()
-        .key(d => d.cijfer)
-        .rollup(leaves => leaves.length)
-        .entries(data)
-
-      let total = data.reduce((prev, cur) => prev + cur.value, 0)
-      data.forEach(d => d.total = total);
-      let percentage = data.map(d => d.percentage = Math.round(d.value / total * 100));
-      data.forEach(d => d.categorie = selectedOption)
-      data.sort((a, b) => a.key - b.key)
-      data = data.filter(d => d.key !== "99999")
-
-      return data
-    }
-
-    const updateData = getPercentage(nietWester)
+    const updateData = getPercentage(data, selectedOption)
 
     let updateCir = cirPlot
 
