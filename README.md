@@ -158,7 +158,7 @@ Vervolgens maak ik gebruik van de d3.nest om de aantallen per ingevulde cijfer v
 Ben je nieuwsgierig hoe dit project is verlopen en welke stappen wij hebben gevolgd? Dan verwijs ik je graag naar onze gitbook. Hier hebben wij voor beslissingen vast gelegd en verschillende schetsen tot een uitwerking gedocumenteerd. 
 
 
-## [Design Rationale](https://app.gitbook.com/@isa-hecker/s/etnisch-profileren/)
+## [Design Rationale](https://joanpadolina.gitbook.io/product-biografie-promptbitious/design-rationale/de-opdracht)
 Het design rationale gaat expliciet over onze ontwerp keuzen en welke visualisatie werkt en welke we achterwegen hebben gelaten. Ook hier is het proces te vinden.
 
 ## Project tools
