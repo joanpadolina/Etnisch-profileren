@@ -149,9 +149,12 @@ Vervolgens maak ik gebruik van de d3.nest om de aantallen per ingevulde cijfer v
 
 
 ### Dit project is mede mogelijk gemaakt door:
-* Kim Garrard(tech)
-* Isabela Mik (design)
-* Joan Padolina (tech)
+
+Developer: Kim Garrard
+
+Developer: Joan Padolina
+
+Designer: Isabel Mik
 
 
 ## [Proces](https://joanpadolina.gitbook.io/product-biografie-promptbitious/)
