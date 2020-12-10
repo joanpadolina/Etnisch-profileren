@@ -2,7 +2,6 @@
 <html lang="nl">
 
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Etnisch Profileren</title>
@@ -17,7 +16,6 @@
 <body class="overflowx">
 
   <body class="overflowx">
-
     <img src="images/amsterdam_mobile.png" alt="" class="amsterdammobile visiblemobile">
     <img src="images/amsterdam_tablet.png" alt="" class="amsterdamtablet visibletablet">
 
@@ -30,10 +28,7 @@
     </div>
 
     <div class="BG"></div>
-
-
     <main class="wrapper">
-
       <div class="titlewrapper">
         <img src="images/circles.png" alt="" class="yellowcircle">
         <div class="yellowcircle"></div>
@@ -194,9 +189,11 @@
         <div class="description1 discriptionvertrouwen">
           <h2>3. ALGEMEEN VERTROUWEN</h2>
           <div class="yellowdevider"></div>
-          <p>In deze grafiek focussen we ons op het <span>rapportcijfer van het algemene vertrouwen</span> dat mensen in de politie hebben.
+          <p>In deze grafiek focussen we ons op het <span>rapportcijfer van het algemene vertrouwen</span> dat mensen in
+            de politie hebben.
           </p>
-          <p>Je kunt door alle gegeven antwoorden heen klikken, deze met elkaar vergelijken en kijken wat de invloed van deze
+          <p>Je kunt door alle gegeven antwoorden heen klikken, deze met elkaar vergelijken en kijken wat de invloed van
+            deze
             antwoorden is op het cijfer.
           </p>
         </div>
@@ -207,91 +204,88 @@
         </div>
 
       </section>
+        <!-- <div id="my_dataviz"></div> -->
 
-        <div class="vertrouwen">
-          <div class="legendatext">
-            <p class="txtbeoordeeld">Hoogbeoordeeld</p>
-            <p class="textlaag">Laag beoordeeld</p>
-          </div>
-          <div id="my_dataviz"></div>
-<!--
-          <div class="totaltext">
-
-
-
-          </div> -->
-          <div class="formsdiv">
-
-          <div class="form1">
-            <div class="nederlandtxt">
-              <h3 class="textInfo">Nederlandse Nederlanders</h3>
-              <p class="first">691</p>
+        <div class="formsdiv">
+            <div class="legendatext">
+              <p class="txtbeoordeeld">Hoogbeoordeeld</p>
+              <p class="textlaag">Laag beoordeeld</p>
             </div>
-            <form action="" id="herkomst-radio">
+          <div class="form__nl">
+            <div id="nl-data-viz"></div>
+            <div class="form1">
+              <div class="nederlandtxt">
+                <h3 class="textInfo">Nederlandse Nederlanders</h3>
+                <p class="first">691</p>
+              </div>
+              <form action="" id="herkomst-radio">
                 <input type="radio" name="states" value="algemeennl" id="algemeennl" checked="checked">
                 <label for="algemeennl" class="labelsleft">Algemeen vertrouwen</label>
                 <br />
-              <h2 class="ruimte">Vond u het terecht of onterecht dat de politie naar u toe
-                kwam?</h2>
-              <input type="radio" name="states" value="Zeer onterecht" id="Nederlands">
-              <label for="Nederlands" class="labelsleft ruimte" >
-                Zeer onterecht
-              </label>
-              <br />
-              <input type="radio" name="states" value="Onterecht" id="Overige-niet-Westers">
-              <label class="labelsleft" for="Overige-niet-Westers" id="Overige-niet-Westers2-label">
-                Onterecht
-              </label>
-              <br />
-              <input type="radio" name="states" value="Niet terecht, niet onterecht" id="Surinaams">
-              <label class="labelsleft" for="Surinaams">
-                Niet terecht, niet onterecht
-              </label>
-              <br />
-              <input type="radio" name="states" value="Terecht" id="terecht1">
-              <label class="labelsleft" for="terecht1">
-                Terecht
-              </label>
-              <br />
-              <input type="radio" name="states" value="Zeer terecht" id="terecht2">
-              <label class="labelsleft" for="terecht2">
-                Zeer terecht
-              </label>
-              <br />
+                <h2 class="ruimte">Vond u het terecht of onterecht dat de politie naar u toe
+                  kwam?</h2>
+                <input type="radio" name="states" value="Zeer onterecht" id="Nederlands">
+                <label for="Nederlands" class="labelsleft ruimte">
+                  Zeer onterecht
+                </label>
+                <br />
+                <input type="radio" name="states" value="Onterecht" id="Overige-niet-Westers">
+                <label class="labelsleft" for="Overige-niet-Westers" id="Overige-niet-Westers2-label">
+                  Onterecht
+                </label>
+                <br />
+                <input type="radio" name="states" value="Niet terecht, niet onterecht" id="Surinaams">
+                <label class="labelsleft" for="Surinaams">
+                  Niet terecht, niet onterecht
+                </label>
+                <br />
+                <input type="radio" name="states" value="Terecht" id="terecht1">
+                <label class="labelsleft" for="terecht1">
+                  Terecht
+                </label>
+                <br />
+                <input type="radio" name="states" value="Zeer terecht" id="terecht2">
+                <label class="labelsleft" for="terecht2">
+                  Zeer terecht
+                </label>
+                <br />
 
 
-              <h2 class="ruimte">
-                “Ik denk dat de politie naar mij toe kwam vanwege mijn
-                culturele of religieuze achtergrond”
-              </h2>
+                <h2 class="ruimte">
+                  “Ik denk dat de politie naar mij toe kwam vanwege mijn
+                  culturele of religieuze achtergrond”
+                </h2>
 
-              <input type="radio" name="states" value="Helemaal mee oneens" id="Wel contact gehad">
-              <label class="labelsleft ruimte" for="Wel contact gehad">Helemaal mee oneens</label>
-              <br />
-              <input type="radio" name="states" value="Mee oneens" id="Geen contact gehad">
-              <label class="labelsleft" for="Geen contact gehad">Mee oneens</label>
-              <br />
-              <input type="radio" name="states" value="Niet mee eens en niet mee oneens" id="nietmee1">
-              <label class="labelsleft" for="nietmee1">Niet mee eens en niet mee oneens</label>
-              <br />
-              <!-- <input type="radio" name="states" value="Mee eens" id="oneens">
+                <input type="radio" name="states" value="Helemaal mee oneens" id="Wel contact gehad">
+                <label class="labelsleft ruimte" for="Wel contact gehad">Helemaal mee oneens</label>
+                <br />
+                <input type="radio" name="states" value="Mee oneens" id="Geen contact gehad">
+                <label class="labelsleft" for="Geen contact gehad">Mee oneens</label>
+                <br />
+                <input type="radio" name="states" value="Niet mee eens en niet mee oneens" id="nietmee1">
+                <label class="labelsleft" for="nietmee1">Niet mee eens en niet mee oneens</label>
+                <br />
+                <!-- <input type="radio" name="states" value="Mee eens" id="oneens">
               <label for="oneens">Mee eens</label>
               <br /> -->
-              <input type="radio" name="states" value="Helemaal mee eens" id="oneens">
-              <label class="labelsleft" for="oneens">Helemaal mee eens</label>
-              <br />
+                <input type="radio" name="states" value="Helemaal mee eens" id="oneens">
+                <label class="labelsleft" for="oneens">Helemaal mee eens</label>
+                <br />
 
-              <h2 class="ruimte2">
-                Hoe kwam uw LAATSTE contact met de politie tot stand?
-              </h2>
+                <h2 class="ruimte2">
+                  Hoe kwam uw LAATSTE contact met de politie tot stand?
+                </h2>
 
-              <input type="radio" name="states" value="De politie kwam naar mij toe" id="De politie kwam naar mij toe">
-              <label class="labelsleft ruimte2" for="De politie kwam naar mij toe">De politie <span>kwam naar mij</span> toe</label>
-              <br />
-              <input type="radio" name="states" value="Ik ging naar de politie toe" id="Ik ging naar de politie toe">
-              <label class="labelsleft" for="Ik ging naar de politie toe"><span>Ik ging naar</span> de politie toe</label>
+                <input type="radio" name="states" value="De politie kwam naar mij toe"
+                  id="De politie kwam naar mij toe">
+                <label class="labelsleft ruimte2" for="De politie kwam naar mij toe">De politie <span>kwam naar
+                    mij</span> toe</label>
+                <br />
+                <input type="radio" name="states" value="Ik ging naar de politie toe" id="Ik ging naar de politie toe">
+                <label class="labelsleft" for="Ik ging naar de politie toe"><span>Ik ging naar</span> de politie
+                  toe</label>
 
-              <!-- <div class="colorbuttons">
+                <!-- <div class="colorbuttons">
                 <p>kleur kiezen</p>
                 <input type="radio" name="kleur1" value="red" id="rood1">
                 <label class="rood" for="rood1"></label>
@@ -301,81 +295,89 @@
                 <label class="white" for="white1"></label>
               </div> -->
 
-            </form>
+              </form>
 
-          </div>
-          <div class="form2">
-            
-            <div class="nietnltext">
-              <h3 class="textInfo">Nederlanders met een niet-westerse migratieachtergrond
-              </h3>
-              <p class="second">963</p>
             </div>
+          </div>
+          <div class="form__non-nl">
+            <div id="non-nl-data-viz"></div>
+            <div class="form2">
 
-            <form action="" id="herkomst-radio2">
+              <div class="nietnltext">
+                <h3 class="textInfo">Nederlanders met een niet-westerse migratieachtergrond
+                </h3>
+                <p class="second">963</p>
+              </div>
+
+              <form action="" id="herkomst-radio2">
                 <input type="radio" name="states2" value="algemeenniet" id="algemeenniet" checked="checked">
-                <label for="algemeenniet"  class="labelsright">Algemeen vertrouwen</label>
+                <label for="algemeenniet" class="labelsright">Algemeen vertrouwen</label>
                 <br />
-              <h2 class="ruimte">Vond u het terecht of onterecht dat de politie naar u toe
-                kwam?</h2>
-              <input type="radio" name="states2" value="Zeer onterecht" id="Nederlands2">
-              <label class="labelsright ruimte" for="Nederlands2">
-                Zeer onterecht
-              </label>
-              <br />
-              <input type="radio" name="states2" value="Onterecht" id="Overige-niet-Westers2">
-              <label class="labelsright" for="Overige-niet-Westers2" id="Overige-niet-Westers2-label">
-                Onterecht
-              </label>
-              <br />
-              <input type="radio" name="states2" value="Niet terecht, niet onterecht" id="Surinaams2">
-              <label class="labelsright" for="Surinaams2">
-                Niet terecht, niet onterecht
-              </label>
-              <br />
-              <input type="radio" name="states2" value="Terecht" id="Voormalig-Nederlandse-Antillen2">
-              <label class="labelsright" for="Voormalig-Nederlandse-Antillen2" id="Voormalig-Nederlandse-Antillen2-label">
-                Terecht
-              </label>
-              <br />
-              <input type="radio" name="states2" value="Zeer terecht" id="Westers2">
-              <label class="labelsright" for="Westers2">
-                Zeer terecht
-              </label>
-              <br />
+                <h2 class="ruimte">Vond u het terecht of onterecht dat de politie naar u toe
+                  kwam?</h2>
+                <input type="radio" name="states2" value="Zeer onterecht" id="Nederlands2">
+                <label class="labelsright ruimte" for="Nederlands2">
+                  Zeer onterecht
+                </label>
+                <br />
+                <input type="radio" name="states2" value="Onterecht" id="Overige-niet-Westers2">
+                <label class="labelsright" for="Overige-niet-Westers2" id="Overige-niet-Westers2-label">
+                  Onterecht
+                </label>
+                <br />
+                <input type="radio" name="states2" value="Niet terecht, niet onterecht" id="Surinaams2">
+                <label class="labelsright" for="Surinaams2">
+                  Niet terecht, niet onterecht
+                </label>
+                <br />
+                <input type="radio" name="states2" value="Terecht" id="Voormalig-Nederlandse-Antillen2">
+                <label class="labelsright" for="Voormalig-Nederlandse-Antillen2"
+                  id="Voormalig-Nederlandse-Antillen2-label">
+                  Terecht
+                </label>
+                <br />
+                <input type="radio" name="states2" value="Zeer terecht" id="Westers2">
+                <label class="labelsright" for="Westers2">
+                  Zeer terecht
+                </label>
+                <br />
 
-              <h2 class="ruimte">
-                “Ik denk dat de politie naar mij toe kwam vanwege mijn
-                culturele of religieuze achtergrond”
-              </h2>
+                <h2 class="ruimte">
+                  “Ik denk dat de politie naar mij toe kwam vanwege mijn
+                  culturele of religieuze achtergrond”
+                </h2>
 
-              <input type="radio" name="states2" value="Helemaal mee oneens" id="Wel contact gehad2">
-              <label class="labelsright ruimte" for="Wel contact gehad2">Helemaal mee oneens</label>
-              <br />
-              <input type="radio" name="states2" value="Mee oneens" id="Geen contact gehad2">
-              <label class="labelsright" for="Geen contact gehad2">Mee oneens</label>
-              <br />
-              <input type="radio" name="states2" value="Niet mee eens en niet mee oneens" id="nietmee">
-              <label class="labelsright" for="nietmee">Niet mee eens en niet mee oneens</label>
-              <br />
-              <input type="radio" name="states2" value="Mee eens" id="oneens1">
-              <label class="labelsright" for="oneens1">Mee eens</label>
-              <br />
-              <input type="radio" name="states2" value="Helemaal mee eens" id="oneens2">
-              <label class="labelsright" for="oneens2">Helemaal mee eens</label>
-              <br />
+                <input type="radio" name="states2" value="Helemaal mee oneens" id="Wel contact gehad2">
+                <label class="labelsright ruimte" for="Wel contact gehad2">Helemaal mee oneens</label>
+                <br />
+                <input type="radio" name="states2" value="Mee oneens" id="Geen contact gehad2">
+                <label class="labelsright" for="Geen contact gehad2">Mee oneens</label>
+                <br />
+                <input type="radio" name="states2" value="Niet mee eens en niet mee oneens" id="nietmee">
+                <label class="labelsright" for="nietmee">Niet mee eens en niet mee oneens</label>
+                <br />
+                <input type="radio" name="states2" value="Mee eens" id="oneens1">
+                <label class="labelsright" for="oneens1">Mee eens</label>
+                <br />
+                <input type="radio" name="states2" value="Helemaal mee eens" id="oneens2">
+                <label class="labelsright" for="oneens2">Helemaal mee eens</label>
+                <br />
 
-              <h2 class="ruimte">
-                Hoe kwam uw LAATSTE contact met de politie tot stand?
-              </h2>
+                <h2 class="ruimte">
+                  Hoe kwam uw LAATSTE contact met de politie tot stand?
+                </h2>
 
-              <input type="radio" name="states2" value="De politie kwam naar mij toe" id="De politie kwam naar mij toe2">
-              <label class="labelsright ruimte" for="De politie kwam naar mij toe2">De politie <span>kwam naar mij</span> toe</label>
-              <br />
-              <input type="radio" name="states2" value="Ik ging naar de politie toe" id="Ik ging naar de politie toe2">
-              <label class="labelsright" for="Ik ging naar de politie toe2"><span>Ik ging naar</span> de politie toe</label>
+                <input type="radio" name="states2" value="De politie kwam naar mij toe"
+                  id="De politie kwam naar mij toe2">
+                <label class="labelsright ruimte" for="De politie kwam naar mij toe2">De politie <span>kwam naar
+                    mij</span> toe</label>
+                <br />
+                <input type="radio" name="states2" value="Ik ging naar de politie toe"
+                  id="Ik ging naar de politie toe2">
+                <label class="labelsright" for="Ik ging naar de politie toe2"><span>Ik ging naar</span> de politie
+                  toe</label>
 
-              <!-- <div class="colorbuttons">
+                <!-- <div class="colorbuttons">
                 <p>kleur kiezen</p>
                 <input type="radio" name="kleur" value="red" id="rood">
                 <label class="rood" for="rood"></label>
@@ -384,12 +386,13 @@
                 <input type="radio" name="kleur" value="white" id="white">
                 <label class="white" for="white"></label>
               </div> -->
+              </form>
+            </div>
 
-            </form>
           </div>
 
-          </div>
         </div>
+      </div>
 
 
     </article>

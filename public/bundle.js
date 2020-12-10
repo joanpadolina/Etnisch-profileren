@@ -54,10 +54,10 @@
           bottom: 70,
           left: 100
         },
-        width = 1200 - margin.left - margin.right,
-        height = 700 - margin.top - margin.bottom;
+        width = 860 - margin.left - margin.right,
+        height = 800 - margin.top - margin.bottom;
 
-      let svg = d3.select("#my_dataviz")
+      let svg = d3.select("#nl-data-viz")
         .append("svg")
         .attr('class', 'bubble-plot')
         .attr("width", width + margin.left + margin.right)
@@ -282,9 +282,9 @@
           left: 150
         },
         width = 860 - margin.left - margin.right,
-        height = 700 - margin.top - margin.bottom;
+        height = 800 - margin.top - margin.bottom;
 
-      let svg = d3.select("#my_dataviz")
+      let svg = d3.select("#non-nl-data-viz")
         .append("svg")
         .attr('class', 'bubble-plot2')
         .attr("width", width + margin.left + margin.right)
@@ -352,6 +352,7 @@
         .attr('opacity', .5)
         .attr("stroke", "#838383");
 
+
       //color change
       let colorbut = d3.selectAll(("input[name='kleur']"))
         .on("change", function () {
@@ -400,9 +401,7 @@
 
         updateCir
           .data(updateData, d => d.key);
-
-
-
+          
         updateCir
           .transition()
           .duration(800)
@@ -508,7 +507,6 @@
                         }
 
                     });
-
                 secondBubble(newDataResults);
                 secondBubble$1(newDataResults);
 

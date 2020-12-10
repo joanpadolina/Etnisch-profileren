@@ -2,7 +2,6 @@
 import myVisualChart from './modules/bubblechart.js'
 import secondBubble from './modules/secondbubble.js'
 
-
 function newData() {
     let newResults = fetch('../src/newJson.json')
         .then(res => res.json())
@@ -28,7 +27,6 @@ function newData() {
                     }
 
                 })
-
             myVisualChart(newDataResults)
             secondBubble(newDataResults)
 

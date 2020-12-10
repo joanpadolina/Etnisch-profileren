@@ -25,9 +25,9 @@ export default function secondBubble(data) {
       left: 150
     },
     width = 860 - margin.left - margin.right,
-    height = 700 - margin.top - margin.bottom;
+    height = 800 - margin.top - margin.bottom;
 
-  let svg = d3.select("#my_dataviz")
+  let svg = d3.select("#non-nl-data-viz")
     .append("svg")
     .attr('class', 'bubble-plot2')
     .attr("width", width + margin.left + margin.right)
@@ -95,6 +95,7 @@ export default function secondBubble(data) {
     .attr('opacity', .5)
     .attr("stroke", "#838383")
 
+
   //color change
   let colorbut = d3.selectAll(("input[name='kleur']"))
     .on("change", function () {
@@ -143,9 +144,7 @@ export default function secondBubble(data) {
 
     updateCir
       .data(updateData, d => d.key)
-
-
-
+      
     updateCir
       .transition()
       .duration(800)

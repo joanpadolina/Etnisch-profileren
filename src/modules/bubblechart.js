@@ -31,10 +31,10 @@ export default function secondBubble(data) {
       bottom: 70,
       left: 100
     },
-    width = 1200 - margin.left - margin.right,
-    height = 700 - margin.top - margin.bottom;
+    width = 860 - margin.left - margin.right,
+    height = 800 - margin.top - margin.bottom;
 
-  let svg = d3.select("#my_dataviz")
+  let svg = d3.select("#nl-data-viz")
     .append("svg")
     .attr('class', 'bubble-plot')
     .attr("width", width + margin.left + margin.right)

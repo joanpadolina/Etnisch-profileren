@@ -1,17 +1,13 @@
-svg.bubble-plot {
-    display: block;
-    position: relative;
-    color: black;
-}
 
 svg.bubble-plot2 {
     display: block;
     position: relative;
     color: black;
     width: 100vw !important;
+    z-index:2 !important;
 }
 
-#my_dataviz {
+/* #my_dataviz {
     display: block;
     position: relative;
     display: flex;
@@ -20,7 +16,7 @@ svg.bubble-plot2 {
     margin-left: 35vw;
     margin-right: 35vw;
     top: 15vh !important;
-}
+} */
 
 .graph3 {
     text-align: left !important;
@@ -147,39 +143,35 @@ div.tooltip {
 .logo {
     width: 10em;
 }
-
 .formsdiv {
-    width: 90vw;
-    margin-left: 5vw !important;
-    margin-right: 5vw !important;
-    top: 0;
-    position: absolute;
     display: flex;
-    justify-content: space-between;
-    z-index: -1;
+    margin-top: 3rem;
 }
 
-.form1,
-.form2 {
+.form__nl, .form__non-nl {
+    display: flex;
+    flex-direction: row-reverse;
+    min-width: 50vw;
+    z-index: 9;
+}
+
+.form__non-nl {
+    flex-direction: row;
+}
+
+div#nl-data-viz, div#non-nl-data-viz {
+    width: 20rem;
+    height: 50rem;
+    display: flex;
     position: relative;
+    align-items: center;
+}
+
+svg.bubble-plot, svg.bubble-plot2 {
     display: block;
-    top: 0 !important;
-    left: 0 !important;
-}
-
-.form2 {
-    position: relative;
-}
-
-.form1 h2,
-.form2 h2 {
-    position: absolute;
-    width: 15vw;
-
-}
-
-.form2 h2 {
-    left: 1.2vw;
+    margin: auto;
+    width: 14rem;
+    margin-top: 6rem;
 }
 
 #herkomst-radio,
@@ -241,22 +233,6 @@ label {
     position: relative;
 }
 
-.labelsleft {
-    margin-left: 15vw;
-}
-
-.labelsright {
-    margin-left: -15vw;
-}
-
-.ruimte {
-    margin-top: 6vh;
-}
-
-.ruimte2 {
-    margin-top: 10vh;
-}
-
 .form1 label:hover {
     background: rgba(255, 255, 0, 0.603);
     color: black;
@@ -278,17 +254,6 @@ label {
     display: inline-block;
     position: relative;
     top: -81.4em;
-}
-
-.vertrouwen {
-    display: block;
-    position: relative;
-    margin-top: 10vh;
-    left: -1em;
-    z-index: -1;
-}
-.legendatext{
-    z-index: -1;
 }
 
 .bear {
@@ -363,19 +328,6 @@ h3 {
     color: yellow;
 }
 
-.nederlandtxt {
-    height: 18vh;
-    display: block;
-    position: relative;
-    margin-left: 15vw;
-}
-
-.nietnltext {
-    position: relative;
-    height: 18vh;
-    left: -15vw;
-}
-
 .first,
 .second {
     text-align: left;
@@ -387,10 +339,16 @@ h3 {
 }
 
 .legendatext {
-    width: 100vw;
-    text-align: center;
-    padding-top: 14vh;
     position: absolute;
+    width: 100vw;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 11vh;
+    text-align: center;
+    z-index: -1;
+
 }
 
 p.txtbeoordeeld,

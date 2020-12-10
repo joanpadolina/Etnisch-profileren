@@ -1,143 +1,119 @@
 /* graph 3*/
 
 @media (max-width: 755px) {
+  svg.bubble-plot,
+  .selection-values1,
+  .form1 {
+    display: none;
+  }
 
-    svg.bubble-plot,
-    .selection-values1,
-    .form1 {
-        display: none;
-    }
+  .form2 form h2 {
+    font-size: 0.9em;
+  }
 
+  .form2 form {
+    left: 0vw;
+  }
 
-    .form2 form h2 {
-        font-size: .9em;
-    }
+  .form2 form h2 {
+    width: 45vw;
+    margin-bottom: 0;
+    padding: 1em 0;
+  }
+  .form__non-nl {
+    display: flex;
+    flex-direction: row-reverse;
+    min-width: 20rem;
+    z-index: 9;
+  }
+  .form2 label {
+    margin: 0.2em;
+    padding: 0.4em;
+    width: 45vw;
+  }
 
-    .form2 form {
-        left: 0vw;
-    }
+  .colorbuttons label {
+    width: 2em;
+  }
 
-    .form2 form h2 {
-        width: 45vw;
-        margin-bottom: 0;
-        padding: 1em 0;
+  .graph3 {
+    height: 260vh;
+  }
 
-    }
+  .discriptionvertrouwen {
+    width: 90vw;
+  }
 
-    .form2 label {
-        margin: 0.2em;
-        padding: 0.4em;
-        width: 45vw;
-    }
+  .nietnltext h3 {
+    width: 60%;
+    font-size: 1.4em;
+  }
 
-    .colorbuttons label {
-        width: 2em;
+  .form1 form h2 {
+    font-size: 0.6em;
+  }
 
-    }
+  .form1 form {
+    left: 0vw;
+    top: 0vh;
+  }
 
-    .graph3 {
-        height: 260vh;
-    }
+  .formsdiv {
+    width: 50%;
+  }
 
-    .discriptionvertrouwen {
-        width: 90vw;
-    }
-
-    .nietnltext {
-        left: 0;
-        width: 100vw;
-    }
-
-    .nietnltext h3 {
-        width: 100%;
-    }
-
-
-    .nietnltext p {
-        font-size: em;
-        margin-bottom: -11vh;
-    }
-
-    .form1 form h2 {
-        font-size: .6em;
-    }
-
-    .form1 form {
-        left: 0vw;
-        top: 0vh;
-    }
-
-
+  .form2 {
+    width: 19rem;
+    left: 1rem;
+    position: absolute;
+  }
 }
 
+@media (min-width: 20em) and (max-width: 47em) {
+  .form2 h2 {
+    position: relative;
+  }
 
+  .discription1 {
+    width: 90vw;
+    left: 1vw;
+  }
 
-@media(min-width: 20em) and (max-width: 47em) {
+  .form1 form h2 {
+    font-size: 0.9em;
+  }
 
-    #my_dataviz {
-        width: 100vw;
-        margin: 0;
-        top: 35vh !important;
-        z-index:-1;
-    }
+  .form1 {
+    top: 0vh;
+  }
 
-    .ruimte {
-        margin-top: 0vh;
-    }
+  .form1 form h2 {
+    width: 19em;
+    left: 0;
+    top: 0;
+    margin: auto;
+  }
 
-    svg.bubble-plot2 {
-        left: 36vw;
-
-    }
-
-    .form2 h2 {
-        position: relative;
-    }
-
-    .discription1 {
-        width: 90vw;
-        left: 1vw;
-    }
-
-    .form1 form h2 {
-        font-size: .9em;
-    }
-
-    .form1 {
-        top: 0vh;
-    }
-
-    .form1 form h2 {
-        width: 19em;
-        left: 0;
-        top: 0;
-        margin: auto;
-    }
-
-    .legendatext {
-        display: none;
-    }
+  .legendatext {
+    display: none;
+  }
 }
 
-
-@media(min-width: 1445px) {
-    #my_dataviz {
+@media (min-width: 1445px) {
+  /* #my_dataviz {
         top: 1vh;
-    }
+    } */
 
-    .textlaag {}
+  .textlaag {
+  }
 
-    .txtbeoordeeld {
-        top: -10vh;
-    }
-
+  .txtbeoordeeld {
+    top: -10vh;
+  }
 }
 
-
-
-@media (min-width:1024px) {
-
-    #my_dataviz {
+@media (min-width: 1024px) {
+  /* #my_dataviz {
         left: 0vw;
-    }
+    } */
 }

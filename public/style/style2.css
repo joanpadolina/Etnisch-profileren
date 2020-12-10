@@ -691,6 +691,7 @@ button:hover {
   position: absolute;
   width: 25vw;
   right: 0;
+  pointer-events: none;
 }
 
 
