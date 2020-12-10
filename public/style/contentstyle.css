@@ -7,17 +7,6 @@ svg.bubble-plot2 {
     z-index:2 !important;
 }
 
-/* #my_dataviz {
-    display: block;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 30vw;
-    margin-left: 35vw;
-    margin-right: 35vw;
-    top: 15vh !important;
-} */
-
 .graph3 {
     text-align: left !important;
 }
@@ -341,7 +330,7 @@ h3 {
 .legendatext {
     position: absolute;
     width: 100vw;
-    height: 85vh;
+    height: 97vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
