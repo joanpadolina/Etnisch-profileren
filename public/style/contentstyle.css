@@ -135,6 +135,7 @@ div.tooltip {
 .formsdiv {
     display: flex;
     margin-top: 3rem;
+    position: relative;
 }
 
 .form__nl, .form__non-nl {
@@ -329,24 +330,19 @@ h3 {
 
 .legendatext {
     position: absolute;
-    width: 100vw;
-    height: 97vh;
+    left: 16rem;
+    height: 93%;
+    width: 6rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-top: 11vh;
-    text-align: center;
+    margin-top: 6rem;
     z-index: -1;
-
 }
 
 p.txtbeoordeeld,
 p.textlaag {
     font-size: 0.8em;
-}
-
-p.textlaag {
-    margin-top: 40vw;
 }
 
 .bear img {
