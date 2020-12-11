@@ -1107,7 +1107,7 @@ button:hover {
   .parallax__layer img {
     position: absolute;
     left: 0;
-    width: 1680px;
+    width: 100vw;
   }
 
 }
