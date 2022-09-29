@@ -15,7 +15,7 @@
   "dependencies": {
     "@rollup/plugin-json": "^4.0.0",
     "convert-csv-to-json": "0.0.15",
-    "d3": "^5.14.2",
+    "d3": "^7.6.1",
     "rollup": "^1.27.9",
     "rollup-plugin-json": "^4.0.0"
   },
